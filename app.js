@@ -59,10 +59,8 @@ class NodeWithItemsUpdates extends Node {
         super(qns,b1option,b2option,imageurl);
         this.itemx = itemx
         this.stat = stat
-        this.itemUrl = itemUrl
+        this.itemUrl = itemUrl 
         this.updateItem = this.updateItem.bind(this)
-
-    
     }
 
     start(){
@@ -81,7 +79,7 @@ class NodeWithItemsUpdates extends Node {
     }
 
     showItem(){
-        let $item = $('<div>').addClass('inventory').append(`<img id="${this.itemx}" src=${this.itemUrl}/>`)
+        let $item = $('<div>').addClass('inventory').append(`<img class="items" src="${this.itemUrl}"/>`)
         $('.container').append($item)
     }
 
@@ -90,12 +88,32 @@ class NodeWithItemsUpdates extends Node {
 class NodewithMoMoGen extends Node {
     constructor(qns,b1option,b2option,imageurl){
     super(qns,b1option,b2option,imageurl)
+    this.momogen = this.momogen.bind(this)
+    // you need to bind because if you don't, when you invoke momogen and reference this.surviveNode, it only reference momogen itself and can't find this.surviveNode
+    // by binding it, you allow the momogen to search through the whole class instead 
+    // to bind method, you have to do this like this -> this.method = this.method.bind(this), you have to do 'this.method' after the = sign because that's how you reference functions in a class 
+    }
+
+    start(){
+        $('.startingphoto').attr('src',this.imageurl)
+        // Set new image
+        $('#option-buttons').empty()
+        // Empty option buttons in case user clicks on it before question finishes loading -> causes a bug
+        // redefining start function with added updateItem method
+        this.setNode()
+        this.displayQns()
+    }
+
+    setNode(){
+        this.btn1nn = this.momogen
+        this.btn2nn = this.momogen
     }
 
     nextNode(){
-        $('#button1').click(this.momogen)
-        $('#button2').click(this.momogen)
+        $('#button1').click(this.btn1nn)
+        $('#button2').click(this.btn2nn)
         }
+
 
     setSurviveNode(surviveNode){
         this.surviveNode = surviveNode
@@ -103,12 +121,16 @@ class NodewithMoMoGen extends Node {
 
     momogen(){
     let randomGen = Math.ceil(Math.random()*10)
-    console.log(this.surviveNode)
-    console.log(node2)
+    console.log('this.surviveNode:',this.surviveNode)//undefined
     if(randomGen<=1){
         alert('MOMO APPEARED, YOU DIE')
-    }else{
-        this.surviveNode.start()
+        // cue game over screen
+        // go back to game screen
+    }
+    else{
+        console.log(node2)
+        this.surviveNode.start() 
+        //is undefined even tho it was declared previously in nodelist.js
     }
         //cannot read properties of undefined (reading 'start')
     }  

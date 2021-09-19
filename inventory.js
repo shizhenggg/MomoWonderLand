@@ -23,7 +23,7 @@ const inventoryList = {
     space: 1
     },
     item3: {
-    name: 'radio',
+    name: 'satellitephone',
     holding:false,
     space: 3
     },

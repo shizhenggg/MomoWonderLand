@@ -34,7 +34,8 @@ const node1 = new NodeWithItemsUpdates(
     'Right',
     'assets/Image/toilet%20bathtub.jpeg',
     'matchbox',
-    true)
+    true,
+    'assets/Image/matchbox.png')
 
 
 const node0 = new Node(
@@ -50,7 +51,7 @@ node6.setNode(node0,node0)
 
 
 $(() => {
-    node2.start()
+    node0.start()
     })
     
     

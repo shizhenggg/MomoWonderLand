@@ -52,10 +52,9 @@ const showInventory = () => {
      if(inventoryList[item]['holding']===false && holdingList.indexOf(inventoryList[item]['name'])!== -1){
      let indexFound = holdingList.indexOf(inventoryList[item]['name'])
      holdingList.splice(indexFound,1)
-
- }
+ } 
 }
-    // console.log(holdingList)
+    console.log(holdingList)
     // maybe can have popup that said, *item* added to backpack or maybe add a sound 
 }
 

@@ -55,17 +55,36 @@ class Node {
 }
 
 class NodeWithItemsUpdates extends Node {
-    constructor(qns,b1option,b2option,imageurl,itemx,stat){
+    constructor(qns,b1option,b2option,imageurl,itemx,stat,itemUrl){
         super(qns,b1option,b2option,imageurl);
         this.itemx = itemx
         this.stat = stat
+        this.itemUrl = itemUrl
         this.updateItem = this.updateItem.bind(this)
+
+    
+    }
+
+    start(){
+        $('.startingphoto').attr('src',this.imageurl)
+        // Set new image
+        $('#option-buttons').empty()
+        // Empty option buttons in case user clicks on it before question finishes loading -> causes a bug
+        this.displayQns()
         this.updateItem()
+        // redefining start function with added updateItem method
     }
 
     updateItem(){
     updateInventory(this.itemx,this.stat)
-}
+    this.showItem()
+    }
+
+    showItem(){
+        let $item = $('<div>').addClass('inventory').append(`<img id="${this.itemx}" src=${this.itemUrl}/>`)
+        $('.container').append($item)
+    }
+
 }
 
 class NodewithMoMoGen extends Node {
@@ -85,6 +104,7 @@ class NodewithMoMoGen extends Node {
     momogen(){
     let randomGen = Math.ceil(Math.random()*10)
     console.log(this.surviveNode)
+    console.log(node2)
     if(randomGen<=1){
         alert('MOMO APPEARED, YOU DIE')
     }else{

@@ -26,11 +26,17 @@ body{
     background-color:black;
 }
 
+.inventory{
+    position:absolute;
+    height:10vh;
+    width:5vw;
+    bottom: 30vh;
+}
 
 .questionbox{
     position:absolute;
     height:6vw;
-    width:90vw;
+    width:89vw;
     /* top:80vh; */
     background-color: rgba(88, 81, 63, 0.4);
     font-family: 'Griffy', cursive;
@@ -44,7 +50,7 @@ body{
 .option-buttons{
     position: absolute;
     height:10vh;
-    width:100vw;
+    width:99vw;
     background-color: rgba(88, 81, 63, 0.4);
     /* if it's percentage it is relative to parent element. if its vh/vw,it's relative to the viewport */
     display:flex;
@@ -85,3 +91,4 @@ body{
     height:100vh;
     object-fit: cover;
 }
+

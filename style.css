@@ -1,0 +1,87 @@
+@import url('https://fonts.googleapis.com/css2?family=Griffy&display=swap');
+
+body{
+    padding:0;
+    margin:0;
+    display:flex;
+    justify-content: center;
+    align-items:center;  
+    width:100vw;
+    height:100vh;
+}
+
+
+#matchstick{
+    width:20%;
+    height:20%;
+    margin: auto;
+
+}
+
+.gamewindow{
+    display:flex;
+    position:relative;
+    height: 100vh;
+    width: 100vw;
+    background-color:black;
+}
+
+
+.questionbox{
+    position:absolute;
+    height:6vw;
+    width:90vw;
+    /* top:80vh; */
+    background-color: rgba(88, 81, 63, 0.4);
+    font-family: 'Griffy', cursive;
+    font-size: 4vh;
+    text-align: center;
+    bottom: 10vh;
+    padding: 3vh 5vw;
+    color: white;
+}
+
+.option-buttons{
+    position: absolute;
+    height:10vh;
+    width:100vw;
+    background-color: rgba(88, 81, 63, 0.4);
+    /* if it's percentage it is relative to parent element. if its vh/vw,it's relative to the viewport */
+    display:flex;
+    flex-flow:row nowrap;
+    bottom: 0vh;
+    justify-content:space-evenly;
+    padding:0px;
+    border-radius: 5px;
+}
+
+.button{    
+    margin: 1.2vh;
+    border-radius: 3vh;
+    flex-grow:1;
+    color:white;
+    background-color:rgba(74,68,59,0.4);
+    box-shadow: 0 0 10px 2px;
+    font-family: 'Griffy', cursive;
+    font-size:4.5vh;
+
+}
+
+
+.nodeimg{
+    width:100vw;
+    height:80vh;
+    object-fit: fill;
+}
+
+.robodog{
+    width:100vw;
+    height:80vh;
+    object-fit: cover;
+}
+
+.startingphoto{
+    width:100vw;
+    height:100vh;
+    object-fit: cover;
+}

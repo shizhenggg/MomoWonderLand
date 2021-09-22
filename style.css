@@ -83,6 +83,10 @@ body{
 
 }
 
+.button:hover{
+    color:rgba(255, 0, 0, 0.637);
+}
+
 .story-button{
     margin: 1.2vh;
     border-radius: 3vh;
@@ -94,6 +98,9 @@ body{
     font-size:4.5vh;
 }
 
+.story-button:hover{
+    color:rgba(255, 0, 0, 0.637);
+}
 
 .nodeimg{
     width:100vw;
@@ -113,3 +120,25 @@ body{
     object-fit: cover;
 }
 
+.shake{
+    animation: shake 0.3s;
+    animation-iteration-count: 7;
+}
+
+@keyframes shake {
+    10%, 90% {
+      transform: translate3d(-12px, 0, 0);
+    }
+    
+    20%, 80% {
+      transform: translate3d(13px, 0, 0);
+    }
+  
+    30%, 50%, 70% {
+      transform: translate3d(-20px, 0, 0);
+    }
+  
+    40%, 60% {
+      transform: translate3d(20px, 0, 0);
+    }
+  }

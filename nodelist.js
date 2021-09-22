@@ -163,7 +163,7 @@ storyNode2.setSurviveNode(node6)
 
 
 $(() => {
-   storyNode1.start()
+   node21.start()
 })
     
     

@@ -94,6 +94,7 @@ class NodewithMoMoGen extends Node {
     this.momogen = this.momogen.bind(this)
     this.setNode = this.setNode.bind(this)
     this.setSurviveNode = this.setSurviveNode.bind(this)
+    this.momogenJumpScare = this.momogenJumpScare.bind(this)
     // you need to bind because if you don't, when you invoke momogen and reference this.surviveNode, it only reference momogen itself and can't find this.surviveNode
     // by binding it, you allow the momogen to search through the whole class instead 
     // to bind method, you have to do this like this -> this.method = this.method.bind(this), you have to do 'this.method' after the = sign because that's how you reference functions in a class 
@@ -124,12 +125,51 @@ class NodewithMoMoGen extends Node {
         this.surviveNode = surviveNode
     }
 
+    momogenJumpScare(){
+
+        $('#option-buttons').empty()
+        let audio = new Audio('assets/sound/momojumpscare.mp3');
+        audio.play()
+
+        function wait(ms){
+            return new Promise(resolve=>{
+                setTimeout(()=>{resolve('')},ms)
+            })
+        }
+        async function momoJumpScare(){
+        $('.startingphoto').attr('src','https://s.yimg.com/uu/api/res/1.2/EPrCsKpKqdvmt9DKDkUjhw--~B/Zmk9ZmlsbDtoPTQzMjt3PTY3NTthcHBpZD15dGFjaHlvbg--/https://s.yimg.com/uu/api/res/1.2/3WbSqoVABep_tI_DpuJSGQ--~B/aD0xMDI0O3c9MTYwMDthcHBpZD15dGFjaHlvbg--/https://o.aolcdn.com/images/dims?resize=2000%2C2000%2Cshrink&image_uri=https%3A%2F%2Fs.yimg.com%2Fos%2Fcreatr-uploaded-images%2F2019-03%2F4e54f600-3f82-11e9-aff6-507cab99fdc9&client=a1acac3e1b3290917d92&signature=6336c16f62a811ad2bb1dcfcdee118f42296dd69.cf.webp')
+        $('.startingphoto').addClass('shake')
+        $('.questionbox').hide()
+        $('#option-buttons').hide()
+        await wait(2000)
+        $('.questionbox').show()
+        $('#option-buttons').show()
+        $('.startingphoto').attr('src','assets/Image/youdied.png')
+        $('.questionbox').text('Returning to home screen...\n Loading...')
+        await wait(3000)
+        storyNode1.start()
+        }
+
+        momoJumpScare()
+        
+        
+    
+    }
+
+       
+
     momogen(){
     let randomGen = Math.ceil(Math.random()*10)
     console.log('this.surviveNode:',this.surviveNode)//undefined
     console.log(randomGen)
-    if(randomGen<=1){
-        alert('MOMO APPEARED, YOU DIE')
+    if(randomGen<=10){
+       this.momogenJumpScare()
+        // $('#option-buttons').empty()
+        // let $btn2 = $('<button>').attr('id','button2').addClass('button')
+        // $('#option-buttons').append($btn2)
+        // $btn2.typedText(this.b2option)
+        
+        
         // cue game over screen
         // go back to game screen
     }
@@ -140,6 +180,7 @@ class NodewithMoMoGen extends Node {
         //cannot read properties of undefined (reading 'start')
     }  
     }
+
 // 2 options button avail 
 class NodewithMoMoGen2 extends NodewithMoMoGen{
     setNode(){
@@ -164,9 +205,9 @@ class StoryNode {
         this.displayStory()
     }
     displayStory(){
-    $('.questionbox').typedText(this.story,()=>{this.displayBoptions()})
-    // $('.questionbox').text(this.story)
-    // this.displayBoptions()
+    // $('.questionbox').typedText(this.story,()=>{this.displayBoptions()})
+    $('.questionbox').text(this.story)
+    this.displayBoptions()
     }
 
     displayBoptions(){
@@ -194,6 +235,7 @@ class StoryNodeWithMoMoGen {
         this.start = this.start.bind(this)
         this.momogen = this.momogen.bind(this)
         this.setSurviveNode = this.setSurviveNode.bind(this)
+        this.momogenJumpScare = this.momogenJumpScare.bind(this)
     }
 
     start(){
@@ -226,22 +268,54 @@ class StoryNodeWithMoMoGen {
         this.surviveNode = surviveNode
     }
 
+
+    momogenJumpScare(){
+
+        $('#option-buttons').empty()
+        let audio = new Audio('assets/sound/momojumpscare.mp3');
+        audio.play()
+
+        function wait(ms){
+            return new Promise(resolve=>{
+                setTimeout(()=>{resolve('')},ms)
+            })
+        }
+        async function momoJumpScare(){
+        $('.startingphoto').attr('src','https://s.yimg.com/uu/api/res/1.2/EPrCsKpKqdvmt9DKDkUjhw--~B/Zmk9ZmlsbDtoPTQzMjt3PTY3NTthcHBpZD15dGFjaHlvbg--/https://s.yimg.com/uu/api/res/1.2/3WbSqoVABep_tI_DpuJSGQ--~B/aD0xMDI0O3c9MTYwMDthcHBpZD15dGFjaHlvbg--/https://o.aolcdn.com/images/dims?resize=2000%2C2000%2Cshrink&image_uri=https%3A%2F%2Fs.yimg.com%2Fos%2Fcreatr-uploaded-images%2F2019-03%2F4e54f600-3f82-11e9-aff6-507cab99fdc9&client=a1acac3e1b3290917d92&signature=6336c16f62a811ad2bb1dcfcdee118f42296dd69.cf.webp')
+        $('.startingphoto').addClass('shake')
+        $('.questionbox').hide()
+        $('#option-buttons').hide()
+        await wait(2000)
+        $('.questionbox').show()
+        $('#option-buttons').show()
+        $('.startingphoto').attr('src','assets/Image/youdied.png')
+        $('.questionbox').text('Returning to home screen...\n Loading...')
+        await wait(3000)
+        storyNode1.start()
+        }
+
+        momoJumpScare()
+    
+    
+    }
+
+
     momogen(){
     let randomGen = Math.ceil(Math.random()*10)
     console.log(randomGen)
-    if(randomGen<=1){
-        alert('MOMO APPEARED, YOU DIE')
+    if(randomGen<=10){
+        this.momogenJumpScare()
+    }
         // cue game over screen
         // go back to game screen
-    }
     else{
         this.surviveNode.start() 
         //is undefined even tho it was declared previously in nodelist.js
     }
+
         //cannot read properties of undefined (reading 'start')
     }  
-    }
-
+}
 
 
 

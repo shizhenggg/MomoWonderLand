@@ -86,6 +86,8 @@ class NodeWithItemsUpdates extends Node {
     }
 
 }
+
+// 1 option button avail
 class NodewithMoMoGen extends Node {
     constructor(qns,b1option,b2option,imageurl){
     super(qns,b1option,b2option,imageurl)
@@ -138,6 +140,7 @@ class NodewithMoMoGen extends Node {
         //cannot read properties of undefined (reading 'start')
     }  
     }
+// 2 options button avail 
 class NodewithMoMoGen2 extends NodewithMoMoGen{
     setNode(){
         this.btn1nn = this.momogen
@@ -182,6 +185,63 @@ class StoryNode {
     $('#storybutton').click(this.storynn.start)
     }
 }
+
+class StoryNodeWithMoMoGen {
+    constructor(story,option,imageurl){
+        this.story = story
+        this.option = option
+        this.imageurl = imageurl
+        this.start = this.start.bind(this)
+        this.momogen = this.momogen.bind(this)
+        this.setSurviveNode = this.setSurviveNode.bind(this)
+    }
+
+    start(){
+        $('.startingphoto').attr('src',this.imageurl)
+        // Set new image
+        $('#option-buttons').empty()
+        // Empty option buttons in case user clicks on it before question finishes loading -> causes a bug
+        this.displayStory()
+    }
+    displayStory(){
+    // $('.questionbox').typedText(this.story,()=>{this.displayBoptions()})
+    $('.questionbox').text(this.story)
+    this.displayBoptions()
+    }
+
+    displayBoptions(){
+        let $storybtn = $('<button>').attr('id','storybutton').addClass('story-button')
+        $('#option-buttons').addClass('option-buttons')
+        $('#option-buttons').append($storybtn)
+        $storybtn.typedText(this.option)
+        this.nextNode()
+        }
+
+
+    nextNode(){
+    $('#storybutton').click(this.momogen)
+    }
+
+    setSurviveNode(surviveNode){
+        this.surviveNode = surviveNode
+    }
+
+    momogen(){
+    let randomGen = Math.ceil(Math.random()*10)
+    console.log(randomGen)
+    if(randomGen<=1){
+        alert('MOMO APPEARED, YOU DIE')
+        // cue game over screen
+        // go back to game screen
+    }
+    else{
+        this.surviveNode.start() 
+        //is undefined even tho it was declared previously in nodelist.js
+    }
+        //cannot read properties of undefined (reading 'start')
+    }  
+    }
+
 
 
 

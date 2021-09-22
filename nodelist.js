@@ -89,11 +89,7 @@ const node3 = new Node(
 
     )
 
-const node2 = new NodewithMoMoGen(
-    'Something calls you to the left door and as you entered, you find yourself in a ward with a badly stained bed with a rotting stench...There seems to be static sound coming from underneath the bed. You feel strangly compelled to look underneath the bed...',
-    'Look underneath the bed',
-    'Look underneath the bed',
-    'assets/Image/hospitalbed.png')
+
 
 
 const node1 = new NodeWithItemsUpdates(
@@ -127,12 +123,19 @@ const escapeNode = new Node(
     'assets/Image/map.jpeg'
 )
 
+
+
 const storyNode1 = new StoryNode(
     'You opened your eyes, feeling extremely disoriented about where you were or even what you were doing here… what were you doing on the floor? Did you pass out? Possibly, you thought to yourself as you remember that you were the lead investigator on the case of a possible serial child abduction which led you to this abandoned prison…',
     'Stand up and explore the prison',
     'assets/storyNodeImg/storyNode1.jpeg'
-
 )
+
+const storyNode2 = new StoryNodeWithMoMoGen(
+    'Something calls you to the left door and as you entered, you find yourself in a ward with a badly stained bed with a rotting stench...There seems to be static sound coming from underneath the bed. You feel strangly compelled to look underneath the bed...',
+    'Look underneath the bed',
+    'assets/Image/hospitalbed.png')
+
 // for escape node you need to get rid of next node button else there will be an error
 
 
@@ -143,12 +146,13 @@ node6.setNode(node7,node5)
 node5.setNode(node8,deathNode)
 node4.setNode(node15,node5)
 node3.setNode(node4,node5)
-node2.setSurviveNode(node6)
-node1.setNode(node2,node3)
+// node2.setSurviveNode(node6)
+// need to have a storynode with momogen 
+node1.setNode(storyNode2,node3)
 node0.setNode(node1,node17)
 
 storyNode1.setNode(node0)
-
+storyNode2.setSurviveNode(node6)
 
 
 

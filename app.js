@@ -70,6 +70,7 @@ class NodeWithItemsUpdates extends Node {
         // Set new image
         $('#option-buttons').empty()
         // Empty option buttons in case user clicks on it before question finishes loading -> causes a bug
+        // Also clears option-buttons from previous nodes
         this.displayQns()
         this.updateItem()
         // redefining start function with added updateItem method
@@ -142,6 +143,7 @@ class NodewithMoMoGen extends Node {
         $('.questionbox').hide()
         $('#option-buttons').hide()
         await wait(2000)
+        $('.startingphoto').removeClass('shake')
         $('.questionbox').show()
         $('#option-buttons').show()
         $('.startingphoto').attr('src','assets/Image/youdied.png')
@@ -286,6 +288,7 @@ class StoryNodeWithMoMoGen {
         $('.questionbox').hide()
         $('#option-buttons').hide()
         await wait(2000)
+        $('.startingphoto').removeClass('shake')
         $('.questionbox').show()
         $('#option-buttons').show()
         $('.startingphoto').attr('src','assets/Image/youdied.png')
@@ -316,6 +319,110 @@ class StoryNodeWithMoMoGen {
         //cannot read properties of undefined (reading 'start')
     }  
 }
+
+class GameNode {
+    constructor(desc,imageurl,answer){
+        this.desc = desc
+        this.imageurl = imageurl
+        this.answer = answer
+        this.start = this.start.bind(this)
+        this.checkAnswer = this.checkAnswer.bind(this)
+        this.momogen = this.momogen.bind(this)
+        this.setSurviveNode = this.setSurviveNode.bind(this)
+        this.momogenJumpScare = this.momogenJumpScare.bind(this)
+    }
+
+    start(){
+        $('.startingphoto').attr('src',this.imageurl)
+        // Set new image
+        $('#option-buttons').empty()
+        // Empty option buttons in case user clicks on it before question finishes loading -> causes a bug
+        this.displayStory()
+    }
+
+    displayStory(){
+    // $('.questionbox').typedText(this.desc,()=>{this.displayBoptions()})
+    $('.questionbox').text(this.desc)
+    this.displayBoptions()
+    }
+
+    displayBoptions(){
+        let $gameinputbox = $('<input>').attr('id','gameinput').addClass('game-input')
+        $('#option-buttons').addClass('option-buttons')
+        $('#option-buttons').append($gameinputbox)
+        $('#gameinput').keyup((e)=>{
+            if(e.key === 'Enter'){
+            let $gameanswer = $('#gameinput').val()
+            this.checkAnswer($gameanswer)
+            $('#gameinput').val("")
+            e.preventDefault()
+            }
+        })
+    }
+
+    checkAnswer($gameanswer){
+    if($gameanswer == this.answer){
+        alert('correct answer')
+        this.surviveNode.start()
+    }
+    else{
+        this.momogenJumpScare()
+    }
+    }
+
+    setSurviveNode(surviveNode){
+        this.surviveNode = surviveNode
+    }
+
+
+    momogenJumpScare(){
+
+        $('#game-input').empty()
+        let audio = new Audio('assets/sound/momojumpscare.mp3');
+        audio.play()
+
+        function wait(ms){
+            return new Promise(resolve=>{
+                setTimeout(()=>{resolve('')},ms)
+            })
+        }
+        async function momoJumpScare(){
+        $('.startingphoto').attr('src','https://s.yimg.com/uu/api/res/1.2/EPrCsKpKqdvmt9DKDkUjhw--~B/Zmk9ZmlsbDtoPTQzMjt3PTY3NTthcHBpZD15dGFjaHlvbg--/https://s.yimg.com/uu/api/res/1.2/3WbSqoVABep_tI_DpuJSGQ--~B/aD0xMDI0O3c9MTYwMDthcHBpZD15dGFjaHlvbg--/https://o.aolcdn.com/images/dims?resize=2000%2C2000%2Cshrink&image_uri=https%3A%2F%2Fs.yimg.com%2Fos%2Fcreatr-uploaded-images%2F2019-03%2F4e54f600-3f82-11e9-aff6-507cab99fdc9&client=a1acac3e1b3290917d92&signature=6336c16f62a811ad2bb1dcfcdee118f42296dd69.cf.webp')
+        $('.startingphoto').addClass('shake')
+        $('.game-input').hide()
+        $('.questionbox').hide()
+        $('#option-buttons').hide()
+        await wait(2000)
+        $('.startingphoto').removeClass('shake')
+        $('.questionbox').show()
+        $('#option-buttons').show()
+        $('.startingphoto').attr('src','assets/Image/youdied.png')
+        $('.questionbox').text('Returning to home screen...\n Loading...')
+        await wait(3000)
+        storyNode1.start()
+        }
+
+        momoJumpScare()
+    }
+
+
+    momogen(){
+    let randomGen = Math.ceil(Math.random()*10)
+    console.log(randomGen)
+    if(randomGen<=10){
+        this.momogenJumpScare()
+    }
+        // cue game over screen
+        // go back to game screen
+    else{
+        this.surviveNode.start() 
+        //is undefined even tho it was declared previously in nodelist.js
+    }
+
+        //cannot read properties of undefined (reading 'start')
+    }  
+}
+
 
 
 

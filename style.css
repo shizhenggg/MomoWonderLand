@@ -61,7 +61,7 @@ body{
     position: absolute;
     height:10vh;
     width:99vw;
-    background-color: rgba(88, 81, 63, 0.4);
+    background-color: rgba(71, 88, 63, 0.4);
     /* if it's percentage it is relative to parent element. if its vh/vw,it's relative to the viewport */
     display:flex;
     flex-flow:row nowrap;
@@ -84,7 +84,7 @@ body{
 }
 
 .button:hover{
-    color:rgba(255, 0, 0, 0.637);
+    background-color:rgba(255, 0, 0, 0.637);
 }
 
 .story-button{
@@ -99,8 +99,23 @@ body{
 }
 
 .story-button:hover{
-    color:rgba(255, 0, 0, 0.637);
+    background-color:rgba(255, 0, 0, 0.637);
 }
+
+
+.game-input{
+    text-align: center;
+    margin: 1.2vh;
+    border-radius: 3vh;
+    flex-grow:1;
+    color:white;
+    background-color:rgba(209, 127, 20, 0.452);
+    box-shadow: 0 0 10px 2px;
+    font-family: 'Griffy', cursive;
+    font-size:4.5vh;
+}
+
+
 
 .nodeimg{
     width:100vw;

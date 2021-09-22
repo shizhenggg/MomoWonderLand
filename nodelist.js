@@ -136,7 +136,16 @@ const storyNode2 = new StoryNodeWithMoMoGen(
     'Look underneath the bed',
     'assets/Image/hospitalbed.png')
 
-// for escape node you need to get rid of next node button else there will be an error
+
+const gameNode3 = new GameNode(
+    'Game3',
+    'assets/game/game3/dread-notes.jpeg',
+    'see eye to eye'
+)
+
+
+
+    // for escape node you need to get rid of next node button else there will be an error
 
 
 node21.setSurviveNode(escapeNode)
@@ -154,6 +163,10 @@ node0.setNode(node1,node17)
 storyNode1.setNode(node0)
 storyNode2.setSurviveNode(node6)
 
+gameNode3.setSurviveNode(node0)
+
+
+
 
 
 
@@ -163,7 +176,7 @@ storyNode2.setSurviveNode(node6)
 
 
 $(() => {
-   node21.start()
+   storyNode1.start()
 })
     
     

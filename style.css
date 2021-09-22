@@ -1,4 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Griffy&display=swap');
+/* use nicer fonts */
+
 
 body{
     padding:0;
@@ -79,6 +81,17 @@ body{
     font-family: 'Griffy', cursive;
     font-size:4.5vh;
 
+}
+
+.story-button{
+    margin: 1.2vh;
+    border-radius: 3vh;
+    flex-grow:1;
+    color:white;
+    background-color:rgba(42, 39, 35, 0.4);
+    box-shadow: 0 0 10px 2px;
+    font-family: 'Griffy', cursive;
+    font-size:4.5vh;
 }
 
 

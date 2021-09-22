@@ -61,6 +61,8 @@ class NodeWithItemsUpdates extends Node {
         this.stat = stat
         this.itemUrl = itemUrl 
         this.updateItem = this.updateItem.bind(this)
+        this.nextNode = this.nextNode.bind(this)
+        this.setNode = this.setNode.bind(this)
     }
 
     start(){
@@ -84,11 +86,12 @@ class NodeWithItemsUpdates extends Node {
     }
 
 }
-
 class NodewithMoMoGen extends Node {
     constructor(qns,b1option,b2option,imageurl){
     super(qns,b1option,b2option,imageurl)
     this.momogen = this.momogen.bind(this)
+    this.setNode = this.setNode.bind(this)
+    this.setSurviveNode = this.setSurviveNode.bind(this)
     // you need to bind because if you don't, when you invoke momogen and reference this.surviveNode, it only reference momogen itself and can't find this.surviveNode
     // by binding it, you allow the momogen to search through the whole class instead 
     // to bind method, you have to do this like this -> this.method = this.method.bind(this), you have to do 'this.method' after the = sign because that's how you reference functions in a class 
@@ -122,23 +125,69 @@ class NodewithMoMoGen extends Node {
     momogen(){
     let randomGen = Math.ceil(Math.random()*10)
     console.log('this.surviveNode:',this.surviveNode)//undefined
+    console.log(randomGen)
     if(randomGen<=1){
         alert('MOMO APPEARED, YOU DIE')
         // cue game over screen
         // go back to game screen
     }
     else{
-        console.log(node2)
         this.surviveNode.start() 
         //is undefined even tho it was declared previously in nodelist.js
     }
         //cannot read properties of undefined (reading 'start')
     }  
     }
+class NodewithMoMoGen2 extends NodewithMoMoGen{
+    setNode(){
+        this.btn1nn = this.momogen
+        this.btn2nn = this.surviveNode.start
+    }
+}
+
+class StoryNode {
+    constructor(story,option,imageurl){
+        this.story = story
+        this.option = option
+        this.imageurl = imageurl
+        this.start = this.start.bind(this)
+    }
+
+    start(){
+        $('.startingphoto').attr('src',this.imageurl)
+        // Set new image
+        $('#option-buttons').empty()
+        // Empty option buttons in case user clicks on it before question finishes loading -> causes a bug
+        this.displayStory()
+    }
+    displayStory(){
+    $('.questionbox').typedText(this.story,()=>{this.displayBoptions()})
+    // $('.questionbox').text(this.story)
+    // this.displayBoptions()
+    }
+
+    displayBoptions(){
+    let $storybtn = $('<button>').attr('id','storybutton').addClass('story-button')
+    $('#option-buttons').addClass('option-buttons')
+    $('#option-buttons').append($storybtn)
+    $storybtn.typedText(this.option)
+    this.nextNode()
+    }
+
+    setNode(storynn){
+        this.storynn = storynn
+    }
+
+    nextNode(){
+    $('#storybutton').click(this.storynn.start)
+    }
+}
 
 
 
-    
+
+
+
 
 
     // if(ans2==='take it'){

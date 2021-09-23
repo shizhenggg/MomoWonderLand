@@ -3,6 +3,9 @@
 // can do the same for inventory with method 
 
 
+// common problems:
+// undefined start: remember to setNode for the new node to eradicate this bug
+
 
 const node21 = new NodewithMoMoGen2(
     'You found a girl tied to a pipe at the far end of the corridor...There were chunks of black feathers on the floor around the girl... on closer look you realized the girl is your sister... You hear quickening footsteps approaching your sister... Do you want to save your sister? If you get caught now it will all be for naught...',
@@ -51,7 +54,7 @@ const node8 = new Node(
 
 )
 
-const node7 = new Node(
+const node5 = new Node(
     'You clumsily fiddled with the matchbox and after much struggle in the darkness, managed to get one started. As small as it was, the warm flame calmed you down... Out of the blue, at the right corner of your eyes, you see a black figure darted into a small corner down the corridor 10 feet away from you. That\`s weird, you thought to yourself. There was no signs of any humans in this dilapilated place. Do you want to follow the figure?',
     'Follow',
     'Ignore and explore someplace else'
@@ -64,10 +67,18 @@ const node6 = new Node(
     'Leave it',
     'assets/Image/toilet%20bathtub.jpeg')
 
+const testNode = new NodeWithItemsUpdates(
+    'test',
+    'used matchbox',
+    'used matchbox',
+    'assets/Image/hospitalbedroomdarkimg.png',
+    'matchbox',
+    false,
+    'assets/Image/matchbox.png'
+)
 
-
-const node5 = new NodeWithItemsUpdates(
-    'You leave the room and the room suddenly gets colder drastically and your thin sweater does not keep you warm enough. You start to shiver almost immediately. Do you want to use your match as a source of heat to keep yourself warm?',
+const node7 = new NodeWithItemsUpdates(
+    'You found a walkie talkie and kept it. You leave the room and the room suddenly gets colder drastically and your thin sweater does not keep you warm enough. You start to shiver almost immediately. Do you want to use your match as a source of heat to keep yourself warm?',
     'Use Matchbox',
     `Don't use`,
     'assets/Image/hospitalbedroomdarkimg.png',
@@ -149,8 +160,8 @@ const gameNode3 = new GameNode(
 
 
 node21.setSurviveNode(escapeNode)
-node20.setNode(escapeNode,node21)
-node7.setNode(gameNode,deathNode)
+node20.setNode(escapeNode,node0)
+node7.setNode(testNode,node0)
 node6.setNode(node7,node5)
 node5.setNode(node8,deathNode)
 node4.setNode(node15,node5)
@@ -159,6 +170,7 @@ node3.setNode(node4,node5)
 // need to have a storynode with momogen 
 node1.setNode(storyNode2,node3)
 node0.setNode(node1,node17)
+testNode.setNode(node0,node0)
 
 storyNode1.setNode(node0)
 storyNode2.setSurviveNode(node6)

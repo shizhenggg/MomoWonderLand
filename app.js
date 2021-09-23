@@ -1,3 +1,17 @@
+// Things to do 
+
+// 1 Fix display box to fit all text
+// 2 Homepage 
+// 3 Escape node and death node 
+// 4 Inventory UI
+// 5 video assets and integration with code 
+// 6 music and global settings (volume,exit to home page)
+// 7 hint for games? 
+// 8 change font 
+// 9 desc and button text for nodes 
+// 10 strengthen storyline
+
+
 class Node {
     constructor(qns,b1option,b2option,imageurl){
         this.qns = qns
@@ -68,14 +82,16 @@ class NodeWithItemsUpdates extends Node {
         // redefining start function with added updateItem method
     }
 
-    updateItem(){
-    updateInventory(this.itemx,this.stat)
-    this.showItem()
-    }
 
-    showItem(){
-        let $item = $('<div>').addClass('inventory').append(`<img class="items" src="${this.itemUrl}"/>`)
-        $('.container').append($item)
+    updateItem(){
+        if(this.stat === true){
+        console.log('add:',this.itemx)
+        let $item = $('<div>').addClass('inventory').append(`<img class="items" id="${this.itemx}" src="${this.itemUrl}"/>`)
+        $('.container').prepend($item)}
+        if(this.stat === false){
+        console.log('remove:',this.itemx)
+        $(`#${this.itemx}`).remove()
+    }
     }
 
 }
@@ -157,7 +173,7 @@ class NodewithMoMoGen extends Node {
     let randomGen = Math.ceil(Math.random()*10)
     console.log('this.surviveNode:',this.surviveNode)//undefined
     console.log(randomGen)
-    if(randomGen<=10){
+    if(randomGen<=0){
        this.momogenJumpScare()
         // $('#option-buttons').empty()
         // let $btn2 = $('<button>').attr('id','button2').addClass('button')
@@ -300,7 +316,7 @@ class StoryNodeWithMoMoGen {
     momogen(){
     let randomGen = Math.ceil(Math.random()*10)
     console.log(randomGen)
-    if(randomGen<=10){
+    if(randomGen<=0){
         this.momogenJumpScare()
     }
         // cue game over screen

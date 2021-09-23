@@ -177,6 +177,8 @@ gameNode3.setSurviveNode(node0)
 
 $(() => {
    storyNode1.start()
+// //    node21.start()
+//    gameNode3.start()
 })
     
     

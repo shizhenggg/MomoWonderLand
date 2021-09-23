@@ -1,11 +1,3 @@
-// check health function 
-// check item function 
-// check storage function 
-    // show name 
-    // show storage space taken (optional)
-// function to display questions, image, option to front-end at every node (callback)
-
-
 class Node {
     constructor(qns,b1option,b2option,imageurl){
         this.qns = qns
@@ -141,6 +133,7 @@ class NodewithMoMoGen extends Node {
         $('.startingphoto').attr('src','https://s.yimg.com/uu/api/res/1.2/EPrCsKpKqdvmt9DKDkUjhw--~B/Zmk9ZmlsbDtoPTQzMjt3PTY3NTthcHBpZD15dGFjaHlvbg--/https://s.yimg.com/uu/api/res/1.2/3WbSqoVABep_tI_DpuJSGQ--~B/aD0xMDI0O3c9MTYwMDthcHBpZD15dGFjaHlvbg--/https://o.aolcdn.com/images/dims?resize=2000%2C2000%2Cshrink&image_uri=https%3A%2F%2Fs.yimg.com%2Fos%2Fcreatr-uploaded-images%2F2019-03%2F4e54f600-3f82-11e9-aff6-507cab99fdc9&client=a1acac3e1b3290917d92&signature=6336c16f62a811ad2bb1dcfcdee118f42296dd69.cf.webp')
         $('.startingphoto').addClass('shake')
         $('.questionbox').hide()
+        $('.items').hide()
         $('#option-buttons').hide()
         await wait(2000)
         $('.startingphoto').removeClass('shake')
@@ -285,6 +278,7 @@ class StoryNodeWithMoMoGen {
         async function momoJumpScare(){
         $('.startingphoto').attr('src','https://s.yimg.com/uu/api/res/1.2/EPrCsKpKqdvmt9DKDkUjhw--~B/Zmk9ZmlsbDtoPTQzMjt3PTY3NTthcHBpZD15dGFjaHlvbg--/https://s.yimg.com/uu/api/res/1.2/3WbSqoVABep_tI_DpuJSGQ--~B/aD0xMDI0O3c9MTYwMDthcHBpZD15dGFjaHlvbg--/https://o.aolcdn.com/images/dims?resize=2000%2C2000%2Cshrink&image_uri=https%3A%2F%2Fs.yimg.com%2Fos%2Fcreatr-uploaded-images%2F2019-03%2F4e54f600-3f82-11e9-aff6-507cab99fdc9&client=a1acac3e1b3290917d92&signature=6336c16f62a811ad2bb1dcfcdee118f42296dd69.cf.webp')
         $('.startingphoto').addClass('shake')
+        $('.items').hide()
         $('.questionbox').hide()
         $('#option-buttons').hide()
         await wait(2000)

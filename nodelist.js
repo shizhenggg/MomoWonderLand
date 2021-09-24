@@ -6,6 +6,20 @@
 // common problems:
 // undefined start: remember to setNode for the new node to eradicate this bug
 
+const volumeFunctions = () => {
+    let $volumebtn = $('.volumebtn')
+    $volumebtn.click(()=>{
+        $volumebtn.click(function(){
+            if( $("audio").prop('muted') ) {
+                  $("audio").prop('muted', false)
+                  $(".volumebtn").css("background-image","url(/assets/icon/volume.png)")
+            } else {
+              $("audio").prop('muted', true)
+              $(".volumebtn").css("background-image","url(/assets/icon/mute.png)")
+            }}
+        )})
+    }
+
 
 const node21 = new NodewithMoMoGen2(
     'You found a girl tied to a pipe at the far end of the corridor...There were chunks of black feathers on the floor around the girl... on closer look you realized the girl is your sister... You hear quickening footsteps approaching your sister... Do you want to save your sister? If you get caught now it will all be for naught...',
@@ -191,6 +205,7 @@ $(() => {
    storyNode1.start()
 // //    node21.start()
 //    gameNode3.start()
+    volumeFunctions()
 })
     
     

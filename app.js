@@ -3,7 +3,6 @@
 // 1 Fix display box to fit all text
 // 2 Homepage 
 // 3 Escape node and death node 
-// 4 Inventory UI
 // 5 video assets and integration with code 
 // 6 music and global settings (volume,exit to home page)
 // 7 hint for games? 

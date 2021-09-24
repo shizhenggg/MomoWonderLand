@@ -10,6 +10,7 @@
 // 8 change font 
 // 9 desc and button text for nodes 
 // 10 strengthen storyline
+// 11 ln 94 doesn't remove the whole div, only removes the this.itemx class in div thats why there will be empty space
 
 
 class Node {
@@ -90,7 +91,9 @@ class NodeWithItemsUpdates extends Node {
         $('.container').prepend($item)}
         if(this.stat === false){
         console.log('remove:',this.itemx)
-        $(`#${this.itemx}`).remove()
+        $(`#${this.itemx}`).closest('.inventory').remove()
+        // if you just use remove() on this.itemx, there will be the parents div of class inventory left thats why there will be empty space
+        // .closest('.inventory').remove() starts with current element and climbs up and searches for the element with class of inventory and remove the whole div, making sure there will not be empty spaces between items when the middle item is removed
     }
     }
 

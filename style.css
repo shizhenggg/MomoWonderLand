@@ -10,14 +10,8 @@ body{
     align-items:center;  
     width:100vw;
     height:100vh;
-}
-
-
-#matchstick{
-    width:20%;
-    height:20%;
-    margin: auto;
-
+    /* overflow: hidden; */
+    /* remove scrollbars (vertical and horizontal) */
 }
 
 .gamewindow{
@@ -41,6 +35,9 @@ body{
     /* background-color: red; */
     height: 12vh;
     width: 8vw;
+    background-color: rgba(209, 144, 46, 0.466);
+    border: 0.3vw solid rgba(17, 10, 2, 0.7);
+    border-radius: 2vw;
 }
 
 .questionbox{
@@ -48,9 +45,9 @@ body{
     height:6vw;
     width:89vw;
     /* top:80vh; */
-    background-color: rgba(88, 81, 63, 0.4);
+    background-color: rgba(165, 135, 60, 0.5);
     font-family: 'Griffy', cursive;
-    font-size: 4vh;
+    font-size: 3vh;
     text-align: center;
     bottom: 10vh;
     padding: 3vh 5vw;
@@ -84,7 +81,7 @@ body{
 }
 
 .button:hover{
-    background-color:rgba(255, 0, 0, 0.637);
+    background-color:rgba(182, 41, 41, 0.637);
 }
 
 .story-button{
@@ -99,7 +96,7 @@ body{
 }
 
 .story-button:hover{
-    background-color:rgba(255, 0, 0, 0.637);
+    background-color:rgba(182, 41, 41, 0.637);
 }
 
 

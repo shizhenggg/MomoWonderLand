@@ -1,13 +1,11 @@
 // Things to do 
 // 1 Homepage (fill up instr and credits content)
 // 3 Fix display box to fit all text
-// 4 game death node -
 // 6 hint for games? 
 // 7 change font 
 // 8 desc and button text affirmation for nodes (storyline)
 // 9 function to skip typed text 
 // 10 robodog inventory, key inventory 
-// mute button should work on momogen as well 
 // if you go to home page from another node, instructions nad credits btn dont work
 
 
@@ -54,9 +52,6 @@ class Node {
     $('#button2').click(this.btn2nn.start)
     }
 
-    showInventory(){
-    // Check inventory with globally defined inventory list and display inventory on UI
-    }
 }
 
 class NodeWithItemsUpdates extends Node {
@@ -105,6 +100,7 @@ class NodewithMoMoGen extends Node {
     this.setNode = this.setNode.bind(this)
     this.setSurviveNode = this.setSurviveNode.bind(this)
     this.momogenJumpScare = this.momogenJumpScare.bind(this)
+    this.start = this.start.bind(this)
     // you need to bind because if you don't, when you invoke momogen and reference this.surviveNode, it only reference momogen itself and can't find this.surviveNode
     // by binding it, you allow the momogen to search through the whole class instead 
     // to bind method, you have to do this like this -> this.method = this.method.bind(this), you have to do 'this.method' after the = sign because that's how you reference functions in a class 
@@ -196,10 +192,23 @@ class NodewithMoMoGen extends Node {
 
 // 2 options button avail 
 class NodewithMoMoGen2 extends NodewithMoMoGen{
-    setNode(){
-        this.btn1nn = this.momogen
-        this.btn2nn = this.surviveNode.start
+    start(){
+        $('.startingphoto').attr('src',this.imageurl)
+        // Set new image
+        $('#option-buttons').empty()
+        // Empty option buttons in case user clicks on it before question finishes loading -> causes a bug
+        // redefining start function with added updateItem method
+        this.displayQns()
     }
+    setNode(btn2nn){
+        this.btn1nn = this.momogen
+        this.btn2nn = btn2nn
+    }
+    nextNode(){
+        $('#button1').click(this.btn1nn)
+        $('#button2').click(this.btn2nn.start)
+        }
+
 }
 
 class StoryNode {

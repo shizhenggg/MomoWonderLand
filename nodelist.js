@@ -15,10 +15,10 @@ const gameDeathNode = new StoryNodeWithVideo(
     'assets/video/gamedeathnode.mp4'
 )
 
-const node21 = new NodewithMoMoGen2(
-    'You found a girl tied to a pipe at the far end of the corridor...There were chunks of black feathers on the floor around the girl... on closer look you realized the girl is your sister... You hear quickening footsteps approaching your sister... Do you want to save your sister? If you get caught now it will all be for naught...',
-    'Save her',
-    'Escape first'
+const node13 = new NodewithMoMoGen2(
+    'You stumbled upon a locked door with a keyhole. You instinctively pulled out the key you got from your backpocket, it is still smiley and you almost puked from the scent when you brought it close to the keyhole. Knowing full well that in a prison, using the wrong key could set off an alarm… what do you want to do? ',
+    'Insert key',
+    'Look into keyhole'
 )
 
 
@@ -173,7 +173,8 @@ const escapeNode1 = new EscapeNode(
 )
 
 
-node21.setSurviveNode(escapeNode)
+node13.setSurviveNode(homePageScreen)
+node13.setNode(gameNode3)
 node20.setNode(escapeNode,node0)
 node7.setNode(testNode,node0)
 node6.setNode(node7,node5)
@@ -203,7 +204,7 @@ gameDeathNode.setNode(homePageScreen)
 
 
 $(() => {
-    gameDeathNode.start()
+    node13.start()
     allUIFunctions()
 })
     

@@ -1,15 +1,12 @@
 // Things to do 
-
-// 1 Fix display box to fit all text
-// 2 Homepage 
-// 3 Escape node and death node 
+// 1 Homepage (fill up instr and credits content)
+// 2 exit to home page button 
+// 3 Fix display box to fit all text
+// 4 Escape node and death node 
 // 5 video assets and integration with code 
-// 6 music and global settings (volume,exit to home page)
-// 7 hint for games? 
-// 8 change font 
-// 9 desc and button text for nodes 
-// 10 strengthen storyline
-// 11 ln 94 doesn't remove the whole div, only removes the this.itemx class in div thats why there will be empty space
+// 6 hint for games? 
+// 7 change font 
+// 8 desc and button text affirmation for nodes (storyline)
 
 
 class Node {
@@ -458,7 +455,7 @@ class HomePage {
     //append homescreen buttons
     let $startbtn = $('<button>').attr('id','startbtn').addClass('homepagebutton').text('START')
     let $instructionbtn = $('<button>').attr('id','instructionbtn').addClass('homepagebutton').text('INSTRUCTIONS')
-    let $creditsbtn = $('<button>').attr('id','creditbtn').addClass('homepagebutton').text('CREDITS')
+    let $creditsbtn = $('<button>').attr('id','creditsbtn').addClass('homepagebutton').text('CREDITS')
     $('#homepage-buttons').append($startbtn)
     $('#homepage-buttons').append($instructionbtn)
     $('#homepage-buttons').append($creditsbtn)

@@ -120,6 +120,54 @@ video{
     background-color:rgba(182, 41, 41, 0.637);
 }
 
+/* instruction box */
+#instructioncontent{
+    position: absolute;
+    top: 22vh;
+    left: 35vw;
+    width: 30vw;
+    height: 58vh;
+    padding: 20px;
+    border: 1px solid #ccc;
+    background-color: rgb(222, 184, 135);
+    text-align: center;
+    box-shadow: 0 0 10px 2px;
+    display:none;
+    color:white;
+    z-index:100;
+}
+
+#instructionclosebtn{
+    float:right;
+}
+
+.closebtn{
+    border: 1px solid black;
+}
+
+/* credit box */
+
+#creditscontent{
+    position: absolute;
+    top: 22vh;
+    left: 35vw;
+    width: 30vw;
+    height: 58vh;
+    padding: 20px;
+    border: 1px solid #ccc;
+    background-color: rgb(222, 184, 135);
+    text-align: center;
+    box-shadow: 0 0 10px 2px;
+    display:none;
+    color:white;
+    z-index:100;
+}
+
+#creditsclosebtn{
+    float:right;
+}
+
+
 .button{    
     margin: 1.2vh;
     border-radius: 3vh;

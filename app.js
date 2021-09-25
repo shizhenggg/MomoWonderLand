@@ -1,9 +1,8 @@
 // Things to do 
 // 1 Homepage (fill up instr and credits content)
-// 2 exit to home page button 
 // 3 Fix display box to fit all text
 // 4 Escape node and death node 
-// 5 video assets and integration with code 
+// 5 video assets and integration with code -
 // 6 hint for games? 
 // 7 change font 
 // 8 desc and button text affirmation for nodes (storyline)
@@ -331,9 +330,9 @@ class StoryNodeWithMoMoGen {
 }
 
 class GameNode {
-    constructor(desc,imageurl,answer){
+    constructor(desc,videourl,answer){
         this.desc = desc
-        this.imageurl = imageurl
+        this.videourl = videourl
         this.answer = answer
         this.start = this.start.bind(this)
         this.checkAnswer = this.checkAnswer.bind(this)
@@ -343,8 +342,9 @@ class GameNode {
     }
 
     start(){
-        $('.startingphoto').attr('src',this.imageurl)
-        // Set new image
+        let $video = $('<source>').attr('src',this.videourl).attr('type','video/mp4').addClass('video')
+        let $gameVideo = $('<video autoplay id=gamevideo>').append($video)
+        $('.gamewindow').prepend($gameVideo)
         $('#option-buttons').empty()
         // Empty option buttons in case user clicks on it before question finishes loading -> causes a bug
         this.displayStory()

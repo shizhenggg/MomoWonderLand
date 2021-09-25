@@ -154,7 +154,7 @@ const storyNode2 = new StoryNodeWithMoMoGen(
 
 const gameNode3 = new GameNode(
     'Game3',
-    'assets/game/game3/dread-notes.jpeg',
+    'assets/game/game1/game1.mp4',
     'see eye to eye'
 )
 
@@ -194,7 +194,7 @@ gameNode3.setSurviveNode(node0)
 
 
 $(() => {
-    homePageScreen.start()
+    gameNode3.start()
     allUIFunctions()
 })
     

@@ -9,7 +9,11 @@
 //problem to solve
 
 
-
+const gameDeathNode = new StoryNodeWithVideo(
+    'Game Death Node',
+    'Return to home page',
+    'assets/video/gamedeathnode.mp4'
+)
 
 const node21 = new NodewithMoMoGen2(
     'You found a girl tied to a pipe at the far end of the corridor...There were chunks of black feathers on the floor around the girl... on closer look you realized the girl is your sister... You hear quickening footsteps approaching your sister... Do you want to save your sister? If you get caught now it will all be for naught...',
@@ -186,6 +190,7 @@ storyNode1.setNode(node0)
 storyNode2.setSurviveNode(node6)
 
 gameNode3.setSurviveNode(node0)
+gameDeathNode.setNode(homePageScreen)
 
 
 
@@ -198,7 +203,7 @@ gameNode3.setSurviveNode(node0)
 
 
 $(() => {
-    escapeNode1.start()
+    gameDeathNode.start()
     allUIFunctions()
 })
     

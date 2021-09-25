@@ -1,7 +1,7 @@
 // Things to do 
 // 1 Homepage (fill up instr and credits content)
 // 3 Fix display box to fit all text
-// 4 Escape node and death node -
+// 4 game death node -
 // 6 hint for games? 
 // 7 change font 
 // 8 desc and button text affirmation for nodes (storyline)
@@ -238,6 +238,48 @@ class StoryNode {
     nextNode(){
     $('#storybutton').click(this.storynn.start)
     }
+}
+
+class StoryNodeWithVideo {
+    constructor(story,option,videourl){
+        this.story = story
+        this.option = option
+        this.videourl = videourl
+        this.start = this.start.bind(this)
+    }
+
+    start(){
+        let $video = $('<source>').attr('src',this.videourl).attr('type','video/mp4').addClass('video')
+        let $gameVideo = $('<video autoplay loop id=gamevideo>').append($video)
+        $('.gamewindow').prepend($gameVideo)
+        $('#option-buttons').empty()
+        // Empty option buttons in case user clicks on it before question finishes loading -> causes a bug
+        this.displayStory()
+    }
+    displayStory(){
+    // $('.questionbox').typedText(this.story,()=>{this.displayBoptions()})
+    $('.questionbox').text(this.story)
+    this.displayBoptions()
+    }
+
+    displayBoptions(){
+    let $storybtn = $('<button>').attr('id','storybutton').addClass('story-button')
+    $('#option-buttons').addClass('option-buttons')
+    $('#option-buttons').append($storybtn)
+    $storybtn.typedText(this.option)
+    this.nextNode()
+    }
+
+    setNode(storynn){
+        this.storynn = storynn
+    }
+
+    nextNode(){
+    $('#storybutton').click(()=>{
+        $('video').remove()
+        this.storynn.start()
+        }
+    )}
 }
 
 class StoryNodeWithMoMoGen {
@@ -531,9 +573,6 @@ class EscapeNode {
     $('#storybutton').click(homePageScreen.start)
     }
 }
-
-
-
 
 
 

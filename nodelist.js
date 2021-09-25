@@ -7,7 +7,7 @@
 // undefined start: remember to setNode for the new node to eradicate this bug
 
 //problem to solve
-//volume btn requires doubleclick to toggle? 
+
 
 
 

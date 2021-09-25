@@ -1,14 +1,14 @@
 // Things to do 
 // 1 Homepage (fill up instr and credits content)
 // 3 Fix display box to fit all text
-// 4 Escape node and death node 
-// 5 video assets and integration with code -
+// 4 Escape node and death node -
 // 6 hint for games? 
 // 7 change font 
 // 8 desc and button text affirmation for nodes (storyline)
 // 9 function to skip typed text 
 // 10 robodog inventory, key inventory 
 // mute button should work on momogen as well 
+// if you go to home page from another node, instructions nad credits btn dont work
 
 
 class Node {
@@ -138,8 +138,9 @@ class NodewithMoMoGen extends Node {
     momogenJumpScare(){
 
         $('#option-buttons').empty()
-        let audio = new Audio('assets/sound/momojumpscare.mp3');
-        audio.play()
+        let audio = new Audio('assets/sound/momojumpscare.mp3')
+        if($("audio").prop('muted')===false){
+            audio.play()}
 
         function wait(ms){
             return new Promise(resolve=>{
@@ -284,8 +285,9 @@ class StoryNodeWithMoMoGen {
     momogenJumpScare(){
 
         $('#option-buttons').empty()
-        let audio = new Audio('assets/sound/momojumpscare.mp3');
-        audio.play()
+        let audio = new Audio('assets/sound/momojumpscare.mp3')
+        if($("audio").prop('muted')===false){
+            audio.play()}
 
         function wait(ms){
             return new Promise(resolve=>{
@@ -317,7 +319,7 @@ class StoryNodeWithMoMoGen {
     momogen(){
     let randomGen = Math.ceil(Math.random()*10)
     console.log(randomGen)
-    if(randomGen<=0){
+    if(randomGen<=10){
         this.momogenJumpScare()
     }
         // cue game over screen
@@ -392,7 +394,9 @@ class GameNode {
 
         $('#game-input').empty()
         let audio = new Audio('assets/sound/momojumpscare.mp3');
-        audio.play()
+        if($("audio").prop('muted')===false){
+            audio.play()}
+        // momogen will have no sound if main audio is muted
 
         function wait(ms){
             return new Promise(resolve=>{
@@ -404,6 +408,7 @@ class GameNode {
         $('.startingphoto').addClass('shake')
         $('.game-input').hide()
         $('video').remove()
+        //from game node 
         $('.questionbox').hide()
         $('#option-buttons').hide()
         await wait(2000)
@@ -413,7 +418,7 @@ class GameNode {
         $('.startingphoto').attr('src','assets/Image/youdied.png')
         $('.questionbox').text('Returning to home screen...\n Loading...')
         await wait(3000)
-        gameNode3.start()
+        homePageScreen.start()
         }
 
         momoJumpScare()
@@ -469,6 +474,7 @@ class HomePage {
     }
 
     nextNode(){
+    //next node is start btn
     $('#startbtn').click(()=>{
         $('#homepagevideo').remove()
         $('#homepage-buttons').empty()
@@ -476,12 +482,20 @@ class HomePage {
         $('.questionbox').show()
         $('.homebtn').show()
         storyNode1.start()
-        
-      
         })
-    // $('#instructionbtn').click(storyNode1.start)
-    // $('#creditbtn').click(storyNode1.start)
-}
+    
+    //next node is instructions
+    //show instruction modal content
+    $('#instructionbtn').click(()=>{$('#instructioncontent').show()})
+    //hide instruction modal content 
+    $('#instructionclosebtn').click(()=>{$('#instructioncontent').hide()})
+
+    //next node is credits
+    //show credits modal content
+    $('#creditsbtn').click(()=>{$('#creditscontent').show()})
+    //hide credits modal content
+    $('#creditsclosebtn').click(()=>{$('#creditscontent').hide()})
+    }
 }
 
 

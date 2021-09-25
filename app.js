@@ -6,7 +6,7 @@
 // 8 desc and button text affirmation for nodes (storyline)
 // 9 function to skip typed text 
 // 10 robodog inventory, key inventory 
-// if you go to home page from another node, instructions nad credits btn dont work
+// 11 responsive text for homepage buttons text
 
 
 class Node {
@@ -165,13 +165,10 @@ class NodewithMoMoGen extends Node {
     
     }
 
-       
-
     momogen(){
     let randomGen = Math.ceil(Math.random()*10)
-    console.log('this.surviveNode:',this.surviveNode)//undefined
     console.log(randomGen)
-    if(randomGen<=0){
+    if(randomGen<=3){
        this.momogenJumpScare()
         // $('#option-buttons').empty()
         // let $btn2 = $('<button>').attr('id','button2').addClass('button')
@@ -384,7 +381,7 @@ class StoryNodeWithMoMoGen {
     }  
 }
 
-class GameNode {
+class GameNodeWithMoMo {
     constructor(desc,videourl,answer){
         this.desc = desc
         this.videourl = videourl
@@ -427,7 +424,6 @@ class GameNode {
 
     checkAnswer($gameanswer){
     if($gameanswer == this.answer){
-        alert('correct answer')
         this.surviveNode.start()
         $('video').remove()
     }
@@ -479,7 +475,7 @@ class GameNode {
     momogen(){
     let randomGen = Math.ceil(Math.random()*10)
     console.log(randomGen)
-    if(randomGen<=10){
+    if(randomGen<=3){
         this.momogenJumpScare()
     }
         // cue game over screen
@@ -491,6 +487,63 @@ class GameNode {
 
         //cannot read properties of undefined (reading 'start')
     }  
+}
+
+class GameNodeWithGameDeathNode {
+    constructor(desc,videourl,answer){
+        this.desc = desc
+        this.videourl = videourl
+        this.answer = answer
+        this.start = this.start.bind(this)
+        this.checkAnswer = this.checkAnswer.bind(this)
+        this.setSurviveNode = this.setSurviveNode.bind(this)
+    }
+
+    start(){
+        let $video = $('<source>').attr('src',this.videourl).attr('type','video/mp4').addClass('video')
+        let $gameVideo = $('<video autoplay id=gamevideo>').append($video)
+        $('.gamewindow').prepend($gameVideo)
+        $('#option-buttons').empty()
+        // Empty option buttons in case user clicks on it before question finishes loading -> causes a bug
+        this.displayStory()
+    }
+
+    displayStory(){
+    // $('.questionbox').typedText(this.desc,()=>{this.displayBoptions()})
+    $('.questionbox').text(this.desc)
+    this.displayBoptions()
+    }
+
+    displayBoptions(){
+        let $gameinputbox = $('<input autocomplete="off">').attr('id','gameinput').addClass('game-input')
+        $('#option-buttons').addClass('option-buttons')
+        $('#option-buttons').append($gameinputbox)
+        $('#gameinput').keyup((e)=>{
+            if(e.key === 'Enter'){
+            let $gameanswer = $('#gameinput').val().toLowerCase()
+            this.checkAnswer($gameanswer)
+            $('#gameinput').val("")
+            e.preventDefault()
+            }
+        })
+    }
+
+    checkAnswer($gameanswer){
+    if($gameanswer == this.answer){
+        this.surviveNode.start()  
+        $('video').remove()
+
+    }
+    else{
+        $('video').remove()
+        gameDeathNode.start()
+    }
+    }
+
+    setSurviveNode(surviveNode){
+        this.surviveNode = surviveNode}
+    
+
 }
 
 class HomePage {

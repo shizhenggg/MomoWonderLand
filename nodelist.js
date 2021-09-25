@@ -17,8 +17,9 @@ const gameDeathNode = new StoryNodeWithVideo(
 
 const node13 = new NodewithMoMoGen2(
     'You stumbled upon a locked door with a keyhole. You instinctively pulled out the key you got from your backpocket, it is still smiley and you almost puked from the scent when you brought it close to the keyhole. Knowing full well that in a prison, using the wrong key could set off an alarm… what do you want to do? ',
-    'Insert key',
-    'Look into keyhole'
+    'Look into keyhole',
+    'Insert key'
+    
 )
 
 
@@ -156,7 +157,7 @@ const storyNode2 = new StoryNodeWithMoMoGen(
     'assets/Image/hospitalbed.png')
 
 
-const gameNode3 = new GameNode(
+const gameNode3 = new GameNodeWithGameDeathNode(
     'Game3',
     'assets/game/game1/game1.mp4',
     'alcatraz'
@@ -190,7 +191,7 @@ testNode.setNode(homePageScreen,homePageScreen)
 storyNode1.setNode(node0)
 storyNode2.setSurviveNode(node6)
 
-gameNode3.setSurviveNode(node0)
+gameNode3.setSurviveNode(escapeNode1)
 gameDeathNode.setNode(homePageScreen)
 
 

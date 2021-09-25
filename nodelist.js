@@ -162,7 +162,11 @@ const homePageScreen = new HomePage(
     '/assets/video/homepagevideo.mp4'
 )
 
-    // for escape node you need to get rid of next node button else there will be an error
+const escapeNode1 = new EscapeNode(
+    'You escaped!',
+    'Return to home page',
+    'assets/Image/escapenode.jpg'
+)
 
 
 node21.setSurviveNode(escapeNode)
@@ -194,7 +198,7 @@ gameNode3.setSurviveNode(node0)
 
 
 $(() => {
-    gameNode3.start()
+    escapeNode1.start()
     allUIFunctions()
 })
     

@@ -498,6 +498,39 @@ class HomePage {
     }
 }
 
+class EscapeNode {
+    constructor(story,option,imageurl){
+        this.story = story
+        this.option = option
+        this.imageurl = imageurl
+        this.start = this.start.bind(this)
+    }
+
+    start(){
+        $('.startingphoto').attr('src',this.imageurl)
+        // Set new image
+        $('#option-buttons').empty()
+        // Empty option buttons in case user clicks on it before question finishes loading -> causes a bug
+        this.displayStory()
+    }
+    displayStory(){
+    // $('.questionbox').typedText(this.story,()=>{this.displayBoptions()})
+    $('.questionbox').text(this.story)
+    this.displayBoptions()
+    }
+
+    displayBoptions(){
+    let $storybtn = $('<button>').attr('id','storybutton').addClass('story-button')
+    $('#option-buttons').addClass('option-buttons')
+    $('#option-buttons').append($storybtn)
+    $storybtn.typedText(this.option)
+    this.nextNode()
+    }
+
+    nextNode(){
+    $('#storybutton').click(homePageScreen.start)
+    }
+}
 
 
 

@@ -435,6 +435,48 @@ class GameNode {
     }  
 }
 
+class HomePage {
+    constructor(videourl){
+        this.videourl = videourl
+        this.start = this.start.bind(this)
+    }
+
+    start(){
+        let $video = $('<source>').attr('src','/assets/video/homepagevideo.mp4').attr('type','video/mp4').addClass('video')
+        let $homePageVideo = $('<video autoplay loop id=homepagevideo>').append($video)
+        $('.gamewindow').prepend($homePageVideo)
+        $('#option-buttons').empty()
+        // Empty option buttons from previous nodes (if any)
+        this.displayBoptions()
+    }
+ 
+    displayBoptions(){
+    //cleanup previous div
+    $('.questionbox').hide()
+    $('#option-buttons').hide()
+    $('.inventory').remove()
+    //append homescreen buttons
+    let $startbtn = $('<button>').attr('id','startbtn').addClass('homepagebutton').text('START')
+    let $instructionbtn = $('<button>').attr('id','instructionbtn').addClass('homepagebutton').text('INSTRUCTIONS')
+    let $creditsbtn = $('<button>').attr('id','creditbtn').addClass('homepagebutton').text('CREDITS')
+    $('#homepage-buttons').append($startbtn)
+    $('#homepage-buttons').append($instructionbtn)
+    $('#homepage-buttons').append($creditsbtn)
+    this.nextNode()
+    }
+
+    nextNode(){
+    $('#startbtn').click(()=>{
+        storyNode1.start()
+        $('#homepagevideo').remove()
+        $('#homepage-buttons').empty()
+        $('.option-buttons').show()
+        $('.questionbox').show()
+        })
+    // $('#instructionbtn').click(storyNode1.start)
+    // $('#creditbtn').click(storyNode1.start)
+}
+}
 
 
 

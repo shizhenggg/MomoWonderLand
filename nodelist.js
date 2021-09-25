@@ -6,19 +6,9 @@
 // common problems:
 // undefined start: remember to setNode for the new node to eradicate this bug
 
-const volumeFunctions = () => {
-    let $volumebtn = $('.volumebtn')
-    $volumebtn.click(()=>{
-        $volumebtn.click(function(){
-            if( $("audio").prop('muted') ) {
-                  $("audio").prop('muted', false)
-                  $(".volumebtn").css("background-image","url(/assets/icon/volume.png)")
-            } else {
-              $("audio").prop('muted', true)
-              $(".volumebtn").css("background-image","url(/assets/icon/mute.png)")
-            }}
-        )})
-    }
+//problem to solve
+//volume btn requires doubleclick to toggle? 
+
 
 
 const node21 = new NodewithMoMoGen2(
@@ -168,7 +158,9 @@ const gameNode3 = new GameNode(
     'see eye to eye'
 )
 
-
+const homePageScreen = new HomePage(
+    '/assets/video/homepagevideo.mp4'
+)
 
     // for escape node you need to get rid of next node button else there will be an error
 
@@ -184,7 +176,7 @@ node3.setNode(node4,node5)
 // need to have a storynode with momogen 
 node1.setNode(storyNode2,node3)
 node0.setNode(node1,node17)
-testNode.setNode(node0,node0)
+testNode.setNode(homePageScreen,homePageScreen)
 
 storyNode1.setNode(node0)
 storyNode2.setSurviveNode(node6)
@@ -202,9 +194,7 @@ gameNode3.setSurviveNode(node0)
 
 
 $(() => {
-   storyNode1.start()
-// //    node21.start()
-//    gameNode3.start()
+    homePageScreen.start()
     volumeFunctions()
 })
     

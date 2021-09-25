@@ -79,6 +79,47 @@ body{
     border-radius: 5px;
 }
 
+video{
+    object-fit:cover;
+    position:absolute;
+    width:100vw;
+    height:100vh;
+    overflow:hidden;
+    top: 0;
+    left: 0;
+
+}
+
+#homepage-buttons{
+/* div */
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    height:50vh;
+    width:30vw;
+    /* if it's percentage it is relative to parent element. if its vh/vw,it's relative to the viewport */
+    bottom: 15vh;
+    justify-content:space-around;
+    align-items: center;
+}
+
+.homepagebutton{
+/* indiv buttons */
+    width: 20vw;
+    height: 13vh;
+    border-radius:10vw;
+    border: 0.3vw solid burlywood;
+    box-shadow: 0 0 10px 2px;
+    background-color: rgba(248, 223, 190, 0.452);
+    font-family: 'Griffy', cursive;
+    font-size:4.5vh;
+    color:white;
+}
+
+.homepagebutton:hover{
+    background-color:rgba(182, 41, 41, 0.637);
+}
+
 .button{    
     margin: 1.2vh;
     border-radius: 3vh;

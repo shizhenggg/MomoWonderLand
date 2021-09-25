@@ -7,6 +7,8 @@
 // 7 change font 
 // 8 desc and button text affirmation for nodes (storyline)
 // 9 function to skip typed text 
+// 10 robodog inventory, key inventory 
+// mute button should work on momogen as well 
 
 
 class Node {
@@ -157,7 +159,7 @@ class NodewithMoMoGen extends Node {
         $('.startingphoto').attr('src','assets/Image/youdied.png')
         $('.questionbox').text('Returning to home screen...\n Loading...')
         await wait(3000)
-        storyNode1.start()
+        homePageScreen.start()
         }
 
         momoJumpScare()
@@ -303,7 +305,7 @@ class StoryNodeWithMoMoGen {
         $('.startingphoto').attr('src','assets/Image/youdied.png')
         $('.questionbox').text('Returning to home screen...\n Loading...')
         await wait(3000)
-        storyNode1.start()
+        homePageScreen.start()
         }
 
         momoJumpScare()
@@ -357,12 +359,12 @@ class GameNode {
     }
 
     displayBoptions(){
-        let $gameinputbox = $('<input>').attr('id','gameinput').addClass('game-input')
+        let $gameinputbox = $('<input autocomplete="off">').attr('id','gameinput').addClass('game-input')
         $('#option-buttons').addClass('option-buttons')
         $('#option-buttons').append($gameinputbox)
         $('#gameinput').keyup((e)=>{
             if(e.key === 'Enter'){
-            let $gameanswer = $('#gameinput').val()
+            let $gameanswer = $('#gameinput').val().toLowerCase()
             this.checkAnswer($gameanswer)
             $('#gameinput').val("")
             e.preventDefault()
@@ -374,6 +376,7 @@ class GameNode {
     if($gameanswer == this.answer){
         alert('correct answer')
         this.surviveNode.start()
+        $('video').remove()
     }
     else{
         this.momogenJumpScare()
@@ -400,6 +403,7 @@ class GameNode {
         $('.startingphoto').attr('src','https://s.yimg.com/uu/api/res/1.2/EPrCsKpKqdvmt9DKDkUjhw--~B/Zmk9ZmlsbDtoPTQzMjt3PTY3NTthcHBpZD15dGFjaHlvbg--/https://s.yimg.com/uu/api/res/1.2/3WbSqoVABep_tI_DpuJSGQ--~B/aD0xMDI0O3c9MTYwMDthcHBpZD15dGFjaHlvbg--/https://o.aolcdn.com/images/dims?resize=2000%2C2000%2Cshrink&image_uri=https%3A%2F%2Fs.yimg.com%2Fos%2Fcreatr-uploaded-images%2F2019-03%2F4e54f600-3f82-11e9-aff6-507cab99fdc9&client=a1acac3e1b3290917d92&signature=6336c16f62a811ad2bb1dcfcdee118f42296dd69.cf.webp')
         $('.startingphoto').addClass('shake')
         $('.game-input').hide()
+        $('video').remove()
         $('.questionbox').hide()
         $('#option-buttons').hide()
         await wait(2000)
@@ -409,7 +413,7 @@ class GameNode {
         $('.startingphoto').attr('src','assets/Image/youdied.png')
         $('.questionbox').text('Returning to home screen...\n Loading...')
         await wait(3000)
-        storyNode1.start()
+        gameNode3.start()
         }
 
         momoJumpScare()

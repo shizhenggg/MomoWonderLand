@@ -13,6 +13,8 @@ const volumeFunctions = () => {
 const goBackHomeFunction = () => {
     let $homebtn = $('.homebtn')
     $homebtn.click(()=>{
+        $('video').remove()
+        // remove video from gameNode (if any) else it will block homepagescreen video
         homePageScreen.start()
     })
 }

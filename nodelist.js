@@ -155,7 +155,7 @@ const storyNode2 = new StoryNodeWithMoMoGen(
 const gameNode3 = new GameNode(
     'Game3',
     'assets/game/game1/game1.mp4',
-    'see eye to eye'
+    'alcatraz'
 )
 
 const homePageScreen = new HomePage(

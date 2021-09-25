@@ -10,6 +10,12 @@ const volumeFunctions = () => {
             }}
         )}
 
+const goBackHomeFunction = () => {
+    let $homebtn = $('.homebtn')
+    $homebtn.click(()=>{
+        homePageScreen.start()
+    })
+}
     
 const homeScreenFunction = () => {
     //show instruction modal content
@@ -20,4 +26,11 @@ const homeScreenFunction = () => {
     $('#creditsbtn').click(()=>{$('#creditscontent').show()})
     //hide credits modal content
     $('#creditsclosebtn').click(()=>{$('#creditscontent').hide()})
+}
+
+
+const allUIFunctions = () =>{
+    volumeFunctions()
+    goBackHomeFunction()
+    homeScreenFunction()
 }

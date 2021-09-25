@@ -7,6 +7,7 @@
 // 6 hint for games? 
 // 7 change font 
 // 8 desc and button text affirmation for nodes (storyline)
+// 9 function to skip typed text 
 
 
 class Node {
@@ -452,6 +453,7 @@ class HomePage {
     $('.questionbox').hide()
     $('#option-buttons').hide()
     $('.inventory').remove()
+    $('.homebtn').hide()
     //append homescreen buttons
     let $startbtn = $('<button>').attr('id','startbtn').addClass('homepagebutton').text('START')
     let $instructionbtn = $('<button>').attr('id','instructionbtn').addClass('homepagebutton').text('INSTRUCTIONS')
@@ -464,11 +466,14 @@ class HomePage {
 
     nextNode(){
     $('#startbtn').click(()=>{
-        storyNode1.start()
         $('#homepagevideo').remove()
         $('#homepage-buttons').empty()
-        $('.option-buttons').show()
+        $('#option-buttons').show()
         $('.questionbox').show()
+        $('.homebtn').show()
+        storyNode1.start()
+        
+      
         })
     // $('#instructionbtn').click(storyNode1.start)
     // $('#creditbtn').click(storyNode1.start)

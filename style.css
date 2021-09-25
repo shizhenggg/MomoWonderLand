@@ -33,6 +33,20 @@ body{
     margin: 1vw;
 }
 
+.homebtn{
+    background-image: url("/assets/icon/home.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    /* determines background image size */
+    position: absolute;
+    height: 4.5vh;
+    width: 2.5vw;
+    margin: 1vw;
+    top: 6vh;
+    left: -0.11vw;
+}
+
+
 .inventory{
     position:relative;
     /* background-color: rgba(241, 151, 14, 0.8); */

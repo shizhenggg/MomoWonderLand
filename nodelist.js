@@ -195,8 +195,7 @@ gameNode3.setSurviveNode(node0)
 
 $(() => {
     homePageScreen.start()
-    volumeFunctions()
-    homeScreenFunction()
+    allUIFunctions()
 })
     
     

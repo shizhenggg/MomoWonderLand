@@ -7,6 +7,7 @@
 // 9 function to skip typed text 
 // 10 robodog inventory, key inventory 
 // 11 responsive text for homepage buttons text
+// 12 figure out order and coherence of games
 
 
 class Node {
@@ -633,6 +634,52 @@ class EscapeNode {
 
     nextNode(){
     $('#storybutton').click(homePageScreen.start)
+    }
+}
+
+class MoMoDeathNode {
+    constructor(story){
+        this.story = story
+        this.start = this.start.bind(this)
+        this.momogenJumpScare = this.momogenJumpScare.bind(this)
+    }
+
+    start(){
+        $('#option-buttons').empty()
+        this.momogenJumpScare()
+    }
+
+    momogenJumpScare(){
+
+        $('#option-buttons').empty()
+        let audio = new Audio('assets/sound/momojumpscare.mp3')
+        if($("audio").prop('muted')===false){
+            audio.play()}
+
+        const wait = (ms) => {
+            return new Promise(resolve=>{
+                setTimeout(()=>{resolve('')},ms)
+            })
+        }
+        const momoJumpScare = async () => {
+        $('.startingphoto').attr('src','https://s.yimg.com/uu/api/res/1.2/EPrCsKpKqdvmt9DKDkUjhw--~B/Zmk9ZmlsbDtoPTQzMjt3PTY3NTthcHBpZD15dGFjaHlvbg--/https://s.yimg.com/uu/api/res/1.2/3WbSqoVABep_tI_DpuJSGQ--~B/aD0xMDI0O3c9MTYwMDthcHBpZD15dGFjaHlvbg--/https://o.aolcdn.com/images/dims?resize=2000%2C2000%2Cshrink&image_uri=https%3A%2F%2Fs.yimg.com%2Fos%2Fcreatr-uploaded-images%2F2019-03%2F4e54f600-3f82-11e9-aff6-507cab99fdc9&client=a1acac3e1b3290917d92&signature=6336c16f62a811ad2bb1dcfcdee118f42296dd69.cf.webp')
+        $('.startingphoto').addClass('shake')
+        $('.items').hide()
+        $('.questionbox').hide()
+        $('#option-buttons').hide()
+        await wait(2000)
+        $('.startingphoto').removeClass('shake')
+        $('.questionbox').show()
+        $('#option-buttons').show()
+        $('.startingphoto').attr('src','assets/Image/youdied.png')
+        $('.questionbox').typedText(`${this.story}\nReturning to home screen...\n Loading...`)
+        // cannot read properties of undefined (reading 'story') at momoJumpScare if you use regular function notion. 
+        // have to use bracket notation for momoJumpScare & wait function
+        await wait(10000)
+        homePageScreen.start()
+        }
+
+        momoJumpScare()
     }
 }
 

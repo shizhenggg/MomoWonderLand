@@ -157,7 +157,7 @@ const storyNode2 = new StoryNodeWithMoMoGen(
     'assets/Image/hospitalbed.png')
 
 
-const gameNode3 = new GameNodeWithGameDeathNode(
+const gameNode1 = new GameNodeWithGameDeathNode(
     'Game3',
     'assets/game/game1/game1.mp4',
     'alcatraz'
@@ -173,9 +173,17 @@ const escapeNode1 = new EscapeNode(
     'assets/Image/escapenode.jpg'
 )
 
+// -------------MoMoDeathNode------------- //
+
+const momoDeathNode5 = new MoMoDeathNode(
+    'Darkness attracts MoMo and unlucky for you, MoMo sniffed you out without any light for protection.'
+)
+
+
+
 
 node13.setSurviveNode(homePageScreen)
-node13.setNode(gameNode3)
+node13.setNode(gameNode1)
 node20.setNode(escapeNode,node0)
 node7.setNode(testNode,node0)
 node6.setNode(node7,node5)
@@ -191,7 +199,7 @@ testNode.setNode(homePageScreen,homePageScreen)
 storyNode1.setNode(node0)
 storyNode2.setSurviveNode(node6)
 
-gameNode3.setSurviveNode(escapeNode1)
+gameNode1.setSurviveNode(escapeNode1)
 gameDeathNode.setNode(homePageScreen)
 
 
@@ -205,7 +213,7 @@ gameDeathNode.setNode(homePageScreen)
 
 
 $(() => {
-    node13.start()
+    momoDeathNode5.start()
     allUIFunctions()
 })
     

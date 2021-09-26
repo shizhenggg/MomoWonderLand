@@ -15,14 +15,15 @@
 
 const storyNode0 = new StoryNode(
     'You are an investigator following a case of possible child abduction in San Francisco. Police leads and your own research brought you to abandoned prison in the middle of the sea with cold waters and strong currents, what used to be a maximum security federal prison on an island. You are here to gather leads as this prison is suspected to be the base of operation.',
-    'Continue'
+    'Continue',
+    'assets/image/storynode0.jpg'
 )
 
 
-const storyNode1 = new StoryNode(
+const storyNode1 = new StoryNodeWithVideo(
     'You opened your eyes, feeling extremely disoriented about where you were or even what you were doing here… what were you doing on the floor? Did you pass out? Possibly, you thought to yourself as you remember that you were the lead investigator on the case of a possible serial child abduction which led you to this abandoned prison…',
     'Stand up and explore the prison',
-    'assets/storyNodeImg/storyNode1.jpeg'
+    'assets/video/storynode1.mp4'
 )
 
 
@@ -30,7 +31,7 @@ const storyNode1 = new StoryNode(
 const storyNode2 = new StoryNodeWithMoMoGen(
     'Something calls you to the left door and as you entered, you find yourself in a ward with a badly stained bed with a rotting stench...There seems to be static sound coming from underneath the bed. You feel strangly compelled to look underneath the bed...',
     'Look underneath the bed',
-    'assets/Image/hospitalbed.png')
+    'assets/Image/storynode2.png')
 
 
 const gameNode1a = new StoryNode(
@@ -63,10 +64,10 @@ const gameNode1d = new StoryNode(
 
 
 const node0 = new Node(
-    'You wake up on the cold hard gravel floor...the room is dark,very dark...You look around and your eyes can\'t seem to figure out where exactly you are...you see a matchbox 10 feet infront of you. Do you want to pick up the matchbox?',
+    'You entered into what seems like a warden office...there is a photo of a young man... You saw a matchbox under the lamp, do you want to take the matchbox?',
     'Pick up',
     'Leave it',
-    'assets/Image/wallpaperflare.com_wallpaper.jpg')
+    'assets/Image/node0.jpg')
 
 
 
@@ -74,7 +75,7 @@ const node1 = new NodeWithItemsUpdates(
     'You picked up the matchbox thinking it could serve some use later on... Your leg is injured and you limped for about a minute and see two doors. One on the left and the other on the right. Where do you go?',
     'Left',
     'Right',
-    'assets/Image/toilet%20bathtub.jpeg',
+    'assets/Image/node1.jpeg',
     'matchbox',
     true,
     'assets/Image/matchbox.png')
@@ -137,14 +138,13 @@ const node15 = new NodeWithItemsUpdates(
     false
 )
 
-const node8 = new NodeWithItemsUpdates(
+const node8 = new NodeWithVideoAndItemsUpdates(
     'You fumbled with the matches and accidentally broke one of the matches. You tried a few more times before you successfully lit up a match… You calmed down… You jolted in shock as you thought you saw a black shadow darted into an unlit area about 30 feet away from you… Do you want to follow the figure? ',
     'Follow',
     'Ignore',
-    'assets/Image/wallpaperflare.com_wallpaper.jpg',
+    'assets/video/node8.mp4',
     'matchbox',
     false
-
 )
 
 const node11 = new NodeWithItemsUpdates(
@@ -170,21 +170,13 @@ const node6 = new Node(
     'Leave it',
     'assets/Image/toilet%20bathtub.jpeg')
 
-const testNode = new NodeWithItemsUpdates(
-    'test',
-    'used matchbox',
-    'used matchbox',
-    'assets/Image/hospitalbedroomdarkimg.png',
-    'matchbox',
-    false,
-    'assets/Image/matchbox.png'
-)
+
 
 const node7 = new NodeWithItemsUpdates(
     'You picked up a walkie talkie from underneath a bed, which was the source of the static sound. The temperature of the room immediately dropped, you quickly exited the room and start shivering… why is it so cold? Do you want to lit your match to warm yourself with the flame?',
     'Use Matchbox',
     `Don't use`,
-    'assets/Image/hospitalbedroomdarkimg.png',
+    'assets/Image/node7.png',
     'walkietalkie',
     true,
     'assets/Image/walkietalkie.png')
@@ -206,7 +198,8 @@ const node3 = new Node(
 
 const node8a = new StoryNode(
     'You followed the figure into the unlit area… your eyes couldn’t adjust to the darkness but you see a room with its door ajar.. You entered the room but there was nothing in it.. Except for a piece of polaroid photo on the floor.',
-    'Pick up photo'
+    'Pick up photo',
+    'assets/Image/node8a.jpg'
 )
 
 
@@ -265,7 +258,7 @@ const gameNode1main = new GameNodeWithGameDeathNode(
 )
 
 const gameNode2 = new GameNodeWithGameDeathNode(
-    'You stare into a ghoul-looking female, unsure of who she is...a string of characters started appearing on the polaroid...c i ii..what could it mean?',
+    'A lamp at the back of the room switched on, giving you a shock...You stare into a ghoul-looking female, unsure of who she is...the light gave some illumination to the polaroid and you noticed a string of characters started appearing on the polaroid...c i ii..what could it mean?',
     'assets/game/game2/game2.mp4',
     'see eye to eye'
 )
@@ -328,7 +321,7 @@ gameNode2.setSurviveNode(node24)
 
 
 $(() => {
-    storyNode0.start()
+    homePageScreen.start()
     allUIFunctions()
 })
 

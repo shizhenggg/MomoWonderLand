@@ -102,6 +102,98 @@ class NodeWithItemsUpdates extends Node {
 
 }
 
+class NodeWithVideoAndItemsUpdates {
+    constructor(story,btn1option,btn2option,videourl,itemx,stat,itemUrl){
+        this.story = story
+        this.btn1option = btn1option
+        this.btn2option = btn2option
+        this.videourl = videourl
+        this.itemx = itemx
+        this.stat = stat
+        this.itemUrl = itemUrl 
+        this.removeVideo = this.removeVideo.bind(this)
+        this.updateItem = this.updateItem.bind(this)
+        this.start = this.start.bind(this)
+    }
+
+    start(){
+        $('.startingphoto').hide()
+        let $video = $('<source>').attr('src',this.videourl).attr('type','video/mp4').addClass('video')
+        let $gameVideo = $('<video autoplay loop id=gamevideo>').append($video)
+        $('.gamewindow').prepend($gameVideo)
+        $('#option-buttons').empty()
+        // Empty option buttons in case user clicks on it before question finishes loading -> causes a bug
+        this.displayQns()
+        this.updateItem()
+    }
+
+    displayQns(){
+    let $skipBtn = $('<button>').attr('id','skip').text('Skip')
+    $('#option-buttons').append($skipBtn)
+    // $('.questionbox').typedText(this.qns,()=>{this.displayBoptions()})
+    $('.questionbox').text(this.story)
+    this.displayBoptions()
+
+    // $('#skip').click(()=>{
+    //     $('#skip').remove()
+    //     $('.questionbox').empty()
+    //     $('.questionbox').text(this.qns)
+    //     this.displayBoptions()
+    //     })
+    }
+  
+    displayBoptions(){
+    let $btn1 = $('<button>').attr('id','button1').addClass('button')
+    let $btn2 = $('<button>').attr('id','button2').addClass('button')
+    $('#option-buttons').addClass('option-buttons')
+    $('#option-buttons').append($btn1)
+    $btn1.typedText(this.btn1option)
+    $('#option-buttons').append($btn2)
+    $btn2.typedText(this.btn2option)
+    this.nextNode()
+    }
+
+    setNode(btn1nn,btn2nn){
+        this.btn1nn = btn1nn
+        this.btn2nn = btn2nn
+    }
+
+    nextNode(){
+    $('#button1').click(()=>{
+        this.removeVideo()
+        this.btn1nn.start()
+        //need parenthesis as the .start() is inside a callback function and not directly in .click()
+    })
+       
+    $('#button2').click(()=>{
+        this.removeVideo()
+        this.btn2nn.start()
+        //need parenthesis as the .start() is inside a callback function and not directly in .click()
+    })
+    
+    }
+
+    removeVideo(){
+        $('video').remove()
+        $('.startingphoto').attr('src','')
+        $('.startingphoto').show()
+    }
+
+    updateItem(){
+        if(this.stat === true){
+        console.log('add:',this.itemx)
+        let $item = $('<div>').addClass('inventory').append(`<img class="items" id="${this.itemx}" src="${this.itemUrl}"/>`)
+        $('.container').prepend($item)}
+        if(this.stat === false){
+        console.log('remove:',this.itemx)
+        $(`#${this.itemx}`).closest('.inventory').remove()
+        // if you just use remove() on this.itemx, there will be the parents div of class inventory left thats why there will be empty space
+        // .closest('.inventory').remove() starts with current element and climbs up and searches for the element with class of inventory and remove the whole div, making sure there will not be empty spaces between items when the middle item is removed
+    }
+    }
+
+}
+
 // 1 option button avail
 class NodewithMoMoGen extends Node {
     constructor(qns,b1option,b2option,imageurl){
@@ -640,7 +732,7 @@ class HomePage {
         $('#option-buttons').show()
         $('.questionbox').show()
         $('.homebtn').show()
-        storyNode1.start()
+        storyNode0.start()
         })
     
     //next node is instructions

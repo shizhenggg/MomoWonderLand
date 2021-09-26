@@ -102,6 +102,81 @@ class NodeWithItemsUpdates extends Node {
 
 }
 
+class NodeWithVideo {
+    constructor(story,btn1option,btn2option,videourl){
+        this.story = story
+        this.btn1option = btn1option
+        this.btn2option = btn2option
+        this.videourl = videourl
+        this.removeVideo = this.removeVideo.bind(this)
+        this.start = this.start.bind(this)
+    }
+
+    start(){
+        $('.startingphoto').hide()
+        let $video = $('<source>').attr('src',this.videourl).attr('type','video/mp4').addClass('video')
+        let $gameVideo = $('<video autoplay loop id=gamevideo>').append($video)
+        $('.gamewindow').prepend($gameVideo)
+        $('#option-buttons').empty()
+        // Empty option buttons in case user clicks on it before question finishes loading -> causes a bug
+        this.displayQns()
+        this.updateItem()
+    }
+
+    displayQns(){
+    let $skipBtn = $('<button>').attr('id','skip').text('Skip')
+    $('#option-buttons').append($skipBtn)
+    // $('.questionbox').typedText(this.qns,()=>{this.displayBoptions()})
+    $('.questionbox').text(this.story)
+    this.displayBoptions()
+
+    // $('#skip').click(()=>{
+    //     $('#skip').remove()
+    //     $('.questionbox').empty()
+    //     $('.questionbox').text(this.qns)
+    //     this.displayBoptions()
+    //     })
+    }
+  
+    displayBoptions(){
+    let $btn1 = $('<button>').attr('id','button1').addClass('button')
+    let $btn2 = $('<button>').attr('id','button2').addClass('button')
+    $('#option-buttons').addClass('option-buttons')
+    $('#option-buttons').append($btn1)
+    $btn1.typedText(this.btn1option)
+    $('#option-buttons').append($btn2)
+    $btn2.typedText(this.btn2option)
+    this.nextNode()
+    }
+
+    setNode(btn1nn,btn2nn){
+        this.btn1nn = btn1nn
+        this.btn2nn = btn2nn
+    }
+
+    nextNode(){
+    $('#button1').click(()=>{
+        this.removeVideo()
+        this.btn1nn.start()
+        //need parenthesis as the .start() is inside a callback function and not directly in .click()
+    })
+       
+    $('#button2').click(()=>{
+        this.removeVideo()
+        this.btn2nn.start()
+        //need parenthesis as the .start() is inside a callback function and not directly in .click()
+    })
+    
+    }
+
+    removeVideo(){
+        $('video').remove()
+        $('.startingphoto').attr('src','')
+        $('.startingphoto').show()
+    }
+
+}
+
 class NodeWithVideoAndItemsUpdates {
     constructor(story,btn1option,btn2option,videourl,itemx,stat,itemUrl){
         this.story = story
@@ -249,22 +324,21 @@ class NodewithMoMoGen extends Node {
         $('.startingphoto').attr('src','https://s.yimg.com/uu/api/res/1.2/EPrCsKpKqdvmt9DKDkUjhw--~B/Zmk9ZmlsbDtoPTQzMjt3PTY3NTthcHBpZD15dGFjaHlvbg--/https://s.yimg.com/uu/api/res/1.2/3WbSqoVABep_tI_DpuJSGQ--~B/aD0xMDI0O3c9MTYwMDthcHBpZD15dGFjaHlvbg--/https://o.aolcdn.com/images/dims?resize=2000%2C2000%2Cshrink&image_uri=https%3A%2F%2Fs.yimg.com%2Fos%2Fcreatr-uploaded-images%2F2019-03%2F4e54f600-3f82-11e9-aff6-507cab99fdc9&client=a1acac3e1b3290917d92&signature=6336c16f62a811ad2bb1dcfcdee118f42296dd69.cf.webp')
         $('.startingphoto').addClass('shake')
         $('.questionbox').hide()
+        $('.homebtn').hide()
         $('.items').hide()
         $('#option-buttons').hide()
         await wait(2000)
         $('.startingphoto').removeClass('shake')
-        $('.questionbox').show()
-        $('#option-buttons').show()
         $('.startingphoto').attr('src','assets/Image/youdied.png')
-        $('.questionbox').text('Returning to home screen...\n Loading...')
         await wait(3000)
         $('.startingphoto').attr('src','')
+        $('.questionbox').show()
+        $('#option-buttons').show()
+        $('.homebtn').show()
         homePageScreen.start()
         }
 
-        momoJumpScare()
-        
-        
+        momoJumpScare() 
     
     }
 
@@ -395,6 +469,44 @@ class StoryNodeWithVideo {
     )}
 }
 
+class StoryNodeWithVideoAndItemsUpdates extends StoryNodeWithVideo {
+    constructor(story,option,videourl,itemx,stat,itemUrl){
+       super(story,option,videourl)
+            this.story = story
+            this.option = option
+            this.videourl = videourl
+            this.itemx = itemx
+            this.stat = stat
+            this.itemUrl = itemUrl 
+            this.updateItem = this.updateItem.bind(this)
+            this.start = this.start.bind(this)
+    }
+
+    start(){
+        $('.startingphoto').hide()
+        let $video = $('<source>').attr('src',this.videourl).attr('type','video/mp4').addClass('video')
+        let $gameVideo = $('<video autoplay loop id=gamevideo>').append($video)
+        $('.gamewindow').prepend($gameVideo)
+        $('#option-buttons').empty()
+        // Empty option buttons in case user clicks on it before question finishes loading -> causes a bug
+        this.displayStory()
+        this.updateItem()
+    }
+
+    updateItem(){
+        if(this.stat === true){
+        console.log('add:',this.itemx)
+        let $item = $('<div>').addClass('inventory').append(`<img class="items" id="${this.itemx}" src="${this.itemUrl}"/>`)
+        $('.container').prepend($item)}
+        if(this.stat === false){
+        console.log('remove:',this.itemx)
+        $(`#${this.itemx}`).closest('.inventory').remove()
+        // if you just use remove() on this.itemx, there will be the parents div of class inventory left thats why there will be empty space
+        // .closest('.inventory').remove() starts with current element and climbs up and searches for the element with class of inventory and remove the whole div, making sure there will not be empty spaces between items when the middle item is removed
+    }
+    }
+}
+
 class StoryNodeWithItemsUpdates extends StoryNode {
     constructor(story,option,imageurl,itemx,stat,itemUrl){
     super(story,option,imageurl);
@@ -487,24 +599,24 @@ class StoryNodeWithMoMoGen {
             })
         }
         async function momoJumpScare(){
-        $('.startingphoto').attr('src','https://s.yimg.com/uu/api/res/1.2/EPrCsKpKqdvmt9DKDkUjhw--~B/Zmk9ZmlsbDtoPTQzMjt3PTY3NTthcHBpZD15dGFjaHlvbg--/https://s.yimg.com/uu/api/res/1.2/3WbSqoVABep_tI_DpuJSGQ--~B/aD0xMDI0O3c9MTYwMDthcHBpZD15dGFjaHlvbg--/https://o.aolcdn.com/images/dims?resize=2000%2C2000%2Cshrink&image_uri=https%3A%2F%2Fs.yimg.com%2Fos%2Fcreatr-uploaded-images%2F2019-03%2F4e54f600-3f82-11e9-aff6-507cab99fdc9&client=a1acac3e1b3290917d92&signature=6336c16f62a811ad2bb1dcfcdee118f42296dd69.cf.webp')
-        $('.startingphoto').addClass('shake')
-        $('.items').hide()
-        $('.questionbox').hide()
-        $('#option-buttons').hide()
-        await wait(2000)
-        $('.startingphoto').removeClass('shake')
-        $('.questionbox').show()
-        $('#option-buttons').show()
-        $('.startingphoto').attr('src','assets/Image/youdied.png')
-        $('.questionbox').text('Returning to home screen...\n Loading...')
-        await wait(3000)
-        $('.startingphoto').attr('src','')
-        homePageScreen.start()
-        }
-
-        momoJumpScare()
+            $('.startingphoto').attr('src','https://s.yimg.com/uu/api/res/1.2/EPrCsKpKqdvmt9DKDkUjhw--~B/Zmk9ZmlsbDtoPTQzMjt3PTY3NTthcHBpZD15dGFjaHlvbg--/https://s.yimg.com/uu/api/res/1.2/3WbSqoVABep_tI_DpuJSGQ--~B/aD0xMDI0O3c9MTYwMDthcHBpZD15dGFjaHlvbg--/https://o.aolcdn.com/images/dims?resize=2000%2C2000%2Cshrink&image_uri=https%3A%2F%2Fs.yimg.com%2Fos%2Fcreatr-uploaded-images%2F2019-03%2F4e54f600-3f82-11e9-aff6-507cab99fdc9&client=a1acac3e1b3290917d92&signature=6336c16f62a811ad2bb1dcfcdee118f42296dd69.cf.webp')
+            $('.startingphoto').addClass('shake')
+            $('.questionbox').hide()
+            $('.homebtn').hide()
+            $('.items').hide()
+            $('#option-buttons').hide()
+            await wait(2000)
+            $('.startingphoto').removeClass('shake')
+            $('.startingphoto').attr('src','assets/Image/youdied.png')
+            await wait(3000)
+            $('.startingphoto').attr('src','')
+            $('.questionbox').show()
+            $('#option-buttons').show()
+            $('.homebtn').show()
+            homePageScreen.start()
+            }
     
+            momoJumpScare() 
     
     }
 
@@ -512,7 +624,7 @@ class StoryNodeWithMoMoGen {
     momogen(){
     let randomGen = Math.ceil(Math.random()*10)
     console.log(randomGen)
-    if(randomGen<=0){
+    if(randomGen<=10){
         this.momogenJumpScare()
     }
         // cue game over screen
@@ -596,32 +708,31 @@ class GameNodeWithMoMo {
             })
         }
         async function momoJumpScare(){
-        $('.startingphoto').attr('src','https://s.yimg.com/uu/api/res/1.2/EPrCsKpKqdvmt9DKDkUjhw--~B/Zmk9ZmlsbDtoPTQzMjt3PTY3NTthcHBpZD15dGFjaHlvbg--/https://s.yimg.com/uu/api/res/1.2/3WbSqoVABep_tI_DpuJSGQ--~B/aD0xMDI0O3c9MTYwMDthcHBpZD15dGFjaHlvbg--/https://o.aolcdn.com/images/dims?resize=2000%2C2000%2Cshrink&image_uri=https%3A%2F%2Fs.yimg.com%2Fos%2Fcreatr-uploaded-images%2F2019-03%2F4e54f600-3f82-11e9-aff6-507cab99fdc9&client=a1acac3e1b3290917d92&signature=6336c16f62a811ad2bb1dcfcdee118f42296dd69.cf.webp')
-        $('.startingphoto').addClass('shake')
-        $('.game-input').hide()
-        $('video').remove()
-        //from game node 
-        $('.questionbox').hide()
-        $('#option-buttons').hide()
-        await wait(2000)
-        $('.startingphoto').removeClass('shake')
-        $('.questionbox').show()
-        $('#option-buttons').show()
-        $('.startingphoto').attr('src','assets/Image/youdied.png')
-        $('.questionbox').text('Returning to home screen...\n Loading...')
-        await wait(3000)
-        $('.startingphoto').attr('src','')
-        homePageScreen.start()
-        }
-
-        momoJumpScare()
+            $('.startingphoto').attr('src','https://s.yimg.com/uu/api/res/1.2/EPrCsKpKqdvmt9DKDkUjhw--~B/Zmk9ZmlsbDtoPTQzMjt3PTY3NTthcHBpZD15dGFjaHlvbg--/https://s.yimg.com/uu/api/res/1.2/3WbSqoVABep_tI_DpuJSGQ--~B/aD0xMDI0O3c9MTYwMDthcHBpZD15dGFjaHlvbg--/https://o.aolcdn.com/images/dims?resize=2000%2C2000%2Cshrink&image_uri=https%3A%2F%2Fs.yimg.com%2Fos%2Fcreatr-uploaded-images%2F2019-03%2F4e54f600-3f82-11e9-aff6-507cab99fdc9&client=a1acac3e1b3290917d92&signature=6336c16f62a811ad2bb1dcfcdee118f42296dd69.cf.webp')
+            $('.startingphoto').addClass('shake')
+            $('.questionbox').hide()
+            $('.homebtn').hide()
+            $('.items').hide()
+            $('#option-buttons').hide()
+            await wait(2000)
+            $('.startingphoto').removeClass('shake')
+            $('.startingphoto').attr('src','assets/Image/youdied.png')
+            await wait(3000)
+            $('.startingphoto').attr('src','')
+            $('.questionbox').show()
+            $('#option-buttons').show()
+            $('.homebtn').show()
+            homePageScreen.start()
+            }
+    
+            momoJumpScare() 
     }
 
 
     momogen(){
     let randomGen = Math.ceil(Math.random()*10)
     console.log(randomGen)
-    if(randomGen<=0){
+    if(randomGen<=10){
         this.momogenJumpScare()
     }
         // cue game over screen

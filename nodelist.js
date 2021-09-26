@@ -88,16 +88,18 @@ const node13 = new NodewithMoMoGen2(
     'Insert key'   
 )
 
-const node9 = new Node(
+const node9 = new NodeWithVideo(
     'You wondered around the corridor and they started to look the same. Your head starts to spin… Do you want to use your walkie talkie to call for help?',
     'Yes',
-    'No'
+    'No',
+    'assets/video/node9.mp4'
+
 )
 
-const node9a = new StoryNodeWithItemsUpdates(
+const node9a = new StoryNodeWithVideoAndItemsUpdates(
     '“bzzzz” the radio in your backpocket sounded, breaking the silence of the place. “base…men..t..” a choppy transmission was heard…”basement?” you thought to yourself… You weren’t sure who was on the other end of the radio but you decided to go down to the basement…',
     'Head to basement',
-    'assets/Image/wallpaperflare.com_wallpaper.jpg',
+    'assets/video/node9a.mp4',
     'walkietalkie',
     false,
 )
@@ -147,11 +149,12 @@ const node8 = new NodeWithVideoAndItemsUpdates(
     false
 )
 
-const node11 = new NodeWithItemsUpdates(
+const node11 = new NodeWithVideoAndItemsUpdates(
     '‘Hello, is anyone here?’ You repeated your message while holding down on the broadcast button. There doesn’t seem to be any response at all… You noticed a shadowy corner 30 feet away from you, it’s eerily unlit even though there is a florescent tube right above it… Do you want to explore the unlit area?',
     'Explore',
     'Ignore',
-    'walkie talkie',
+    'assets/video/node11.mp4',
+    'walkietalkie',
     false
 )
 
@@ -250,6 +253,13 @@ const gameDeathNode1 = new StoryNodeWithVideo(
 )
 
 
+const gameDeathNode2 = new StoryNodeWithVideo(
+    'You went outside to the corridor and continued finding a way out...You wondered around the corridor and they started to look the same. Your head starts to spin…your vision fades as your surroundings fades into darkness…',
+    'Return to home page',
+    'assets/video/gamedeathnode.mp4'
+)
+
+
 const gameNode1main = new GameNodeWithGameDeathNode(
     "You walked to a table full of newspaper cutouts and letters... There were reports of missing childrens and ghastly sighting...which all supposedly happened in this prison...' You saw a chunk of morse code on an envelope… and a typewriter next to it… Is this a riddle? What could the morse code mean?",
 
@@ -293,9 +303,9 @@ node6.setNode(node7,node5)
 node7.setNode(node8,node9)
 node8.setNode(node8a,gameDeathNode1) 
 node8a.setNode(gameNode2)
-node9.setNode(node9a,node11)
+node9.setNode(node11,node9a)
 node9a.setNode(gameNode1a)
-node11.setNode(gameNode1a,gameDeathNode1)
+node11.setNode(gameNode1a,gameDeathNode2)
 node12.setNode(node13)
 node13.setNode(gameNode1a)
 node20.setNode(escapeNode,node0)
@@ -305,6 +315,8 @@ storyNode0.setNode(storyNode1)
 storyNode1.setNode(node0)
 
 gameDeathNode.setNode(homePageScreen)
+gameDeathNode1.setNode(homePageScreen)
+gameDeathNode2.setNode(homePageScreen)
 gameNode1a.setNode(gameNode1main)
 gameNode1b.setNode(gameNode1c)
 gameNode1c.setNode(gameNode1d)

@@ -213,7 +213,7 @@ gameDeathNode.setNode(homePageScreen)
 
 
 $(() => {
-    momoDeathNode5.start()
+    node13.start()
     allUIFunctions()
 })
     

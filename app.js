@@ -157,6 +157,7 @@ class NodewithMoMoGen extends Node {
         $('.startingphoto').attr('src','assets/Image/youdied.png')
         $('.questionbox').text('Returning to home screen...\n Loading...')
         await wait(3000)
+        $('.startingphoto').empty()
         homePageScreen.start()
         }
 
@@ -356,6 +357,7 @@ class StoryNodeWithMoMoGen {
         $('.startingphoto').attr('src','assets/Image/youdied.png')
         $('.questionbox').text('Returning to home screen...\n Loading...')
         await wait(3000)
+        $('.startingphoto').empty()
         homePageScreen.start()
         }
 
@@ -466,6 +468,7 @@ class GameNodeWithMoMo {
         $('.startingphoto').attr('src','assets/Image/youdied.png')
         $('.questionbox').text('Returning to home screen...\n Loading...')
         await wait(3000)
+        $('.startingphoto').empty()
         homePageScreen.start()
         }
 
@@ -676,6 +679,7 @@ class MoMoDeathNode {
         // cannot read properties of undefined (reading 'story') at momoJumpScare if you use regular function notion. 
         // have to use bracket notation for momoJumpScare & wait function
         await wait(10000)
+        $('.startingphoto').empty()
         homePageScreen.start()
         }
 

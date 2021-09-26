@@ -157,7 +157,7 @@ class NodewithMoMoGen extends Node {
         $('.startingphoto').attr('src','assets/Image/youdied.png')
         $('.questionbox').text('Returning to home screen...\n Loading...')
         await wait(3000)
-        $('.startingphoto').empty()
+        $('.startingphoto').attr('src','')
         homePageScreen.start()
         }
 
@@ -170,7 +170,7 @@ class NodewithMoMoGen extends Node {
     momogen(){
     let randomGen = Math.ceil(Math.random()*10)
     console.log(randomGen)
-    if(randomGen<=3){
+    if(randomGen<=0){
        this.momogenJumpScare()
         // $('#option-buttons').empty()
         // let $btn2 = $('<button>').attr('id','button2').addClass('button')
@@ -290,6 +290,43 @@ class StoryNodeWithVideo {
     )}
 }
 
+class StoryNodeWithItemsUpdates extends StoryNode {
+    constructor(story,option,imageurl,itemx,stat,itemUrl){
+    super(story,option,imageurl);
+        this.story = story
+        this.option = option
+        this.imageurl = imageurl
+        this.itemx = itemx
+        this.stat = stat
+        this.itemUrl = itemUrl 
+        this.updateItem = this.updateItem.bind(this)
+        this.start = this.start.bind(this)
+    }
+
+    start(){
+        $('.startingphoto').attr('src',this.imageurl)
+        // Set new image
+        $('#option-buttons').empty()
+        // Empty option buttons in case user clicks on it before question finishes loading -> causes a bug
+        this.displayStory()
+        this.updateItem()
+    }
+
+    updateItem(){
+        if(this.stat === true){
+        console.log('add:',this.itemx)
+        let $item = $('<div>').addClass('inventory').append(`<img class="items" id="${this.itemx}" src="${this.itemUrl}"/>`)
+        $('.container').prepend($item)}
+        if(this.stat === false){
+        console.log('remove:',this.itemx)
+        $(`#${this.itemx}`).closest('.inventory').remove()
+        // if you just use remove() on this.itemx, there will be the parents div of class inventory left thats why there will be empty space
+        // .closest('.inventory').remove() starts with current element and climbs up and searches for the element with class of inventory and remove the whole div, making sure there will not be empty spaces between items when the middle item is removed
+    }
+    }
+
+}
+
 class StoryNodeWithMoMoGen {
     constructor(story,option,imageurl){
         this.story = story
@@ -357,7 +394,7 @@ class StoryNodeWithMoMoGen {
         $('.startingphoto').attr('src','assets/Image/youdied.png')
         $('.questionbox').text('Returning to home screen...\n Loading...')
         await wait(3000)
-        $('.startingphoto').empty()
+        $('.startingphoto').attr('src','')
         homePageScreen.start()
         }
 
@@ -370,7 +407,7 @@ class StoryNodeWithMoMoGen {
     momogen(){
     let randomGen = Math.ceil(Math.random()*10)
     console.log(randomGen)
-    if(randomGen<=10){
+    if(randomGen<=0){
         this.momogenJumpScare()
     }
         // cue game over screen
@@ -468,7 +505,7 @@ class GameNodeWithMoMo {
         $('.startingphoto').attr('src','assets/Image/youdied.png')
         $('.questionbox').text('Returning to home screen...\n Loading...')
         await wait(3000)
-        $('.startingphoto').empty()
+        $('.startingphoto').attr('src','')
         homePageScreen.start()
         }
 
@@ -479,7 +516,7 @@ class GameNodeWithMoMo {
     momogen(){
     let randomGen = Math.ceil(Math.random()*10)
     console.log(randomGen)
-    if(randomGen<=3){
+    if(randomGen<=0){
         this.momogenJumpScare()
     }
         // cue game over screen
@@ -675,11 +712,11 @@ class MoMoDeathNode {
         $('.questionbox').show()
         $('#option-buttons').show()
         $('.startingphoto').attr('src','assets/Image/youdied.png')
-        $('.questionbox').typedText(`${this.story}\nReturning to home screen...\n Loading...`)
+        $('.questionbox').typedText(`${this.story}\n Returning to home screen...\n Loading...`)
         // cannot read properties of undefined (reading 'story') at momoJumpScare if you use regular function notion. 
         // have to use bracket notation for momoJumpScare & wait function
         await wait(10000)
-        $('.startingphoto').empty()
+        $('.startingphoto').attr('src','')
         homePageScreen.start()
         }
 

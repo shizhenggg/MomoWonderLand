@@ -7,6 +7,21 @@
 // undefined start: remember to setNode for the new node to eradicate this bug
 
 //problem to solve
+// github failed to load resources
+
+$(() => {
+    node12.start()
+    allUIFunctions()
+})
+
+const node12 = new StoryNodeWithItemsUpdates(
+    'You quickly leave the bathroom as the air got thick without warning and you found it increasingly hard to breathe. You got paranoid as your surroundings got darker… You use your match and managed to start a small flame… You calmed down… ',
+    'Continue exploring',
+    'assets/Image/matchstick2.jpeg',
+    'key',
+    true,
+    'assets/Image/key.png'
+)
 
 
 const gameDeathNode = new StoryNodeWithVideo(
@@ -184,6 +199,7 @@ const momoDeathNode5 = new MoMoDeathNode(
 
 node13.setSurviveNode(homePageScreen)
 node13.setNode(gameNode1)
+node12.setNode(node13)
 node20.setNode(escapeNode,node0)
 node7.setNode(testNode,node0)
 node6.setNode(node7,node5)
@@ -212,10 +228,7 @@ gameDeathNode.setNode(homePageScreen)
 // you need to setNode for each node else the node will be undefined
 
 
-$(() => {
-    node13.start()
-    allUIFunctions()
-})
+
     
     
 

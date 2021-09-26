@@ -8,6 +8,7 @@
 // 10 robodog inventory 
 // 11 responsive text for homepage buttons text
 // 12 figure out order and coherence of games
+// 13 hospital image not full screen
 
 
 class Node {
@@ -120,7 +121,6 @@ class NodeWithVideo {
         $('#option-buttons').empty()
         // Empty option buttons in case user clicks on it before question finishes loading -> causes a bug
         this.displayQns()
-        this.updateItem()
     }
 
     displayQns(){
@@ -385,6 +385,142 @@ class NodewithMoMoGen2 extends NodewithMoMoGen{
 
 }
 
+// not finalized
+class NodeWithVideoMoMoGen2 {
+    constructor(qns,b1option,b2option,videourl){
+        this.momogen = this.momogen.bind(this)
+        this.setNode = this.setNode.bind(this)
+        this.videourl = videourl
+        this.removeVideo = this.removeVideo.bind(this)
+        this.setSurviveNode = this.setSurviveNode.bind(this)
+        this.momogenJumpScare = this.momogenJumpScare.bind(this)
+        this.start = this.start.bind(this)
+}
+
+
+start(){
+    $('.startingphoto').hide()
+    let $video = $('<source>').attr('src',this.videourl).attr('type','video/mp4').addClass('video')
+    let $gameVideo = $('<video autoplay loop id=gamevideo>').append($video)
+    $('.gamewindow').prepend($gameVideo)
+    $('#option-buttons').empty()
+    // Empty option buttons in case user clicks on it before question finishes loading -> causes a bug
+    this.displayQns()
+    this.setNode()
+}
+
+displayQns(){
+    let $skipBtn = $('<button>').attr('id','skip').text('Skip')
+    $('#option-buttons').append($skipBtn)
+    // $('.questionbox').typedText(this.qns,()=>{this.displayBoptions()})
+    $('.questionbox').text(this.qns)
+    this.displayBoptions()
+
+    // $('#skip').click(()=>{
+    //     $('#skip').remove()
+    //     $('.questionbox').empty()
+    //     $('.questionbox').text(this.qns)
+    //     this.displayBoptions()
+    //     })
+    }
+
+displayBoptions(){
+    let $btn1 = $('<button>').attr('id','button1').addClass('button')
+    let $btn2 = $('<button>').attr('id','button2').addClass('button')
+    $('#option-buttons').addClass('option-buttons')
+    $('#option-buttons').append($btn1)
+    $btn1.typedText(this.b1option)
+    $('#option-buttons').append($btn2)
+    $btn2.typedText(this.b2option)
+    this.nextNode()
+    }
+
+setNode(btn2nn){
+    this.btn1nn = this.momogen
+    this.btn2nn = btn2nn
+}
+
+nextNode(){
+    $('#button1').click(()=>{
+        this.removeVideo()
+        this.btn1nn
+        //need parenthesis as the .start() is inside a callback function and not directly in .click()
+    })
+       
+    $('#button2').click(()=>{
+        this.removeVideo()
+        this.btn2nn.start()
+        //need parenthesis as the .start() is inside a callback function and not directly in .click()
+    })
+    
+    }
+
+    removeVideo(){
+        $('video').remove()
+        $('.startingphoto').attr('src','')
+        $('.startingphoto').show()
+    }
+
+setSurviveNode(surviveNode){
+    this.surviveNode = surviveNode
+}
+
+momogenJumpScare(){
+
+    $('#option-buttons').empty()
+    let audio = new Audio('assets/sound/momojumpscare.mp3')
+    if($("audio").prop('muted')===false){
+        audio.play()}
+
+    function wait(ms){
+        return new Promise(resolve=>{
+            setTimeout(()=>{resolve('')},ms)
+        })
+    }
+    async function momoJumpScare(){
+    $('.startingphoto').attr('src','https://s.yimg.com/uu/api/res/1.2/EPrCsKpKqdvmt9DKDkUjhw--~B/Zmk9ZmlsbDtoPTQzMjt3PTY3NTthcHBpZD15dGFjaHlvbg--/https://s.yimg.com/uu/api/res/1.2/3WbSqoVABep_tI_DpuJSGQ--~B/aD0xMDI0O3c9MTYwMDthcHBpZD15dGFjaHlvbg--/https://o.aolcdn.com/images/dims?resize=2000%2C2000%2Cshrink&image_uri=https%3A%2F%2Fs.yimg.com%2Fos%2Fcreatr-uploaded-images%2F2019-03%2F4e54f600-3f82-11e9-aff6-507cab99fdc9&client=a1acac3e1b3290917d92&signature=6336c16f62a811ad2bb1dcfcdee118f42296dd69.cf.webp')
+    $('.startingphoto').addClass('shake')
+    $('.questionbox').hide()
+    $('.homebtn').hide()
+    $('.items').hide()
+    $('#option-buttons').hide()
+    await wait(2000)
+    $('.startingphoto').removeClass('shake')
+    $('.startingphoto').attr('src','assets/Image/youdied.png')
+    await wait(3000)
+    $('.startingphoto').attr('src','')
+    $('.questionbox').show()
+    $('#option-buttons').show()
+    $('.homebtn').show()
+    homePageScreen.start()
+    }
+
+    momoJumpScare() 
+
+}
+
+momogen(){
+let randomGen = Math.ceil(Math.random()*10)
+console.log(randomGen)
+if(randomGen<=0){
+   this.momogenJumpScare()
+    // $('#option-buttons').empty()
+    // let $btn2 = $('<button>').attr('id','button2').addClass('button')
+    // $('#option-buttons').append($btn2)
+    // $btn2.typedText(this.b2option)
+    
+    
+    // cue game over screen
+    // go back to game screen
+}
+else{
+    this.surviveNode.start() 
+    //is undefined even tho it was declared previously in nodelist.js
+}
+    //cannot read properties of undefined (reading 'start')
+}  
+}
+
 //also used to make GameDeathNode
 class StoryNode {
     constructor(story,option,imageurl){
@@ -624,7 +760,7 @@ class StoryNodeWithMoMoGen {
     momogen(){
     let randomGen = Math.ceil(Math.random()*10)
     console.log(randomGen)
-    if(randomGen<=10){
+    if(randomGen<=0){
         this.momogenJumpScare()
     }
         // cue game over screen
@@ -732,7 +868,7 @@ class GameNodeWithMoMo {
     momogen(){
     let randomGen = Math.ceil(Math.random()*10)
     console.log(randomGen)
-    if(randomGen<=10){
+    if(randomGen<=0){
         this.momogenJumpScare()
     }
         // cue game over screen
@@ -922,21 +1058,22 @@ class MoMoDeathNode {
         $('.startingphoto').attr('src','https://s.yimg.com/uu/api/res/1.2/EPrCsKpKqdvmt9DKDkUjhw--~B/Zmk9ZmlsbDtoPTQzMjt3PTY3NTthcHBpZD15dGFjaHlvbg--/https://s.yimg.com/uu/api/res/1.2/3WbSqoVABep_tI_DpuJSGQ--~B/aD0xMDI0O3c9MTYwMDthcHBpZD15dGFjaHlvbg--/https://o.aolcdn.com/images/dims?resize=2000%2C2000%2Cshrink&image_uri=https%3A%2F%2Fs.yimg.com%2Fos%2Fcreatr-uploaded-images%2F2019-03%2F4e54f600-3f82-11e9-aff6-507cab99fdc9&client=a1acac3e1b3290917d92&signature=6336c16f62a811ad2bb1dcfcdee118f42296dd69.cf.webp')
         $('.startingphoto').addClass('shake')
         $('.items').hide()
+        $('.homebtn').hide()
         $('.questionbox').hide()
         $('#option-buttons').hide()
         await wait(2000)
         $('.startingphoto').removeClass('shake')
         $('.questionbox').show()
-        $('#option-buttons').show()
         $('.startingphoto').attr('src','assets/Image/youdied.png')
-        $('.questionbox').typedText(`${this.story}\n Returning to home screen...\n Loading...`)
+        $('.questionbox').typedText(`${this.story}`)
         // cannot read properties of undefined (reading 'story') at momoJumpScare if you use regular function notion. 
         // have to use bracket notation for momoJumpScare & wait function
         await wait(10000)
+        $('#option-buttons').show()
         $('.startingphoto').attr('src','')
+        $('.homebtn').show()
         homePageScreen.start()
         }
-
         momoJumpScare()
     }
 }

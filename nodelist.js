@@ -54,9 +54,9 @@ const gameNode1c = new StoryNode(
 )
 
 const gameNode1d = new StoryNode(
-    'You ended up in a nuclear style bunker which was in stark contrast to the previous posh office room... You fought through the thick red veins of whatever was growing in here',
+    'You ended up in a nuclear style bunker which was in stark contrast to the previous posh office room... You see the light at the end of the tunnel and quicken your space as you hear footsteps behind you!',
     'Continue venturing',
-    'assets/game/game1/game1tunnel.jpeg'
+    'assets/game/game1/game1tunnel.png'
 )
 
 
@@ -132,10 +132,10 @@ const node17 = new Node(
     'Sneak In'
 )
 
-const node15 = new NodeWithItemsUpdates(
-    'A certain fear crept over you and you decided to not lay hands on that rotting carcass. You take a step back...As you glanced around the rest of the bathroom, you caught your own reflection in the mirror... The longer you look at yourself, the amissed you feel about the mirror. Do you want to move closer and check out the mirror?',
+const node10 = new NodeWithItemsUpdates(
+    'A certain fear crept over you as you held the key in your hands…You dropped the key and stood up. The reflection in the stained mirror caught your attention. Somehow, you can’t seem to figure out but the reflection in the mirror looks odd… Do you want to inspect the mirror?',
     'Inspect mirror',
-    'Leave it',
+    'ignore',
     'key',
     false
 )
@@ -160,12 +160,21 @@ const node11 = new NodeWithVideoAndItemsUpdates(
 
 
 
-const node5 = new Node(
-    'You clumsily fiddled with the matchbox and after much struggle in the darkness, managed to get one started. As small as it was, the warm flame calmed you down... Out of the blue, at the right corner of your eyes, you see a black figure darted into a small corner down the corridor 10 feet away from you. That\`s weird, you thought to yourself. There was no signs of any humans in this dilapilated place. Do you want to follow the figure?',
-    'Follow',
-    'Ignore and explore someplace else'
+const node5 = new NodeWithVideo(
+    'You leave it. There wouldn’t be anything useful about it anyway… The fluorescent light tube on the ceiling suddenly dims and it goes out. You’re surrounded by darkness. Do you want to use your matches to lit the room or wait till your eyes adjust to the darkness before moving as the matches could prove useful later…',
+    'Wait for your eyes to adjust',
+    'Light Matches',
+    'assets/video/node5.mp4'
+    
 )
 
+const node5a = new StoryNodeWithVideoAndItemsUpdates(
+   'You fumbled with the matches and accidentally broke one of the matches. You tried a few more times before you successfully lit up a match… You calmed down… ',
+   'Continue',
+   'assets/video/node8.mp4' ,
+   'matchbox',
+   false
+)
 
 const node6 = new Node(
     'You find a buzzing walkie talkie under the dusty bed, do you want to keep it?',
@@ -185,19 +194,37 @@ const node7 = new NodeWithItemsUpdates(
     'assets/Image/walkietalkie.png')
 
     
-const node4 = new Node(
+const ratnode = new Node(
     'As you inched closer, the rotting smell got unbearable. There were maggots and crawlies on the rat. You see what seems to be a golden key stucked into the rat... Do you want to take and keep the key?',
     'Take key',
     'Leave it'
 )
 
-const node3 = new Node(
-    'Something calls you to the right door and as you entered, you find yourself in what seemed to be the bathroom with a rotting stench...you noticed an abnormally sized rat that has half rotten. There seems to be something shiny protruding out of the abdomen of it. Do you want to move closer to inspect the rate?',
+const node3 = new StoryNodeWithVideo(
+    'Something calls you to the right door and as you entered, the walkie talkie in your backpocket sounded ‘…bathroom…spotted’… which sent shivers up your spine. You did not remember bringing a walkie talkie with you..where did it come from?',
+    'Continue',
+    'assets/video/node11.mp4'
+)
+
+
+const node4 = new NodeWithItemsUpdates(
+    'You noticed that in the bathroom that you stepped into, there is a flattened rat on the floor which seems to have fused into the floor. Do you want to inspect the rat? ',
     'Inspect rat',
-    'Leave the rat alone'
+    'Leave the rat alone',
+    'assets/Image/node3.png',
+    'walkietalkie',
+    true,
+    'assets/Image/walkietalkie.png'
+)
 
-    )
+const node15 = new NodewithMoMoGen2(
+    'You inspected the rat and there seems to be a shiny object stuck inside its mouth… You pulled out a silver key that has been forcibly jammed into the rat’s mouth… Do you want to keep the key?',
+    'Keep',
+    'Drop',
+    'assets/Image/node15.png'
 
+
+)
 
 const node8a = new StoryNode(
     'You followed the figure into the unlit area… your eyes couldn’t adjust to the darkness but you see a room with its door ajar.. You entered the room but there was nothing in it.. Except for a piece of polaroid photo on the floor.',
@@ -232,7 +259,7 @@ const node24 = new StoryNodeWithVideo(
 const node12 = new StoryNodeWithItemsUpdates(
     'You quickly leave the bathroom as the air got thick without warning and you found it increasingly hard to breathe. You got paranoid as your surroundings got darker… You use your match and managed to start a small flame… You calmed down… ',
     'Continue exploring',
-    'assets/Image/matchstick2.jpeg',
+    'assets/video/node8.mp4',
     'key',
     true,
     'assets/Image/key.png'
@@ -296,9 +323,10 @@ const momoDNode5 = new MoMoDeathNode(
 
 node0.setNode(node1,node17)
 node1.setNode(storyNode2,node3)
-node3.setNode(node4,node5)
+node3.setNode(node4)
 node4.setNode(node15,node5)
-node5.setNode(node8,deathNode)
+node5.setNode(momoDNode5,node5a)
+node5a.setNode(node9a)
 node6.setNode(node7,node5)
 node7.setNode(node8,node9)
 node8.setNode(node8a,gameDeathNode1) 
@@ -308,6 +336,7 @@ node9a.setNode(gameNode1a)
 node11.setNode(gameNode1a,gameDeathNode2)
 node12.setNode(node13)
 node13.setNode(gameNode1a)
+node15.setNode(node10)
 node20.setNode(escapeNode,node0)
 node24.setNode(gameNode1a)
 
@@ -329,6 +358,7 @@ node13.setSurviveNode(homePageScreen)
 storyNode2.setSurviveNode(node7)
 gameNode1main.setSurviveNode(gameNode1b)
 gameNode2.setSurviveNode(node24)
+node15.setSurviveNode(node12)
 
 
 

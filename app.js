@@ -5,7 +5,7 @@
 // 7 change font 
 // 8 desc and button text affirmation for nodes (storyline)
 // 9 function to skip typed text 
-// 10 robodog inventory, key inventory 
+// 10 robodog inventory 
 // 11 responsive text for homepage buttons text
 // 12 figure out order and coherence of games
 
@@ -27,11 +27,20 @@ class Node {
         this.displayQns()
     }
     displayQns(){
+    let $skipBtn = $('<button>').attr('id','skip').text('Skip')
+    $('#option-buttons').append($skipBtn)
     // $('.questionbox').typedText(this.qns,()=>{this.displayBoptions()})
     $('.questionbox').text(this.qns)
     this.displayBoptions()
-    }
 
+    // $('#skip').click(()=>{
+    //     $('#skip').remove()
+    //     $('.questionbox').empty()
+    //     $('.questionbox').text(this.qns)
+    //     this.displayBoptions()
+    //     })
+    }
+  
     displayBoptions(){
     let $btn1 = $('<button>').attr('id','button1').addClass('button')
     let $btn2 = $('<button>').attr('id','button2').addClass('button')
@@ -210,6 +219,7 @@ class NodewithMoMoGen2 extends NodewithMoMoGen{
 
 }
 
+//also used to make GameDeathNode
 class StoryNode {
     constructor(story,option,imageurl){
         this.story = story
@@ -257,6 +267,7 @@ class StoryNodeWithVideo {
     }
 
     start(){
+        $('.startingphoto').hide()
         let $video = $('<source>').attr('src',this.videourl).attr('type','video/mp4').addClass('video')
         let $gameVideo = $('<video autoplay loop id=gamevideo>').append($video)
         $('.gamewindow').prepend($gameVideo)
@@ -285,6 +296,8 @@ class StoryNodeWithVideo {
     nextNode(){
     $('#storybutton').click(()=>{
         $('video').remove()
+        $('.startingphoto').attr('src',"") // setting photo to blank so it wont flicker in color
+        $('.startingphoto').show()
         this.storynn.start()
         }
     )}
@@ -542,7 +555,7 @@ class GameNodeWithGameDeathNode {
 
     start(){
         let $video = $('<source>').attr('src',this.videourl).attr('type','video/mp4').addClass('video')
-        let $gameVideo = $('<video autoplay id=gamevideo>').append($video)
+        let $gameVideo = $('<video autoplay loop id=gamevideo>').append($video)
         $('.gamewindow').prepend($gameVideo)
         $('#option-buttons').empty()
         // Empty option buttons in case user clicks on it before question finishes loading -> causes a bug
@@ -571,13 +584,14 @@ class GameNodeWithGameDeathNode {
 
     checkAnswer($gameanswer){
     if($gameanswer == this.answer){
-        this.surviveNode.start()  
         $('video').remove()
+        this.surviveNode.start()  
+        
 
     }
     else{
         $('video').remove()
-        gameDeathNode.start()
+        gameDeathNode1.start()
     }
     }
 
@@ -723,7 +737,6 @@ class MoMoDeathNode {
         momoJumpScare()
     }
 }
-
 
 
 

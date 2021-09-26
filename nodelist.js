@@ -9,34 +9,97 @@
 //problem to solve
 // github failed to load resources
 
-$(() => {
-    node12.start()
-    allUIFunctions()
-})
 
-const node12 = new StoryNodeWithItemsUpdates(
-    'You quickly leave the bathroom as the air got thick without warning and you found it increasingly hard to breathe. You got paranoid as your surroundings got darker… You use your match and managed to start a small flame… You calmed down… ',
-    'Continue exploring',
-    'assets/Image/matchstick2.jpeg',
-    'key',
+// -------------StoryNodes------------- //
+
+
+const storyNode0 = new StoryNode(
+    'You are an investigator following a case of possible child abduction in San Francisco. Police leads and your own research brought you to abandoned prison in the middle of the sea with cold waters and strong currents, what used to be a maximum security federal prison on an island. You are here to gather leads as this prison is suspected to be the base of operation.',
+    'Continue'
+)
+
+
+const storyNode1 = new StoryNode(
+    'You opened your eyes, feeling extremely disoriented about where you were or even what you were doing here… what were you doing on the floor? Did you pass out? Possibly, you thought to yourself as you remember that you were the lead investigator on the case of a possible serial child abduction which led you to this abandoned prison…',
+    'Stand up and explore the prison',
+    'assets/storyNodeImg/storyNode1.jpeg'
+)
+
+
+
+const storyNode2 = new StoryNodeWithMoMoGen(
+    'Something calls you to the left door and as you entered, you find yourself in a ward with a badly stained bed with a rotting stench...There seems to be static sound coming from underneath the bed. You feel strangly compelled to look underneath the bed...',
+    'Look underneath the bed',
+    'assets/Image/hospitalbed.png')
+
+
+const gameNode1a = new StoryNode(
+    'You explored and reached an intersection which indicated ‘Basement Level’. You placed your fingers on the wall and carefully follow along the long corridor… you eventually reached the end of the corridor with its door ajar…',
+    'Enter Room',
+    'assets/game/game1/game1door.jpeg'
+)
+
+const gameNode1b = new StoryNodeWithVideo(
+    'You carefully typed in a l c a t r a z on the typewriter... nothing happens... suddenly, you hear a low rumbling behind you...',
+    'Turn your head',
+    'assets/game/game1/game1b.mp4'
+)
+
+
+const gameNode1c = new StoryNode(
+    'A trap door opens up from a wall of book shelves...Seems like there is a way out of here...',
+    'Follow the light',
+    'assets/game/game1/game1trapdoor.jpeg'
+)
+
+const gameNode1d = new StoryNode(
+    'You ended up in a nuclear style bunker which was in stark contrast to the previous posh office room... You fought through the thick red veins of whatever was growing in here',
+    'Continue venturing',
+    'assets/game/game1/game1tunnel.jpeg'
+)
+
+
+// -------------Nodes------------- //
+
+
+const node0 = new Node(
+    'You wake up on the cold hard gravel floor...the room is dark,very dark...You look around and your eyes can\'t seem to figure out where exactly you are...you see a matchbox 10 feet infront of you. Do you want to pick up the matchbox?',
+    'Pick up',
+    'Leave it',
+    'assets/Image/wallpaperflare.com_wallpaper.jpg')
+
+
+
+const node1 = new NodeWithItemsUpdates(
+    'You picked up the matchbox thinking it could serve some use later on... Your leg is injured and you limped for about a minute and see two doors. One on the left and the other on the right. Where do you go?',
+    'Left',
+    'Right',
+    'assets/Image/toilet%20bathtub.jpeg',
+    'matchbox',
     true,
-    'assets/Image/key.png'
-)
+    'assets/Image/matchbox.png')
 
 
-const gameDeathNode = new StoryNodeWithVideo(
-    'Game Death Node',
-    'Return to home page',
-    'assets/video/gamedeathnode.mp4'
-)
 
 const node13 = new NodewithMoMoGen2(
     'You stumbled upon a locked door with a keyhole. You instinctively pulled out the key you got from your backpocket, it is still smiley and you almost puked from the scent when you brought it close to the keyhole. Knowing full well that in a prison, using the wrong key could set off an alarm… what do you want to do? ',
     'Look into keyhole',
-    'Insert key'
-    
+    'Insert key'   
 )
 
+const node9 = new Node(
+    'You wondered around the corridor and they started to look the same. Your head starts to spin… Do you want to use your walkie talkie to call for help?',
+    'Yes',
+    'No'
+)
+
+const node9a = new StoryNodeWithItemsUpdates(
+    '“bzzzz” the radio in your backpocket sounded, breaking the silence of the place. “base…men..t..” a choppy transmission was heard…”basement?” you thought to yourself… You weren’t sure who was on the other end of the radio but you decided to go down to the basement…',
+    'Head to basement',
+    'assets/Image/wallpaperflare.com_wallpaper.jpg',
+    'walkietalkie',
+    false,
+)
 
 const node20 = new Node(
     'The ______. You reached out and opened up the papyrus map... on the map marks an X spot as well as a blacked out area... The blacked out area seems like an exit, you thought to yourself... Where do you go?',
@@ -74,9 +137,25 @@ const node15 = new NodeWithItemsUpdates(
     false
 )
 
-const node8 = new Node(
+const node8 = new NodeWithItemsUpdates(
+    'You fumbled with the matches and accidentally broke one of the matches. You tried a few more times before you successfully lit up a match… You calmed down… You jolted in shock as you thought you saw a black shadow darted into an unlit area about 30 feet away from you… Do you want to follow the figure? ',
+    'Follow',
+    'Ignore',
+    'assets/Image/wallpaperflare.com_wallpaper.jpg',
+    'matchbox',
+    false
 
 )
+
+const node11 = new NodeWithItemsUpdates(
+    '‘Hello, is anyone here?’ You repeated your message while holding down on the broadcast button. There doesn’t seem to be any response at all… You noticed a shadowy corner 30 feet away from you, it’s eerily unlit even though there is a florescent tube right above it… Do you want to explore the unlit area?',
+    'Explore',
+    'Ignore',
+    'walkie talkie',
+    false
+)
+
+
 
 const node5 = new Node(
     'You clumsily fiddled with the matchbox and after much struggle in the darkness, managed to get one started. As small as it was, the warm flame calmed you down... Out of the blue, at the right corner of your eyes, you see a black figure darted into a small corner down the corridor 10 feet away from you. That\`s weird, you thought to yourself. There was no signs of any humans in this dilapilated place. Do you want to follow the figure?',
@@ -86,8 +165,8 @@ const node5 = new Node(
 
 
 const node6 = new Node(
-    'You find a buzzing satellite phone under the dusty bed, do you want to keep it?',
-    'Keep radio',
+    'You find a buzzing walkie talkie under the dusty bed, do you want to keep it?',
+    'Keep walkie talkie',
     'Leave it',
     'assets/Image/toilet%20bathtub.jpeg')
 
@@ -102,13 +181,13 @@ const testNode = new NodeWithItemsUpdates(
 )
 
 const node7 = new NodeWithItemsUpdates(
-    'You found a walkie talkie and kept it. You leave the room and the room suddenly gets colder drastically and your thin sweater does not keep you warm enough. You start to shiver almost immediately. Do you want to use your match as a source of heat to keep yourself warm?',
+    'You picked up a walkie talkie from underneath a bed, which was the source of the static sound. The temperature of the room immediately dropped, you quickly exited the room and start shivering… why is it so cold? Do you want to lit your match to warm yourself with the flame?',
     'Use Matchbox',
     `Don't use`,
     'assets/Image/hospitalbedroomdarkimg.png',
-    'satellitephone',
+    'walkietalkie',
     true,
-    'assets/Image/satellitephone.png')
+    'assets/Image/walkietalkie.png')
 
     
 const node4 = new Node(
@@ -125,23 +204,12 @@ const node3 = new Node(
     )
 
 
+const node8a = new StoryNode(
+    'You followed the figure into the unlit area… your eyes couldn’t adjust to the darkness but you see a room with its door ajar.. You entered the room but there was nothing in it.. Except for a piece of polaroid photo on the floor.',
+    'Pick up photo'
+)
 
 
-const node1 = new NodeWithItemsUpdates(
-    'You picked up the matchbox thinking it could serve some use later on... Your leg is injured and you limped for about a minute and see two doors. One on the left and the other on the right. Where do you go?',
-    'Left',
-    'Right',
-    'assets/Image/toilet%20bathtub.jpeg',
-    'matchbox',
-    true,
-    'assets/Image/matchbox.png')
-
-
-const node0 = new Node(
-    'You wake up on the cold hard gravel floor...the room is dark,very dark...You look around and your eyes can\'t seem to figure out where exactly you are...you see a matchbox 10 feet infront of you. Do you want to pick up the matchbox?',
-    'Pick up',
-    'Leave it',
-    'assets/Image/wallpaperflare.com_wallpaper.jpg')
 
 
 const deathNode = new Node(
@@ -158,24 +226,48 @@ const escapeNode = new Node(
     'assets/Image/map.jpeg'
 )
 
-
-
-const storyNode1 = new StoryNode(
-    'You opened your eyes, feeling extremely disoriented about where you were or even what you were doing here… what were you doing on the floor? Did you pass out? Possibly, you thought to yourself as you remember that you were the lead investigator on the case of a possible serial child abduction which led you to this abandoned prison…',
-    'Stand up and explore the prison',
-    'assets/storyNodeImg/storyNode1.jpeg'
+const node24 = new StoryNodeWithVideo(
+    'The face in the polaroid changes to a word…’basement’… Is there a basement in this prison?',
+    'Find basement',
+    'assets/game/game2/game2basement.mp4'
 )
 
-const storyNode2 = new StoryNodeWithMoMoGen(
-    'Something calls you to the left door and as you entered, you find yourself in a ward with a badly stained bed with a rotting stench...There seems to be static sound coming from underneath the bed. You feel strangly compelled to look underneath the bed...',
-    'Look underneath the bed',
-    'assets/Image/hospitalbed.png')
+
+const node12 = new StoryNodeWithItemsUpdates(
+    'You quickly leave the bathroom as the air got thick without warning and you found it increasingly hard to breathe. You got paranoid as your surroundings got darker… You use your match and managed to start a small flame… You calmed down… ',
+    'Continue exploring',
+    'assets/Image/matchstick2.jpeg',
+    'key',
+    true,
+    'assets/Image/key.png'
+)
 
 
-const gameNode1 = new GameNodeWithGameDeathNode(
-    'Game3',
+const gameDeathNode = new StoryNodeWithVideo(
+    'Game Death Node',
+    'Return to home page',
+    'assets/video/gamedeathnode.mp4'
+)
+
+
+const gameDeathNode1 = new StoryNodeWithVideo(
+    'You couldn\'t figure out what was the correct answer... You went outside to the corridor and continued finding a way out...You wondered around the corridor and they started to look the same. Your head starts to spin…your vision fades as your surroundings fades into darkness…',
+    'Return to home page',
+    'assets/video/gamedeathnode.mp4'
+)
+
+
+const gameNode1main = new GameNodeWithGameDeathNode(
+    "You walked to a table full of newspaper cutouts and letters... There were reports of missing childrens and ghastly sighting...which all supposedly happened in this prison...' You saw a chunk of morse code on an envelope… and a typewriter next to it… Is this a riddle? What could the morse code mean?",
+
     'assets/game/game1/game1.mp4',
     'alcatraz'
+)
+
+const gameNode2 = new GameNodeWithGameDeathNode(
+    'You stare into a ghoul-looking female, unsure of who she is...a string of characters started appearing on the polaroid...c i ii..what could it mean?',
+    'assets/game/game2/game2.mp4',
+    'see eye to eye'
 )
 
 const homePageScreen = new HomePage(
@@ -190,33 +282,60 @@ const escapeNode1 = new EscapeNode(
 
 // -------------MoMoDeathNode------------- //
 
-const momoDeathNode5 = new MoMoDeathNode(
+
+const momoDNode5 = new MoMoDeathNode(
     'Darkness attracts MoMo and unlucky for you, MoMo sniffed you out without any light for protection.'
 )
 
 
 
+//SET NODE
+
+node0.setNode(node1,node17)
+node1.setNode(storyNode2,node3)
+node3.setNode(node4,node5)
+node4.setNode(node15,node5)
+node5.setNode(node8,deathNode)
+node6.setNode(node7,node5)
+node7.setNode(node8,node9)
+node8.setNode(node8a,gameDeathNode1) 
+node8a.setNode(gameNode2)
+node9.setNode(node9a,node11)
+node9a.setNode(gameNode1a)
+node11.setNode(gameNode1a,gameDeathNode1)
+node12.setNode(node13)
+node13.setNode(gameNode1a)
+node20.setNode(escapeNode,node0)
+node24.setNode(gameNode1a)
+
+storyNode0.setNode(storyNode1)
+storyNode1.setNode(node0)
+
+gameDeathNode.setNode(homePageScreen)
+gameNode1a.setNode(gameNode1main)
+gameNode1b.setNode(gameNode1c)
+gameNode1c.setNode(gameNode1d)
+gameNode1d.setNode(escapeNode1)
+
+
+//SET SURVIVE NODE
 
 node13.setSurviveNode(homePageScreen)
-node13.setNode(gameNode1)
-node12.setNode(node13)
-node20.setNode(escapeNode,node0)
-node7.setNode(testNode,node0)
-node6.setNode(node7,node5)
-node5.setNode(node8,deathNode)
-node4.setNode(node15,node5)
-node3.setNode(node4,node5)
-// node2.setSurviveNode(node6)
-// need to have a storynode with momogen 
-node1.setNode(storyNode2,node3)
-node0.setNode(node1,node17)
-testNode.setNode(homePageScreen,homePageScreen)
+storyNode2.setSurviveNode(node7)
+gameNode1main.setSurviveNode(gameNode1b)
+gameNode2.setSurviveNode(node24)
 
-storyNode1.setNode(node0)
-storyNode2.setSurviveNode(node6)
 
-gameNode1.setSurviveNode(escapeNode1)
-gameDeathNode.setNode(homePageScreen)
+
+$(() => {
+    storyNode0.start()
+    allUIFunctions()
+})
+
+
+
+
+
 
 
 

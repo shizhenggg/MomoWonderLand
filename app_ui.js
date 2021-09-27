@@ -12,6 +12,21 @@ const volumeFunctions = () => {
         }
         )}
 
+const speedUp = () => {
+    let $speedBtn = $('#speedupbtn')
+    let $slowBtn = $('#slowdownbtn')
+    $speedBtn.click(()=>{
+        $speedBtn.hide()
+        $slowBtn.show()
+        speed = 0
+    })
+    $slowBtn.click(()=>{
+        $speedBtn.show()
+        $slowBtn.hide()
+        speed = 60
+    })
+    }
+
 const goBackHomeFunction = () => {
     let $homebtn = $('.homebtn')
     $homebtn.click(()=>{
@@ -27,4 +42,5 @@ const goBackHomeFunction = () => {
 const allUIFunctions = () =>{
     volumeFunctions()
     goBackHomeFunction()
+    speedUp()
 }

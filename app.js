@@ -9,8 +9,10 @@
 // 11 responsive text for homepage buttons text
 // 12 figure out order and coherence of games
 // 13 hospital image, rat scene, key scene, mirror scene not full screen
+// 14 remove all mention of skip button
 
-const momogennum = 4
+const momogennum = 0
+let speed = 60
 
 class Node {
     constructor(qns,b1option,b2option,imageurl){
@@ -19,6 +21,7 @@ class Node {
         this.b2option = b2option
         this.imageurl = imageurl
         this.start = this.start.bind(this)
+    
     }
 
     start(){
@@ -29,18 +32,8 @@ class Node {
         this.displayQns()
     }
     displayQns(){
-    let $skipBtn = $('<button>').attr('id','skip').text('Skip')
-    $('#option-buttons').append($skipBtn)
-    // $('.questionbox').typedText(this.qns,()=>{this.displayBoptions()})
-    $('.questionbox').text(this.qns)
-    this.displayBoptions()
+    $('.questionbox').typedText(this.qns,speed,()=>{this.displayBoptions()})
 
-    // $('#skip').click(()=>{
-    //     $('#skip').remove()
-    //     $('.questionbox').empty()
-    //     $('.questionbox').text(this.qns)
-    //     this.displayBoptions()
-    //     })
     }
   
     displayBoptions(){
@@ -63,6 +56,7 @@ class Node {
     $('#button1').click(this.btn1nn.start)
     $('#button2').click(this.btn2nn.start)
     }
+
 
 }
 
@@ -125,18 +119,9 @@ class NodeWithVideo {
     }
 
     displayQns(){
-    let $skipBtn = $('<button>').attr('id','skip').text('Skip')
-    $('#option-buttons').append($skipBtn)
-    // $('.questionbox').typedText(this.qns,()=>{this.displayBoptions()})
-    $('.questionbox').text(this.story)
-    this.displayBoptions()
+    $('.questionbox').typedText(this.story,speed,()=>{this.displayBoptions()})
 
-    // $('#skip').click(()=>{
-    //     $('#skip').remove()
-    //     $('.questionbox').empty()
-    //     $('.questionbox').text(this.qns)
-    //     this.displayBoptions()
-    //     })
+
     }
   
     displayBoptions(){
@@ -204,18 +189,8 @@ class NodeWithVideoAndItemsUpdates {
     }
 
     displayQns(){
-    let $skipBtn = $('<button>').attr('id','skip').text('Skip')
-    $('#option-buttons').append($skipBtn)
-    // $('.questionbox').typedText(this.qns,()=>{this.displayBoptions()})
-    $('.questionbox').text(this.story)
-    this.displayBoptions()
+    $('.questionbox').typedText(this.story,speed,()=>{this.displayBoptions()})
 
-    // $('#skip').click(()=>{
-    //     $('#skip').remove()
-    //     $('.questionbox').empty()
-    //     $('.questionbox').text(this.qns)
-    //     this.displayBoptions()
-    //     })
     }
   
     displayBoptions(){
@@ -411,18 +386,8 @@ start(){
 }
 
 displayQns(){
-    let $skipBtn = $('<button>').attr('id','skip').text('Skip')
-    $('#option-buttons').append($skipBtn)
-    // $('.questionbox').typedText(this.qns,()=>{this.displayBoptions()})
-    $('.questionbox').text(this.qns)
-    this.displayBoptions()
+    $('.questionbox').typedText(this.qns,speed,()=>{this.displayBoptions()})
 
-    // $('#skip').click(()=>{
-    //     $('#skip').remove()
-    //     $('.questionbox').empty()
-    //     $('.questionbox').text(this.qns)
-    //     this.displayBoptions()
-    //     })
     }
 
 displayBoptions(){
@@ -539,9 +504,7 @@ class StoryNode {
         this.displayStory()
     }
     displayStory(){
-    // $('.questionbox').typedText(this.story,()=>{this.displayBoptions()})
-    $('.questionbox').text(this.story)
-    this.displayBoptions()
+    $('.questionbox').typedText(this.story,speed,()=>{this.displayBoptions()})
     }
 
     displayBoptions(){
@@ -579,9 +542,7 @@ class StoryNodeWithVideo {
         this.displayStory()
     }
     displayStory(){
-    // $('.questionbox').typedText(this.story,()=>{this.displayBoptions()})
-    $('.questionbox').text(this.story)
-    this.displayBoptions()
+    $('.questionbox').typedText(this.story,speed,()=>{this.displayBoptions()})
     }
 
     displayBoptions(){
@@ -700,9 +661,7 @@ class StoryNodeWithMoMoGen {
         this.displayStory()
     }
     displayStory(){
-    // $('.questionbox').typedText(this.story,()=>{this.displayBoptions()})
-    $('.questionbox').text(this.story)
-    this.displayBoptions()
+    $('.questionbox').typedText(this.story,speed,()=>{this.displayBoptions()})
     }
 
     displayBoptions(){
@@ -797,9 +756,7 @@ class GameNodeWithMoMo {
     }
 
     displayStory(){
-    // $('.questionbox').typedText(this.desc,()=>{this.displayBoptions()})
-    $('.questionbox').text(this.desc)
-    this.displayBoptions()
+    $('.questionbox').typedText(this.desc,speed,()=>{this.displayBoptions()})
     }
 
     displayBoptions(){
@@ -903,9 +860,7 @@ class GameNodeWithGameDeathNode {
     }
 
     displayStory(){
-    // $('.questionbox').typedText(this.desc,()=>{this.displayBoptions()})
-    $('.questionbox').text(this.desc)
-    this.displayBoptions()
+    $('.questionbox').typedText(this.desc,speed,()=>{this.displayBoptions()})
     }
 
     displayBoptions(){
@@ -1013,9 +968,7 @@ class EscapeNode {
         this.displayStory()
     }
     displayStory(){
-    // $('.questionbox').typedText(this.story,()=>{this.displayBoptions()})
-    $('.questionbox').text(this.story)
-    this.displayBoptions()
+    $('.questionbox').typedText(this.story,speed,()=>{this.displayBoptions()})
     }
 
     displayBoptions(){
@@ -1066,10 +1019,10 @@ class MoMoDeathNode {
         $('.startingphoto').removeClass('shake')
         $('.questionbox').show()
         $('.startingphoto').attr('src','assets/Image/youdied.png')
-        $('.questionbox').typedText(`${this.story}`)
+        $('.questionbox').typedText(`${this.story}`,speed)
         // cannot read properties of undefined (reading 'story') at momoJumpScare if you use regular function notion. 
         // have to use bracket notation for momoJumpScare & wait function
-        await wait(10000)
+        await wait(8000)
         $('#option-buttons').show()
         $('.startingphoto').attr('src','')
         $('.homebtn').show()

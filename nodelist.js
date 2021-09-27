@@ -375,7 +375,7 @@ node15.setSurviveNode(node12)
 
 
 $(() => {
-    node3.start()
+    homePageScreen.start()
     allUIFunctions()
 })
 

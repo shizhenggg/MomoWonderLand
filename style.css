@@ -42,9 +42,38 @@ body{
     height: 4.5vh;
     width: 2.5vw;
     margin: 1vw;
+    top: 12vh;
+    left: -0.11vw;
+    display:none;
+}
+
+#speedupbtn{
+    background-image: url("/assets/icon/rabbit.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    /* determines background image size */
+    position: absolute;
+    height: 4.5vh;
+    width: 2.5vw;
+    margin: 1vw;
     top: 6vh;
     left: -0.11vw;
 }
+
+#slowdownbtn{
+    background-image: url("/assets/icon/tortoise.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    /* determines background image size */
+    position: absolute;
+    height: 4.5vh;
+    width: 2.5vw;
+    margin: 1vw;
+    top: 6vh;
+    left: -0.11vw;
+    display:none;
+}
+
 
 
 .inventory{
@@ -79,15 +108,6 @@ body{
     color: white;
 }
 
-#skip{
-    position: absolute;
-    right: 1vw;
-    bottom: 2vh;
-    background-color: red;
-    width: 6vw;
-    height: 2vh;
-}
-
 .option-buttons{
     position: absolute;
     height:10vh;
@@ -101,6 +121,7 @@ body{
     padding:0px;
     border-radius: 5px;
 }
+
 
 video{
     object-fit:cover;

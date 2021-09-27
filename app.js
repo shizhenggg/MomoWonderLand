@@ -8,8 +8,9 @@
 // 10 robodog inventory 
 // 11 responsive text for homepage buttons text
 // 12 figure out order and coherence of games
-// 13 hospital image not full screen
+// 13 hospital image, rat scene, key scene, mirror scene not full screen
 
+const momogennum = 4
 
 class Node {
     constructor(qns,b1option,b2option,imageurl){
@@ -345,7 +346,7 @@ class NodewithMoMoGen extends Node {
     momogen(){
     let randomGen = Math.ceil(Math.random()*10)
     console.log(randomGen)
-    if(randomGen<=0){
+    if(randomGen<=momogennum){
        this.momogenJumpScare()
         // $('#option-buttons').empty()
         // let $btn2 = $('<button>').attr('id','button2').addClass('button')
@@ -760,7 +761,7 @@ class StoryNodeWithMoMoGen {
     momogen(){
     let randomGen = Math.ceil(Math.random()*10)
     console.log(randomGen)
-    if(randomGen<=0){
+    if(randomGen<=momogennum){
         this.momogenJumpScare()
     }
         // cue game over screen
@@ -868,7 +869,7 @@ class GameNodeWithMoMo {
     momogen(){
     let randomGen = Math.ceil(Math.random()*10)
     console.log(randomGen)
-    if(randomGen<=0){
+    if(randomGen<=momogennum){
         this.momogenJumpScare()
     }
         // cue game over screen

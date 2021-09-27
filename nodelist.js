@@ -85,7 +85,16 @@ const node1 = new NodeWithItemsUpdates(
 const node13 = new NodewithMoMoGen2(
     'You stumbled upon a locked door with a keyhole. You instinctively pulled out the key you got from your backpocket, it is still smiley and you almost puked from the scent when you brought it close to the keyhole. Knowing full well that in a prison, using the wrong key could set off an alarm… what do you want to do? ',
     'Look into keyhole',
-    'Insert key'   
+    'Insert key',
+    'assets/Image/node13.jpeg'
+)
+
+const node13a = new StoryNodeWithItemsUpdates(
+    'You see a warmly lit room which seems like an office, peculiarly poshed in this abandoned prison… it felt like someone had been here not long ago…',
+    'Explore the office',
+    'assets/Image/node13a.jpg',
+    'key',
+    false
 )
 
 const node9 = new NodeWithVideo(
@@ -132,10 +141,11 @@ const node17 = new Node(
     'Sneak In'
 )
 
-const node10 = new NodeWithItemsUpdates(
+const node10 = new NodeWithVideoAndItemsUpdates(
     'A certain fear crept over you as you held the key in your hands…You dropped the key and stood up. The reflection in the stained mirror caught your attention. Somehow, you can’t seem to figure out but the reflection in the mirror looks odd… Do you want to inspect the mirror?',
     'Inspect mirror',
     'ignore',
+    'assets/video/node10.mp4',
     'key',
     false
 )
@@ -176,11 +186,10 @@ const node5a = new StoryNodeWithVideoAndItemsUpdates(
    false
 )
 
-const node6 = new Node(
-    'You find a buzzing walkie talkie under the dusty bed, do you want to keep it?',
-    'Keep walkie talkie',
-    'Leave it',
-    'assets/Image/toilet%20bathtub.jpeg')
+const node6 = new StoryNode(
+    'As you walked towards the mirror, the mirror starting shaking and swing outwards, revealing a cabinet behind it… You see a piece of polaroid inside the cabinet…',
+    'Inspect polaroid',
+    'assets/Image/node6.jpeg')
 
 
 
@@ -200,21 +209,21 @@ const ratnode = new Node(
     'Leave it'
 )
 
-const node3 = new StoryNodeWithVideo(
+const node3 = new StoryNodeWithVideoAndItemsUpdates(
     'Something calls you to the right door and as you entered, the walkie talkie in your backpocket sounded ‘…bathroom…spotted’… which sent shivers up your spine. You did not remember bringing a walkie talkie with you..where did it come from?',
     'Continue',
-    'assets/video/node11.mp4'
-)
-
-
-const node4 = new NodeWithItemsUpdates(
-    'You noticed that in the bathroom that you stepped into, there is a flattened rat on the floor which seems to have fused into the floor. Do you want to inspect the rat? ',
-    'Inspect rat',
-    'Leave the rat alone',
-    'assets/Image/node3.png',
+    'assets/video/node11.mp4',
     'walkietalkie',
     true,
     'assets/Image/walkietalkie.png'
+)
+
+
+const node4 = new Node(
+    'You noticed that in the bathroom that you stepped into, there is a flattened rat on the floor which seems to have fused into the floor. Do you want to inspect the rat? ',
+    'Inspect rat',
+    'Leave the rat alone',
+    'assets/Image/node3.png'
 )
 
 const node15 = new NodewithMoMoGen2(
@@ -256,7 +265,7 @@ const node24 = new StoryNodeWithVideo(
 )
 
 
-const node12 = new StoryNodeWithItemsUpdates(
+const node12 = new StoryNodeWithVideoAndItemsUpdates(
     'You quickly leave the bathroom as the air got thick without warning and you found it increasingly hard to breathe. You got paranoid as your surroundings got darker… You use your match and managed to start a small flame… You calmed down… ',
     'Continue exploring',
     'assets/video/node8.mp4',
@@ -295,7 +304,7 @@ const gameNode1main = new GameNodeWithGameDeathNode(
 )
 
 const gameNode2 = new GameNodeWithGameDeathNode(
-    'A lamp at the back of the room switched on, giving you a shock...You stare into a ghoul-looking female, unsure of who she is...the light gave some illumination to the polaroid and you noticed a string of characters started appearing on the polaroid...c i ii..what could it mean?',
+    'You held up the polaroid with care and stare into a ghoul-looking female, unsure of who she is...the light gave some illumination to the polaroid and you noticed a string of characters started appearing on the polaroid...c i ii..what could it mean?',
     'assets/game/game2/game2.mp4',
     'see eye to eye'
 )
@@ -327,15 +336,17 @@ node3.setNode(node4)
 node4.setNode(node15,node5)
 node5.setNode(momoDNode5,node5a)
 node5a.setNode(node9a)
-node6.setNode(node7,node5)
+node6.setNode(gameNode2)
 node7.setNode(node8,node9)
 node8.setNode(node8a,gameDeathNode1) 
 node8a.setNode(gameNode2)
 node9.setNode(node11,node9a)
 node9a.setNode(gameNode1a)
+node10.setNode(node6,node5)
 node11.setNode(gameNode1a,gameDeathNode2)
 node12.setNode(node13)
-node13.setNode(gameNode1a)
+node13.setNode(node13a)
+node13a.setNode(gameNode1main)
 node15.setNode(node10)
 node20.setNode(escapeNode,node0)
 node24.setNode(gameNode1a)
@@ -354,8 +365,9 @@ gameNode1d.setNode(escapeNode1)
 
 //SET SURVIVE NODE
 
-node13.setSurviveNode(homePageScreen)
+
 storyNode2.setSurviveNode(node7)
+node13.setSurviveNode(node13a)
 gameNode1main.setSurviveNode(gameNode1b)
 gameNode2.setSurviveNode(node24)
 node15.setSurviveNode(node12)
@@ -363,7 +375,7 @@ node15.setSurviveNode(node12)
 
 
 $(() => {
-    homePageScreen.start()
+    node3.start()
     allUIFunctions()
 })
 

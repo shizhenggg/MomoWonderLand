@@ -4,6 +4,9 @@
 // 3 desc and button text affirmation for nodes (storyline)
 // 4 responsive text for homepage buttons text
 // 5 compress video files for faster loading time
+// 6 video not autoplaying in homescreenpage unless reloaded
+
+
 
 // variables that classes will use
 

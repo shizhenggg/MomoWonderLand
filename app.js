@@ -12,7 +12,7 @@
 // 14 remove all mention of skip button
 
 const momogennum = 0
-let speed = 60
+let speed = 50
 
 class Node {
     constructor(qns,b1option,b2option,imageurl){

@@ -23,7 +23,7 @@ body{
 }
 
 .volumebtn{
-    background-image: url("/assets/icon/volume.png");
+    background-image: url("assets/icon/volume.png");
     background-size: contain;
     background-repeat: no-repeat;
     /* determines background image size */
@@ -34,7 +34,7 @@ body{
 }
 
 .homebtn{
-    background-image: url("/assets/icon/home.png");
+    background-image: url("assets/icon/home.png");
     background-size: contain;
     background-repeat: no-repeat;
     /* determines background image size */
@@ -48,7 +48,7 @@ body{
 }
 
 #speedupbtn{
-    background-image: url("/assets/icon/rabbit.png");
+    background-image: url("assets/icon/rabbit.png");
     background-size: contain;
     background-repeat: no-repeat;
     /* determines background image size */
@@ -61,7 +61,7 @@ body{
 }
 
 #slowdownbtn{
-    background-image: url("/assets/icon/tortoise.png");
+    background-image: url("assets/icon/tortoise.png");
     background-size: contain;
     background-repeat: no-repeat;
     /* determines background image size */

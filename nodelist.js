@@ -310,7 +310,7 @@ const gameNode2 = new GameNodeWithGameDeathNode(
 )
 
 const homePageScreen = new HomePage(
-    '/assets/video/homepagevideo.mp4'
+    'assets/video/homepagevideo.mp4'
 )
 
 const escapeNode1 = new EscapeNode(

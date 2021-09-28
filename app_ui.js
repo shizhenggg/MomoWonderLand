@@ -23,7 +23,7 @@ const speedUp = () => {
     $slowBtn.click(()=>{
         $speedBtn.show()
         $slowBtn.hide()
-        speed = 60
+        speed = 50
     })
     }
 

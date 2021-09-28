@@ -3,10 +3,10 @@
 // 2 change font 
 // 3 desc and button text affirmation for nodes (storyline)
 // 4 responsive text for homepage buttons text
-// 5 compress video files for faster loading time
-// 6 video not autoplaying in homescreenpage unless reloaded
-// 7 README file
-// 8 change momo picture
+// 5 README file
+// 6 change momo picture
+// 7 change walkietalkie image
+// 8 tidy up styles.css
 
 
 // variables that classes will use

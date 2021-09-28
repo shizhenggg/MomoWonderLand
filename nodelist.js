@@ -15,7 +15,7 @@ const storyNode1 = new StoryNodeWithVideo(
 
 
 const storyNode2 = new StoryNodeWithMoMoGen(
-    'Something calls you to the left door and as you entered, you find yourself in a ward with twobadly stained beds and an offensive rotting stench...There seems to be static sound coming from underneath the bed closer to yourself. You feel strangly compelled to look underneath the bed...',
+    'Something calls you to the left door and as you entered, you find yourself in a ward with two badly stained beds and an offensive rotting stench...There seems to be static sound coming from underneath the bed closer to yourself. You feel strangly compelled to look underneath the bed...',
     'Look underneath the bed',
     'assets/Image/storynode2.png')
 

@@ -1,0 +1,4 @@
+$(() => {
+    homePageScreen.start()
+    allUIFunctions()
+})

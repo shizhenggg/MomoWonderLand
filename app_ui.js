@@ -38,9 +38,6 @@ const goBackHomeFunction = () => {
     })
 }
     
-
-
-
 const allUIFunctions = () =>{
     volumeFunctions()
     goBackHomeFunction()

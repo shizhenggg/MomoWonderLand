@@ -80,7 +80,7 @@ body{
     position:relative;
     /* background-color: rgba(241, 151, 14, 0.8); */
     height:13vh;
-    width:5vw;
+    width:0vw;
     top: 5vh;
     left:90vw;
 }
@@ -257,17 +257,10 @@ video{
 }
 
 
-
 .nodeimg{
     width:100vw;
     height:80vh;
     object-fit: fill;
-}
-
-.robodog{
-    width:100vw;
-    height:80vh;
-    object-fit: cover;
 }
 
 .startingphoto{

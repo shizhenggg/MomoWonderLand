@@ -1,14 +1,8 @@
 // Things to do 
 // 1 Homepage (fill up instr and credits content)
-// 3 Fix display box to fit all text
-// 6 hint for games? 
 // 7 change font 
 // 8 desc and button text affirmation for nodes (storyline)
-// 9 function to skip typed text 
-// 10 robodog inventory 
 // 11 responsive text for homepage buttons text
-// 12 figure out order and coherence of games
-// 13 hospital image, rat scene, key scene, polaroid room, mirror scene not full screen
 // 14 download video files for faster loading time
 
 const momogennum = 0
@@ -359,6 +353,40 @@ class NodewithMoMoGen2 extends NodewithMoMoGen{
         $('#button2').click(this.btn2nn.start)
         }
 
+}
+
+class NodewithMoMoGen2WithItemsUpdates extends NodewithMoMoGen2 {
+    constructor(qns,b1option,b2option,imageurl,itemx,stat,itemUrl){
+        super(qns,b1option,b2option,imageurl)
+        this.itemx = itemx
+        this.stat = stat
+        this.itemUrl = itemUrl
+        this.updateItem = this.updateItem.bind(this)
+
+    }
+
+    start(){
+        $('.startingphoto').attr('src',this.imageurl)
+        // Set new image
+        $('#option-buttons').empty()
+        // Empty option buttons in case user clicks on it before question finishes loading -> causes a bug
+        // redefining start function with added updateItem method
+        this.displayQns()
+        this.updateItem()
+    }
+
+    updateItem(){
+        if(this.stat === true){
+        console.log('add:',this.itemx)
+        let $item = $('<div>').addClass('inventory').append(`<img class="items" id="${this.itemx}" src="${this.itemUrl}"/>`)
+        $('.container').prepend($item)}
+        if(this.stat === false){
+        console.log('remove:',this.itemx)
+        $(`#${this.itemx}`).closest('.inventory').remove()
+        // if you just use remove() on this.itemx, there will be the parents div of class inventory left thats why there will be empty space
+        // .closest('.inventory').remove() starts with current element and climbs up and searches for the element with class of inventory and remove the whole div, making sure there will not be empty spaces between items when the middle item is removed
+    }
+    }
 }
 
 // not finalized

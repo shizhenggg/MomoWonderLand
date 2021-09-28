@@ -23,7 +23,7 @@ body{
 }
 
 .volumebtn{
-    background-image: url("assets/icon/volume.png");
+    background-image: url("assets/icon/mute.png");
     background-size: contain;
     background-repeat: no-repeat;
     /* determines background image size */

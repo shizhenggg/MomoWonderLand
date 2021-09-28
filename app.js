@@ -903,7 +903,7 @@ class HomePage {
     }
 
     start(){
-        let $video = $('<source>').attr('src','/assets/video/homepagevideo.mp4').attr('type','video/mp4').addClass('video')
+        let $video = $('<source>').attr('src','assets/video/homepagevideo.mp4').attr('type','video/mp4').addClass('video')
         let $homePageVideo = $('<video autoplay loop id=homepagevideo>').append($video)
         $('.gamewindow').prepend($homePageVideo)
         $('#option-buttons').empty()

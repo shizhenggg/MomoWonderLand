@@ -5,7 +5,8 @@
 // 4 responsive text for homepage buttons text
 // 5 compress video files for faster loading time
 // 6 video not autoplaying in homescreenpage unless reloaded
-
+// 7 README file
+// 8 change momo picture
 
 
 // variables that classes will use
@@ -813,7 +814,8 @@ class HomePage {
 
     start(){
         let $video = $('<source>').attr('src',`${this.videourl}`).attr('type','video/mp4').addClass('video')
-        let $homePageVideo = $('<video autoplay loop id=homepagevideo>').append($video)
+        let $homePageVideo = $('<video autoplay muted loop id=homepagevideo>').append($video)
+        // video must be muted to autoplay
         $('.gamewindow').prepend($homePageVideo)
         $('#option-buttons').empty()
         // Empty option buttons from previous nodes (if any)

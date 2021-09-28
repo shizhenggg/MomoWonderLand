@@ -23,7 +23,7 @@ const speedUp = () => {
     $slowBtn.click(()=>{
         $speedBtn.show()
         $slowBtn.hide()
-        speed = 50
+        speed = 40
     })
     }
 
@@ -33,6 +33,8 @@ const goBackHomeFunction = () => {
         $('video').remove()
         // remove video from gameNode (if any) else it will block homepagescreen video
         homePageScreen.start()
+        location.reload()
+        // You need to reload the homescreen to clear any running Typedtext function which will continue typing the .questionbox after you click start which is a bug
     })
 }
     

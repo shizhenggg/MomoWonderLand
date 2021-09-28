@@ -12,7 +12,7 @@
 // 14 remove all mention of skip button
 
 const momogennum = 0
-let speed = 50
+let speed = 40
 
 class Node {
     constructor(qns,b1option,b2option,imageurl){
@@ -898,12 +898,12 @@ class GameNodeWithGameDeathNode {
 
 class HomePage {
     constructor(videourl){
-        this.videourl = videourl
+        this.videourl = videourl || 'assets/video/homepagevideo.mp4'
         this.start = this.start.bind(this)
     }
 
     start(){
-        let $video = $('<source>').attr('src','assets/video/homepagevideo.mp4').attr('type','video/mp4').addClass('video')
+        let $video = $('<source>').attr('src',`${this.videourl}`).attr('type','video/mp4').addClass('video')
         let $homePageVideo = $('<video autoplay loop id=homepagevideo>').append($video)
         $('.gamewindow').prepend($homePageVideo)
         $('#option-buttons').empty()

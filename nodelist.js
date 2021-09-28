@@ -132,7 +132,7 @@ const node19 = new NodeWithItemsUpdates(
 const node18 = new StoryNodeWithVideo(
     'You knocked on the door with three thumps and nothing happens...then the door slowly swung open... You took peanut steps, cautiously entering the room and observing the surrounding...it seems to be a sort of... children\'s playroom? There were toys scattered on the floor and as you look up to the only source of light, a window, you noticed a robodog that is producing a whirring noise.',
     'Take the Robodog',
-    'Take the Robodog'
+    'assets/video/node18.mp4'
 )
 
 const node17 = new Node(
@@ -310,7 +310,6 @@ const gameNode2 = new GameNodeWithGameDeathNode(
 )
 
 const homePageScreen = new HomePage(
-    'assets/video/homepagevideo.mp4'
 )
 
 const escapeNode1 = new EscapeNode(

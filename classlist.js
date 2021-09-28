@@ -13,7 +13,7 @@
 // momogennum is used to set probability of momo appearing in momogen (10 is 100%, 0 is 0%)
 const momogennum = 0
 // speed determines the time in ms between each typed character for the .questionbox
-let speed = 0
+let speed = 40
 
 class Node {
     constructor(qns,b1option,b2option,imageurl){

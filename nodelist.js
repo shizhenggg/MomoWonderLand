@@ -48,7 +48,7 @@ const gameNode1c = new StoryNode(
 )
 
 const gameNode1d = new StoryNode(
-    'You ended up in a nuclear style bunker which was in stark contrast to the previous posh office room... You see the light at the end of the tunnel and quicken your space as you hear footsteps behind you!',
+    'You ended up in a nuclear style bunker which was in stark contrast to the previous posh office room... You see the light at the end of the tunnel and quicken your pace as you hear footsteps behind you!',
     'Continue venturing',
     'assets/game/game1/game1tunnel.png'
 )

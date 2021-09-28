@@ -8,11 +8,11 @@
 // 10 robodog inventory 
 // 11 responsive text for homepage buttons text
 // 12 figure out order and coherence of games
-// 13 hospital image, rat scene, key scene, mirror scene not full screen
-// 14 remove all mention of skip button
+// 13 hospital image, rat scene, key scene, polaroid room, mirror scene not full screen
+// 14 download video files for faster loading time
 
 const momogennum = 0
-let speed = 40
+let speed = 0
 
 class Node {
     constructor(qns,b1option,b2option,imageurl){

@@ -59,6 +59,22 @@ const gameNode1d = new StoryNode(
     'assets/game/game1/game1tunnel.png'
 )
 
+const node19a = new StoryNodeWithVideoAndItemsUpdates(
+    'Your robodog detected a room with a safety deposit box and came back with this footage',
+    'Explore the discovered room',
+    'assets/video/gamenode3a.mp4',
+    'robodog',
+    false
+)
+
+const node19b = new StoryNodeWithItemsUpdates(
+    'You followed the robodog into the room and there is indeed a safe deposit box... you picked up a flashlight on the table and you inspected it... the safe seems to be locked...How do I unlock this?',
+    'Look around for clues',
+    'assets/game/game3/node19b.jpeg',
+    'flashlight',
+    true,
+    'assets/Image/flashlight.png'
+)
 
 // -------------Nodes------------- //
 
@@ -113,32 +129,80 @@ const node9a = new StoryNodeWithVideoAndItemsUpdates(
     false,
 )
 
-const node20 = new Node(
-    'The ______. You reached out and opened up the papyrus map... on the map marks an X spot as well as a blacked out area... The blacked out area seems like an exit, you thought to yourself... Where do you go?',
-    'Spot marked X',
-    'Blacked out area'
-)
 
-const node19 = new NodeWithItemsUpdates(
-    'You exited the room with your robodog following you... there is a whiff of a pleasant smell coming from down the corridor... You thought it would be a good idea to follow the scent. Do you want to use your robodog to navigate or do you trust your olfactory system?',
-    'Use the robodog',
-    'Use my nose',
+const node18a = new StoryNodeWithItemsUpdates(
+    'Where the robodog stood,there is also a piece of polaroid… You leaned forward and pick up the polaroid, bringing it close to your face…',
+    'Look at polaroid',
+    'assets/Image/node18a.jpg',
     'robodog',
     true,
-    'assets/Image/robodoginventory.png'
+    'assets/Image/robodog.png'
+
+)
+
+const gameNode4 = new GameNodeWithGameDeathNode(
+    'You held up the polaroid with care and stare into a ghoul-looking female, unsure of who she is...the light gave some illumination to the polaroid and you noticed a string of characters started appearing on the polaroid...c i ii..what could it mean?',
+    'assets/game/game2/game2.mp4',
+    'see eye to eye'
+)
+
+const gameNode3 = new GameNodeWithGameDeathNode(
+    'You looked around and see a whiteboard...a clue! The key to unlocking the safe lies in the code word RUN... How do I get the 6 digit safe code from the word RUN?',
+    'assets/game/game3/gamenode3.mp4',
+    '182114'
+)
+
+const gameNode3a= new StoryNodeWithItemsUpdates(
+    '1..8.2…1..1..4 you carefully turned the dial on the safety box…',
+    'Unlock',
+    'assets/game/game3/gamenode3a.jpeg',
+    'flashlight',
+    false
+)
+
+const gameNode3b= new StoryNodeWithItemsUpdates(
+    'The safe opened up and you see some medicine and a first aid kit… Evidences! You found stacks of photos of victims whose faces you recognized. You took the evidences and tucked it in your jacket…These will be helpful in your case…There seems to be a papyrus map of some sort as well… ',
+    'Unroll map',
+    'assets/game/game3/gamenode3b_test.jpg',
+    'girlphoto',
+    true,
+    'assets/Image/girlphoto.png'
+)
+
+const gameNode3c= new StoryNodeWithItemsUpdates(
+    'A map of the island! On the map there is a prominent area marked X somewhere in this building which leads to a tunnel and an exit where ships could dock... this could be your way out! ',
+    'Follow map',
+    'assets/game/game3/gamenode3c.jpg',
+    'map',
+    true,
+    'assets/Image/map.png'
+)
+
+const node19 = new NodeWithVideo(
+    'Dep..osit..box... seems like you have to find a safe deposit box somewhere in the prison... Do you want to use your robodog or try to find it by yourself, saving your robodog for later?',
+    'Use the robodog',
+    'Find it yourself',
+    'assets/video/node19.mp4'
 )
 
 
 const node18 = new StoryNodeWithVideo(
     'You knocked on the door with three thumps and nothing happens...then the door slowly swung open... You took peanut steps, cautiously entering the room and observing the surrounding...it seems to be a sort of... children\'s playroom? There were toys scattered on the floor and as you look up to the only source of light, a window, you noticed a robodog that is producing a whirring noise.',
-    'Take the Robodog',
+    'Take Robodog',
     'assets/video/node18.mp4'
 )
 
 const node17 = new Node(
     'You probably won\'t need the matchbox, you thought to yourself... you walked away from the matchbox and heard a strange whirrling sound coming from within a room... the door is ajar but you can\'t seem to see what is inside. Do you want to knock on the door or sneak in quietly?',
     'Knock',
-    'Sneak In'
+    'Sneak In',
+    'assets/image/node13.jpeg'
+)
+
+const node17a = new StoryNodeWithVideo(
+    'You sneaked in and the door let out a small creak . You slowly close the door behind you. You hear a quick rufflings of feather closing in on you, you ransack your backpack to find a light source for protection. Do you have a matchbox?',
+    'No',
+    'assets/video/node9.mp4'
 )
 
 const node10 = new NodeWithVideoAndItemsUpdates(
@@ -295,6 +359,9 @@ const gameDeathNode2 = new StoryNodeWithVideo(
     'assets/video/gamedeathnode.mp4'
 )
 
+const MomoDNode4 = new MoMoDeathNode(
+    'MoMo found you! How dare you try to steal her treasure from the safe!'
+)
 
 const gameNode1main = new GameNodeWithGameDeathNode(
     "You walked to a table full of newspaper cutouts and letters... There were reports of missing childrens and ghastly sighting...which all supposedly happened in this prison...' You saw a chunk of morse code on an envelope… and a typewriter next to it… Is this a riddle? What could the morse code mean?",
@@ -326,6 +393,10 @@ const momoDNode5 = new MoMoDeathNode(
 )
 
 
+const momoDNode6 = new MoMoDeathNode(
+    'How dare you sneak around in MoMo\'s territory without any light source for protection?!'
+)
+
 
 //SET NODE
 
@@ -347,7 +418,13 @@ node12.setNode(node13)
 node13.setNode(node13a)
 node13a.setNode(gameNode1main)
 node15.setNode(node10)
-node20.setNode(escapeNode,node0)
+node17.setNode(node18,node17a)
+node17a.setNode(momoDNode6)
+node18a.setNode(gameNode4)
+node18.setNode(node18a)
+node19.setNode(node19a,MomoDNode4)
+node19a.setNode(node19b)
+node19b.setNode(gameNode3)
 node24.setNode(gameNode1a)
 
 storyNode0.setNode(storyNode1)
@@ -360,6 +437,12 @@ gameNode1a.setNode(gameNode1main)
 gameNode1b.setNode(gameNode1c)
 gameNode1c.setNode(gameNode1d)
 gameNode1d.setNode(escapeNode1)
+gameNode3.setSurviveNode(gameNode3a)
+gameNode3a.setNode(gameNode3b)
+gameNode3b.setNode(gameNode3c)
+gameNode3c.setNode(gameNode1a)
+gameNode4.setSurviveNode(node19)
+
 
 
 //SET SURVIVE NODE
@@ -374,7 +457,7 @@ node15.setSurviveNode(node12)
 
 
 $(() => {
-    homePageScreen.start()
+    node17.start()
     allUIFunctions()
 })
 

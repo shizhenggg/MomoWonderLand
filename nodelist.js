@@ -16,7 +16,7 @@
 const storyNode0 = new StoryNode(
     'You are an investigator following a case of possible child abduction in San Francisco. Police leads and your own research brought you to abandoned prison in the middle of the sea with cold waters and strong currents, what used to be a maximum security federal prison on an island. You are here to gather leads as this prison is suspected to be the base of operation.',
     'Continue',
-    'assets/image/storynode0.jpg'
+    'assets/Image/storynode0.jpg'
 )
 
 
@@ -129,7 +129,7 @@ const node19 = new NodeWithItemsUpdates(
 )
 
 
-const node18 = new Node(
+const node18 = new StoryNodeWithVideo(
     'You knocked on the door with three thumps and nothing happens...then the door slowly swung open... You took peanut steps, cautiously entering the room and observing the surrounding...it seems to be a sort of... children\'s playroom? There were toys scattered on the floor and as you look up to the only source of light, a window, you noticed a robodog that is producing a whirring noise.',
     'Take the Robodog',
     'Take the Robodog'

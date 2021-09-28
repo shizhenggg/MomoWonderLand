@@ -1,3 +1,4 @@
+// allows player to turn on and off background music which applies to momojumpscare audio too
 const volumeFunctions = () => {
     let $volumebtn = $('.volumebtn')
     $volumebtn.click(()=>{
@@ -12,6 +13,7 @@ const volumeFunctions = () => {
         }
         )}
 
+// allows player to speed up the typing text animation in .questionbox
 const speedUp = () => {
     let $speedBtn = $('#speedupbtn')
     let $slowBtn = $('#slowdownbtn')
@@ -27,6 +29,7 @@ const speedUp = () => {
     })
     }
 
+// allows player to go back to homepage 
 const goBackHomeFunction = () => {
     let $homebtn = $('.homebtn')
     $homebtn.click(()=>{
@@ -34,7 +37,7 @@ const goBackHomeFunction = () => {
         // remove video from gameNode (if any) else it will block homepagescreen video
         homePageScreen.start()
         location.reload()
-        // You need to reload the homescreen to clear any running Typedtext function which will continue typing the .questionbox after you click start which is a bug
+        // Reload the homescreen to clear any running Typedtext function which will continue typing the .questionbox after you click start which is a bug
     })
 }
     

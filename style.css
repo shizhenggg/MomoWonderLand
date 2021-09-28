@@ -10,7 +10,7 @@ body{
     align-items:center;  
     width:100vw;
     height:100vh;
-    /* overflow: hidden; */
+    overflow: hidden;
     /* remove scrollbars (vertical and horizontal) */
 }
 
@@ -73,7 +73,6 @@ body{
     left: -0.11vw;
     display:none;
 }
-
 
 
 .inventory{
@@ -148,7 +147,7 @@ video{
 }
 
 .homepagebutton{
-/* indiv buttons */
+/* individual buttons */
     width: 20vw;
     height: 13vh;
     border-radius:10vw;
@@ -256,19 +255,14 @@ video{
     font-size:4.5vh;
 }
 
-
-.nodeimg{
-    width:100vw;
-    height:80vh;
-    object-fit: fill;
-}
-
 .startingphoto{
     width:100vw;
     height:100vh;
     object-fit: cover;
 }
 
+
+/* animation for momojumpscare */
 .shake{
     animation: shake 0.3s;
     animation-iteration-count: 7;

@@ -25,7 +25,6 @@ const storyNode2 = new StoryNodeWithMoMoGen(
 
 const gameNode1main = new GameNodeWithGameDeathNode(
     "You walked to a table full of newspaper cutouts and letters... There were reports of missing childrens and ghastly sighting...which all supposedly happened in this prison... You saw a chunk of morse code on an envelope… and a typewriter next to it… Is this a riddle? What could the morse code mean?",
-
     'assets/game/game1/game1.mp4',
     'alcatraz'
 )
@@ -228,7 +227,7 @@ const node12 = new StoryNodeWithVideoAndItemsUpdates(
 )
 
 const node13 = new NodewithMoMoGen2WithItemsUpdates(
-    'You stumbled upon a locked door with a keyhole. You instinctively pulled out the key you got from your backpocket, it is still smiley and you almost puked from the scent when you brought it close to the keyhole. Knowing full well that in a prison, using the wrong key could set off an alarm… what do you want to do? ',
+    'You stumbled upon a locked door with a keyhole. You instinctively pulled out the key you got from your backpocket, it is still slimy and you almost puked from the scent when you brought it close to the keyhole. Knowing full well that in a prison, using the wrong key could set off an alarm… what do you want to do? ',
     'Look into keyhole',
     'Insert key',
     'assets/Image/node13.jpeg',
@@ -353,7 +352,7 @@ const homePageScreen = new HomePage(
 
 // -------------ESCAPENODE------------- //
 const escapeNode1 = new EscapeNode(
-    'You escaped!',
+    'You escaped! Congratulations, you managed to escape MoMo and survived to hunt her another day...',
     'Return to home page',
     'assets/Image/escapenode.jpg'
 )

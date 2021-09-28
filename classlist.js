@@ -1,11 +1,15 @@
 // Things to do 
 // 1 Homepage (fill up instr and credits content)
-// 7 change font 
-// 8 desc and button text affirmation for nodes (storyline)
-// 11 responsive text for homepage buttons text
-// 14 download video files for faster loading time
+// 2 change font 
+// 3 desc and button text affirmation for nodes (storyline)
+// 4 responsive text for homepage buttons text
+// 5 compress video files for faster loading time
 
+// variables that classes will use
+
+// momogennum is used to set probability of momo appearing in momogen (10 is 100%, 0 is 0%)
 const momogennum = 0
+// speed determines the time in ms between each typed character for the .questionbox
 let speed = 0
 
 class Node {
@@ -387,132 +391,6 @@ class NodewithMoMoGen2WithItemsUpdates extends NodewithMoMoGen2 {
         // .closest('.inventory').remove() starts with current element and climbs up and searches for the element with class of inventory and remove the whole div, making sure there will not be empty spaces between items when the middle item is removed
     }
     }
-}
-
-// not finalized
-class NodeWithVideoMoMoGen2 {
-    constructor(qns,b1option,b2option,videourl){
-        this.momogen = this.momogen.bind(this)
-        this.setNode = this.setNode.bind(this)
-        this.videourl = videourl
-        this.removeVideo = this.removeVideo.bind(this)
-        this.setSurviveNode = this.setSurviveNode.bind(this)
-        this.momogenJumpScare = this.momogenJumpScare.bind(this)
-        this.start = this.start.bind(this)
-}
-
-
-start(){
-    $('.startingphoto').hide()
-    let $video = $('<source>').attr('src',this.videourl).attr('type','video/mp4').addClass('video')
-    let $gameVideo = $('<video autoplay loop id=gamevideo>').append($video)
-    $('.gamewindow').prepend($gameVideo)
-    $('#option-buttons').empty()
-    // Empty option buttons in case user clicks on it before question finishes loading -> causes a bug
-    this.displayQns()
-    this.setNode()
-}
-
-displayQns(){
-    $('.questionbox').typedText(this.qns,speed,()=>{this.displayBoptions()})
-
-    }
-
-displayBoptions(){
-    let $btn1 = $('<button>').attr('id','button1').addClass('button')
-    let $btn2 = $('<button>').attr('id','button2').addClass('button')
-    $('#option-buttons').addClass('option-buttons')
-    $('#option-buttons').append($btn1)
-    $btn1.typedText(this.b1option)
-    $('#option-buttons').append($btn2)
-    $btn2.typedText(this.b2option)
-    this.nextNode()
-    }
-
-setNode(btn2nn){
-    this.btn1nn = this.momogen
-    this.btn2nn = btn2nn
-}
-
-nextNode(){
-    $('#button1').click(()=>{
-        this.removeVideo()
-        this.btn1nn
-        //need parenthesis as the .start() is inside a callback function and not directly in .click()
-    })
-       
-    $('#button2').click(()=>{
-        this.removeVideo()
-        this.btn2nn.start()
-        //need parenthesis as the .start() is inside a callback function and not directly in .click()
-    })
-    
-    }
-
-    removeVideo(){
-        $('video').remove()
-        $('.startingphoto').attr('src','')
-        $('.startingphoto').show()
-    }
-
-setSurviveNode(surviveNode){
-    this.surviveNode = surviveNode
-}
-
-momogenJumpScare(){
-
-    $('#option-buttons').empty()
-    let audio = new Audio('assets/sound/momojumpscare.mp3')
-    if($("audio").prop('muted')===false){
-        audio.play()}
-
-    function wait(ms){
-        return new Promise(resolve=>{
-            setTimeout(()=>{resolve('')},ms)
-        })
-    }
-    async function momoJumpScare(){
-    $('.startingphoto').attr('src','https://s.yimg.com/uu/api/res/1.2/EPrCsKpKqdvmt9DKDkUjhw--~B/Zmk9ZmlsbDtoPTQzMjt3PTY3NTthcHBpZD15dGFjaHlvbg--/https://s.yimg.com/uu/api/res/1.2/3WbSqoVABep_tI_DpuJSGQ--~B/aD0xMDI0O3c9MTYwMDthcHBpZD15dGFjaHlvbg--/https://o.aolcdn.com/images/dims?resize=2000%2C2000%2Cshrink&image_uri=https%3A%2F%2Fs.yimg.com%2Fos%2Fcreatr-uploaded-images%2F2019-03%2F4e54f600-3f82-11e9-aff6-507cab99fdc9&client=a1acac3e1b3290917d92&signature=6336c16f62a811ad2bb1dcfcdee118f42296dd69.cf.webp')
-    $('.startingphoto').addClass('shake')
-    $('.questionbox').hide()
-    $('.homebtn').hide()
-    $('.items').hide()
-    $('#option-buttons').hide()
-    await wait(2000)
-    $('.startingphoto').removeClass('shake')
-    $('.startingphoto').attr('src','assets/Image/youdied.png')
-    await wait(3000)
-    $('.startingphoto').attr('src','')
-    $('.questionbox').show()
-    $('#option-buttons').show()
-    $('.homebtn').show()
-    homePageScreen.start()
-    }
-
-    momoJumpScare() 
-
-}
-
-momogen(){
-let randomGen = Math.ceil(Math.random()*10)
-console.log(randomGen)
-if(randomGen<=0){
-   this.momogenJumpScare()
-    // $('#option-buttons').empty()
-    // let $btn2 = $('<button>').attr('id','button2').addClass('button')
-    // $('#option-buttons').append($btn2)
-    // $btn2.typedText(this.b2option)
-    
-    
-    // cue game over screen
-    // go back to game screen
-}
-else{
-    this.surviveNode.start() 
-    //is undefined even tho it was declared previously in nodelist.js
-}
-    //cannot read properties of undefined (reading 'start')
-}  
 }
 
 //also used to make GameDeathNode
@@ -1059,21 +937,3 @@ class MoMoDeathNode {
         momoJumpScare()
     }
 }
-
-
-
-    // if(ans2==='take it'){
-    //     updateInventory('matchbox',true)
-    //     // updateInventory('robodog',true)
-    //     showInventory()
-    //     console.log(inventoryList)
-    //     const $holdinglistDiv = $('<div class="holdinglist">').append('<img id="matchstick" src="https://previews.123rf.com/images/nikiteev/nikiteev1706/nikiteev170600027/80570006-vector-cartoon-open-matchbox-on-white-background.jpg" />')
-    //     $('.container').append($holdinglistDiv)
-        // prompt('changing image to robot dog')
-        // $('#matchstick').attr("src","https://thumbs.dreamstime.com/z/spot-robot-dog-vector-flat-graphic-illustration-industrial-sensing-remote-operation-needs-mini-guard-robo-arm-200826649.jpg")
-
-
-
-// Inventory ==backpack
-// function to tick true after node 
-

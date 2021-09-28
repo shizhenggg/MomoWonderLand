@@ -252,7 +252,7 @@ const node15 = new NodewithMoMoGen2(
 
 
 const node18 = new StoryNodeWithVideo(
-    'You knocked on the door with three thumps and nothing happens...then the door slowly swung open... You took peanut steps, cautiously entering the room and observing the surrounding...it seems to be a sort of... children\'s playroom? There were toys scattered on the floor and as you look up to the only source of light, a window, you noticed a robodog that is producing a whirring noise.',
+    'You knocked on the door with three thumps and nothing happens...then the door slowly swings open... You took peanut steps, cautiously entering the room and observing the surrounding...it seems to be a sort of... children\'s playroom? There were toys scattered on the floor and as you look up to the only source of light, a window, you noticed a robodog that is producing a whirring noise.',
     'Take Robodog',
     'assets/video/node18.mp4'
 )

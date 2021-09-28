@@ -261,7 +261,7 @@ const node17 = new Node(
     'You probably won\'t need the matchbox, you thought to yourself... you walked away from the matchbox and heard a strange whirrling sound coming from within a room... the door is ajar but you can\'t seem to see what is inside. Do you want to knock on the door or sneak in quietly?',
     'Knock',
     'Sneak In',
-    'assets/image/node13.jpeg'
+    'assets/Image/node13.jpeg'
 )
 
 const node17a = new StoryNodeWithVideo(

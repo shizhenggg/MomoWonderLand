@@ -1,10 +1,6 @@
 // Things to do 
-// 1 Homepage (fill up instr and credits content)
-// 2 change font 
 // 3 desc and button text affirmation for nodes (storyline)
 // 5 README file
-// 6 change momo picture
-// 7 change walkietalkie image
 // 8 tidy up styles.css
 // 9 audio not playing even tho unmute button is clicked
 
@@ -299,7 +295,7 @@ class NodewithMoMoGen extends Node {
             })
         }
         async function momoJumpScare(){
-        $('.startingphoto').attr('src','https://s.yimg.com/uu/api/res/1.2/EPrCsKpKqdvmt9DKDkUjhw--~B/Zmk9ZmlsbDtoPTQzMjt3PTY3NTthcHBpZD15dGFjaHlvbg--/https://s.yimg.com/uu/api/res/1.2/3WbSqoVABep_tI_DpuJSGQ--~B/aD0xMDI0O3c9MTYwMDthcHBpZD15dGFjaHlvbg--/https://o.aolcdn.com/images/dims?resize=2000%2C2000%2Cshrink&image_uri=https%3A%2F%2Fs.yimg.com%2Fos%2Fcreatr-uploaded-images%2F2019-03%2F4e54f600-3f82-11e9-aff6-507cab99fdc9&client=a1acac3e1b3290917d92&signature=6336c16f62a811ad2bb1dcfcdee118f42296dd69.cf.webp')
+        $('.startingphoto').attr('src','assets/Image/momojumpscare.png')
         $('.startingphoto').addClass('shake')
         $('.questionbox').hide()
         $('.homebtn').hide()
@@ -605,7 +601,7 @@ class StoryNodeWithMoMoGen {
             })
         }
         async function momoJumpScare(){
-            $('.startingphoto').attr('src','https://s.yimg.com/uu/api/res/1.2/EPrCsKpKqdvmt9DKDkUjhw--~B/Zmk9ZmlsbDtoPTQzMjt3PTY3NTthcHBpZD15dGFjaHlvbg--/https://s.yimg.com/uu/api/res/1.2/3WbSqoVABep_tI_DpuJSGQ--~B/aD0xMDI0O3c9MTYwMDthcHBpZD15dGFjaHlvbg--/https://o.aolcdn.com/images/dims?resize=2000%2C2000%2Cshrink&image_uri=https%3A%2F%2Fs.yimg.com%2Fos%2Fcreatr-uploaded-images%2F2019-03%2F4e54f600-3f82-11e9-aff6-507cab99fdc9&client=a1acac3e1b3290917d92&signature=6336c16f62a811ad2bb1dcfcdee118f42296dd69.cf.webp')
+            $('.startingphoto').attr('src','assets/Image/momojumpscare.png')
             $('.startingphoto').addClass('shake')
             $('.questionbox').hide()
             $('.homebtn').hide()
@@ -712,7 +708,7 @@ class GameNodeWithMoMo {
             })
         }
         async function momoJumpScare(){
-            $('.startingphoto').attr('src','https://s.yimg.com/uu/api/res/1.2/EPrCsKpKqdvmt9DKDkUjhw--~B/Zmk9ZmlsbDtoPTQzMjt3PTY3NTthcHBpZD15dGFjaHlvbg--/https://s.yimg.com/uu/api/res/1.2/3WbSqoVABep_tI_DpuJSGQ--~B/aD0xMDI0O3c9MTYwMDthcHBpZD15dGFjaHlvbg--/https://o.aolcdn.com/images/dims?resize=2000%2C2000%2Cshrink&image_uri=https%3A%2F%2Fs.yimg.com%2Fos%2Fcreatr-uploaded-images%2F2019-03%2F4e54f600-3f82-11e9-aff6-507cab99fdc9&client=a1acac3e1b3290917d92&signature=6336c16f62a811ad2bb1dcfcdee118f42296dd69.cf.webp')
+            $('.startingphoto').attr('src','assets/Image/momojumpscare.png')
             $('.startingphoto').addClass('shake')
             $('.questionbox').hide()
             $('.homebtn').hide()
@@ -831,10 +827,8 @@ class HomePage {
     //append homescreen buttons
     let $startbtn = $('<button>').attr('id','startbtn').addClass('homepagebutton').text('START')
     let $instructionbtn = $('<button>').attr('id','instructionbtn').addClass('homepagebutton').text('INSTRUCTIONS')
-    let $creditsbtn = $('<button>').attr('id','creditsbtn').addClass('homepagebutton').text('CREDITS')
     $('#homepage-buttons').append($startbtn)
     $('#homepage-buttons').append($instructionbtn)
-    $('#homepage-buttons').append($creditsbtn)
     this.nextNode()
     }
 
@@ -854,12 +848,6 @@ class HomePage {
     $('#instructionbtn').click(()=>{$('#instructioncontent').show()})
     //hide instruction modal content 
     $('#instructionclosebtn').click(()=>{$('#instructioncontent').hide()})
-
-    //next node is credits
-    //show credits modal content
-    $('#creditsbtn').click(()=>{$('#creditscontent').show()})
-    //hide credits modal content
-    $('#creditsclosebtn').click(()=>{$('#creditscontent').hide()})
     }
 }
 
@@ -920,7 +908,7 @@ class MoMoDeathNode {
             })
         }
         const momoJumpScare = async () => {
-        $('.startingphoto').attr('src','https://s.yimg.com/uu/api/res/1.2/EPrCsKpKqdvmt9DKDkUjhw--~B/Zmk9ZmlsbDtoPTQzMjt3PTY3NTthcHBpZD15dGFjaHlvbg--/https://s.yimg.com/uu/api/res/1.2/3WbSqoVABep_tI_DpuJSGQ--~B/aD0xMDI0O3c9MTYwMDthcHBpZD15dGFjaHlvbg--/https://o.aolcdn.com/images/dims?resize=2000%2C2000%2Cshrink&image_uri=https%3A%2F%2Fs.yimg.com%2Fos%2Fcreatr-uploaded-images%2F2019-03%2F4e54f600-3f82-11e9-aff6-507cab99fdc9&client=a1acac3e1b3290917d92&signature=6336c16f62a811ad2bb1dcfcdee118f42296dd69.cf.webp')
+        $('.startingphoto').attr('src','assets/Image/momojumpscare.png')
         $('.startingphoto').addClass('shake')
         $('.items').hide()
         $('.homebtn').hide()

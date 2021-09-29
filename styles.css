@@ -87,7 +87,7 @@ body{
     /* background-color: red; */
     height: 12vh;
     width: 8vw;
-    background-color: rgba(209, 144, 46, 0.466);
+    background-color: rgba(218, 190, 149, 0.466);
     border: 0.3vw solid rgba(17, 10, 2, 0.7);
     border-radius: 2vw;
 }
@@ -96,8 +96,6 @@ body{
     position:absolute;
     height:6vw;
     width:89vw;
-    /* top:80vh; */
-    /* background-color: rgba(165, 135, 60, 0.5); */
     background-image: url('assets/Image/instructiontexture.png');
     opacity: 0.8;
     background-size: 200vw;
@@ -145,10 +143,10 @@ video{
     position: absolute;
     display: flex;
     flex-direction: column;
-    height:50vh;
+    height:35vh;
     width:30vw;
     /* if it's percentage it is relative to parent element. if its vh/vw,it's relative to the viewport */
-    bottom: 15vh;
+    bottom: 25vh;
     justify-content:space-around;
     align-items: center;
 }
@@ -228,29 +226,6 @@ p{
  font-family: 'Gemunu Libre', sans-serif;
  font-size: 1.4vmax;
  text-decoration: underline;
-}
-
-
-/* credit box */
-
-#creditscontent{
-    position: absolute;
-    top: 22vh;
-    left: 35vw;
-    width: 30vw;
-    height: 58vh;
-    padding: 20px;
-    border: 1px solid #ccc;
-    background-color: rgb(222, 184, 135);
-    text-align: center;
-    box-shadow: 0 0 10px 2px;
-    display:none;
-    color:white;
-    z-index:100;
-}
-
-#creditsclosebtn{
-    float:right;
 }
 
 

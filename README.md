@@ -1,4 +1,11 @@
 # MoMoWonderLand 
+You can start the game [here](https://shizhenggg.github.io/MomoWonderLand/)
 
-Text goes here 
+## Tech Stack
+*HTML
+*CSS 
+*Javascript
+*Jquery for DOM manipulation
+
+
 

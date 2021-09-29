@@ -1,14 +1,14 @@
 // -------------STORYNODES------------- //
 
 const storyNode0 = new StoryNode(
-    'You are an investigator following a case of possible child abduction in San Francisco. Police leads and your own research brought you to an abandoned prison in the middle of the sea with cold waters and strong currents, what used to be a maximum security federal prison on an island. You are here to gather leads as this prison is suspected to be the base of operation.',
+    'You are an investigator following a case of a possible child abduction in San Francisco. Police leads brought you to an abandoned prison in the middle of the sea with cold waters and strong currents, what used to be a maximum security federal prison on an island. You are here to gather leads as this prison is suspected to be the base of operation.',
     'Continue',
     'assets/Image/storynode0.jpg'
 )
 
 
 const storyNode1 = new StoryNodeWithVideo(
-    'You have been in this prison for more than 8 hours, unable to find an exit. The entrace you came in from was nowhere to be found... You need to escape this abandoned prison and gather some evidence if you can... You feel a presence in here and it could be dangerous to linger here any longer...',
+    'However you have lost your way in this prison for more than 8 hours, unable to find an exit. The entrace you came in from was nowhere to be found... You need to escape this abandoned prison and gather some evidence if you can... You feel a menacing presence and it could be dangerous to linger here any longer...',
     'Explore prison and find a way out',
     'assets/video/storynode1.mp4'
 )
@@ -30,13 +30,13 @@ const gameNode1main = new GameNodeWithGameDeathNode(
 )
 
 const gameNode1a = new StoryNode(
-    'You explored and reached an intersection which indicated ‘Basement Level’. You placed your fingers on the wall and carefully follow along the long corridor… you eventually reached the end of the corridor with its door ajar…',
+    'You explored and reached an intersection which indicated ‘Basement Level’. You placed your fingers on the wall and carefully followed along the long corridor… you eventually reached the end of the corridor with its door ajar…',
     'Enter Room',
     'assets/game/game1/game1door.jpeg'
 )
 
 const gameNode1b = new StoryNodeWithVideo(
-    'You carefully typed in a l c a t r a z on the typewriter... nothing happens... suddenly, you hear a low rumbling behind you...',
+    'You carefully typed a l c a t r a z on the typewriter... nothing happens... suddenly, you hear a low rumbling behind you...',
     'Turn your head',
     'assets/game/game1/game1b.mp4'
 )
@@ -54,7 +54,7 @@ const gameNode1d = new StoryNode(
 )
 
 const gameNode2 = new GameNodeWithGameDeathNode(
-    'You held up the polaroid with care and stare into a ghoul-looking female, unsure of who she is...the light gave some illumination to the polaroid and you noticed a string of characters started appearing on the polaroid...c i ii..what could it mean?',
+    'You held up the polaroid with care and stare into a ghoul-looking female, unsure of who she is...the light gave some illumination to the polaroid and you noticed a string of characters started appearing on the polaroid...c i ii.. is this a phrase? what could it mean?',
     'assets/game/game2/game2.mp4',
     'see eye to eye'
 )
@@ -92,7 +92,7 @@ const gameNode3c= new StoryNodeWithItemsUpdates(
 )
 
 const gameNode4 = new GameNodeWithGameDeathNode(
-    'You held up the polaroid with care and stare into a ghoul-looking female, unsure of who she is...the light gave some illumination to the polaroid and you noticed a string of characters started appearing on the polaroid...c i ii..what could it mean?',
+    'You held up the polaroid with care and stare into a ghoul-looking female, unsure of who she is...the light gave some illumination to the polaroid and you noticed a string of characters started appearing on the polaroid...c i ii..is this a phrase? what could it mean?',
     'assets/game/game2/game2.mp4',
     'see eye to eye'
 )
@@ -134,7 +134,7 @@ const node4 = new Node(
 )
 
 const node5 = new NodeWithVideo(
-    'You leave it. There wouldn’t be anything useful about it anyway… The bulb hanging on the ceiling suddenly dims and it goes out. You’re surrounded by darkness. Do you want to use your matches to lit the room or wait till your eyes adjust to the darkness before moving as the matches could prove useful later…',
+    'You leave it. There wouldn’t be anything useful about it anyway… The bulb hanging on the ceiling suddenly dims and it goes out. You are surrounded by darkness. Do you want to use your matches to lit the room or wait till your eyes adjust to the darkness before moving as the matches could prove useful later…',
     'Wait for your eyes to adjust',
     'Light Matches',
     'assets/video/node5.mp4'
@@ -150,14 +150,14 @@ const node5a = new StoryNodeWithVideoAndItemsUpdates(
 )
 
 const node6 = new StoryNode(
-    'As you walked towards the mirror, the mirror starting shaking and swing outwards, revealing a cabinet behind it… You see a piece of polaroid inside the cabinet…',
+    'As you walked towards the mirror, the mirror starting shaking and swung outwards, revealing a cabinet behind it… You see a piece of polaroid inside the cabinet…',
     'Inspect polaroid',
     'assets/Image/node6.jpeg')
 
 
 
 const node7 = new NodeWithItemsUpdates(
-    'You picked up a walkie talkie from underneath the bed, which was the source of the static sound. The temperature of the room immediately dropped, you quickly exited the room and start shivering… why is it so cold? Do you want to lit your match to warm yourself with the flame?',
+    'You picked up a walkie talkie from underneath the bed, which was the source of the static sound. The temperature of the room drops immediately, you quickly exit the room but start shivering… why is it so cold? Do you want to lit your match to warm yourself with the flame?',
     'Use Matchbox',
     `Don't use`,
     'assets/Image/node7.png',
@@ -227,7 +227,7 @@ const node12 = new StoryNodeWithVideoAndItemsUpdates(
 )
 
 const node13 = new NodewithMoMoGen2WithItemsUpdates(
-    'You stumbled upon a locked door with a keyhole. You instinctively pulled out the key you got from your backpocket, it is still slimy and you almost puked from the scent when you brought it close to the keyhole. Knowing full well that in a prison, using the wrong key could set off an alarm… what do you want to do? ',
+    'You stumbled upon a locked door with a keyhole. You instinctively pulled out the key you got from your backpocket, it is still slimy and you almost puked from the scent as you brought it close to the keyhole. Knowing full well that in a prison, using the wrong key could set off an alarm… what do you want to do? ',
     'Look into keyhole',
     'Insert key',
     'assets/Image/node13.jpeg',

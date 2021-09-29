@@ -1,3 +1,4 @@
+/* fonts */
 @import url('https://fonts.googleapis.com/css2?family=Griffy&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Gemunu+Libre&display=swap');
 
@@ -21,6 +22,7 @@ body{
     background-color:black;
 }
 
+/* ---------- UI BUTTONS START ---------- */
 .volumebtn{
     background-image: url("assets/icon/mute.png");
     background-size: contain;
@@ -36,7 +38,6 @@ body{
     background-image: url("assets/icon/home.png");
     background-size: contain;
     background-repeat: no-repeat;
-    /* determines background image size */
     position: absolute;
     height: 4.5vh;
     width: 2.5vw;
@@ -50,7 +51,6 @@ body{
     background-image: url("assets/icon/rabbit.png");
     background-size: contain;
     background-repeat: no-repeat;
-    /* determines background image size */
     position: absolute;
     height: 4.5vh;
     width: 2.5vw;
@@ -63,7 +63,6 @@ body{
     background-image: url("assets/icon/tortoise.png");
     background-size: contain;
     background-repeat: no-repeat;
-    /* determines background image size */
     position: absolute;
     height: 4.5vh;
     width: 2.5vw;
@@ -73,79 +72,15 @@ body{
     display:none;
 }
 
+/* ---------- UI BUTTONS END ---------- */
 
-.inventory{
-    position:relative;
-    /* background-color: rgba(241, 151, 14, 0.8); */
-    height:13vh;
-    width:0vw;
-    top: 5vh;
-    left:90vw;
-}
-
-.items{
-    /* background-color: red; */
-    height: 12vh;
-    width: 8vw;
-    background-color: rgba(218, 190, 149, 0.466);
-    border: 0.3vw solid rgba(17, 10, 2, 0.7);
-    border-radius: 2vw;
-}
-
-.questionbox{
-    position:absolute;
-    height:6vw;
-    width:89vw;
-    background-image: url('assets/Image/instructiontexture.png');
-    opacity: 0.8;
-    background-size: 200vw;
-    background-position: center;
-    background-repeat: no-repeat;
-    font-family: 'Griffy', cursive;
-    font-size: 1.4vmax;
-    font-weight:bolder;
-    /* 1vman will return 1% of the largest viewport dimension, be it either the viewport width (vw) or its height (vh) */
-    text-align: center;
-    letter-spacing: 0.05vw;;
-    bottom: 10vh;
-    padding: 2vh 5vw;
-    color: black;
-}
-
-.option-buttons{
-    position: absolute;
-    height:10vh;
-    width:99vw;
-    background-color: rgba(71, 88, 63, 0.4);
-    /* if it's percentage it is relative to parent element. if its vh/vw,it's relative to the viewport */
-    display:flex;
-    flex-flow:row nowrap;
-    bottom: 0vh;
-    justify-content:space-evenly;
-    padding:0px;
-    border-radius: 5px;
-}
-
-
-video{
-    object-fit:cover;
-    position:absolute;
-    width:100vw;
-    height:100vh;
-    overflow:hidden;
-    top: 0;
-    left: 0;
-
-}
-
+/* ---------- HOME PAGE START --------- */
 #homepage-buttons{
-/* div */
     position: absolute;
     display: flex;
     flex-direction: column;
     height:35vh;
     width:30vw;
-    /* if it's percentage it is relative to parent element. if its vh/vw,it's relative to the viewport */
     bottom: 25vh;
     justify-content:space-around;
     align-items: center;
@@ -168,7 +103,7 @@ video{
     background-color:rgba(182, 41, 41, 0.637);
 }
 
-/* instruction box */
+
 #instructioncontent{
     position: absolute;
     top: 22vh;
@@ -228,6 +163,65 @@ p{
  text-decoration: underline;
 }
 
+/* ---------- HOME PAGE END ----------- */
+
+/* ---------- GAMEPLAY START----------- */
+
+.startingphoto{
+    width:100vw;
+    height:100vh;
+    object-fit: cover;
+}
+
+.inventory{
+    position:relative;
+    height:13vh;
+    width:0vw;
+    top: 5vh;
+    left:90vw;
+}
+
+.items{
+    height: 12vh;
+    width: 8vw;
+    background-color: rgba(218, 190, 149, 0.466);
+    border: 0.3vw solid rgba(17, 10, 2, 0.7);
+    border-radius: 2vw;
+}
+
+.questionbox{
+    position:absolute;
+    height:6vw;
+    width:89vw;
+    background-image: url('assets/Image/instructiontexture.png');
+    opacity: 0.8;
+    background-size: 200vw;
+    background-position: center;
+    background-repeat: no-repeat;
+    font-family: 'Griffy', cursive;
+    font-size: 1.4vmax;
+    font-weight:bolder;
+    /* 1vman will return 1% of the largest viewport dimension, be it either the viewport width (vw) or its height (vh) */
+    text-align: center;
+    letter-spacing: 0.05vw;;
+    bottom: 10vh;
+    padding: 2vh 5vw;
+    color: black;
+}
+
+.option-buttons{
+    position: absolute;
+    height:10vh;
+    width:99vw;
+    background-color: rgba(71, 88, 63, 0.4);
+    /* if it's percentage it is relative to parent element. if its vh/vw,it's relative to the viewport */
+    display:flex;
+    flex-flow:row nowrap;
+    bottom: 0vh;
+    justify-content:space-evenly;
+    padding:0px;
+    border-radius: 5px;
+}
 
 .button{    
     margin: 1.2vh;
@@ -243,6 +237,17 @@ p{
 
 .button:hover{
     background-color:rgba(182, 41, 41, 0.637);
+}
+
+video{
+    object-fit:cover;
+    position:absolute;
+    width:100vw;
+    height:100vh;
+    overflow:hidden;
+    top: 0;
+    left: 0;
+
 }
 
 .story-button{
@@ -273,15 +278,11 @@ p{
     font-size:4.5vh;
 }
 
-.startingphoto{
-    width:100vw;
-    height:100vh;
-    object-fit: cover;
-}
+/* ---------- GAMEPLAY END----------- */
 
 
+/* -- MOMO JUMPSCARE ANIMATION START -*/
 
-/* animation for momojumpscare */
 .shake{
     animation: shake 0.3s;
     animation-iteration-count: 7;
@@ -304,3 +305,5 @@ p{
       transform: translate3d(20px, 0, 0);
     }
   }
+
+/* --- MOMO JUMPSCARE ANIMATION END --*/

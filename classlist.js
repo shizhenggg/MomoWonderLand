@@ -1,8 +1,9 @@
 // Things to do 
 // 3 desc and button text affirmation for nodes (storyline)
-// 5 README file
 // 8 tidy up styles.css
 // 9 audio not playing even tho unmute button is clicked
+// prep presentatino talking points
+// async await, shake
 
 
 // variables that classes will use
@@ -11,6 +12,7 @@
 const momogennum = 4
 // speed determines the time in ms between each typed character for the .questionbox
 let speed = 40
+
 
 class Node {
     constructor(qns,b1option,b2option,imageurl){
@@ -27,6 +29,7 @@ class Node {
         // Set new image
         $('#option-buttons').empty()
         // Empty option buttons in case user clicks on it before question finishes loading -> causes a bug
+         // Also clears option-buttons from previous nodes
         this.displayQns()
     }
     displayQns(){
@@ -58,6 +61,135 @@ class Node {
 
 }
 
+// class with only 1 option that leads to momogen
+class NodewithMoMoGen extends Node {
+    constructor(qns,b1option,b2option,imageurl){
+    super(qns,b1option,b2option,imageurl)
+    this.momogen = this.momogen.bind(this)
+    this.setNode = this.setNode.bind(this)
+    this.setSurviveNode = this.setSurviveNode.bind(this)
+    this.momogenJumpScare = this.momogenJumpScare.bind(this)
+    this.start = this.start.bind(this)
+    // you need to bind because if you don't, when you invoke momogen and reference this.surviveNode, it only reference momogen itself and can't find this.surviveNode
+    // by binding it, you allow the momogen to search through the whole class instead 
+    // to bind method, you have to do this like this -> this.method = this.method.bind(this), you have to do 'this.method' after the = sign because that's how you reference functions in a class 
+    }
+
+    start(){
+        $('.startingphoto').attr('src',this.imageurl)
+        $('#option-buttons').empty()
+        this.setNode()
+        this.displayQns()
+    }
+
+    setNode(){
+        this.btn1nn = this.momogen
+        this.btn2nn = this.momogen
+    }
+
+    nextNode(){
+        $('#button1').click(this.btn1nn)
+        $('#button2').click(this.btn2nn)
+        }
+
+
+    setSurviveNode(surviveNode){
+        this.surviveNode = surviveNode
+    }
+
+    momogenJumpScare(){
+
+        $('#option-buttons').empty()
+        let audio = new Audio('assets/sound/momojumpscare.mp3')
+        if($("audio").prop('muted')===false){
+            audio.play()}
+
+        function wait(ms){
+            return new Promise(resolve=>{
+                setTimeout(()=>{resolve('')},ms)
+            })
+        }
+        //async await to set time on certain actions 
+        async function momoJumpScare(){
+        $('.startingphoto').attr('src','assets/Image/momojumpscare.png')
+        $('.startingphoto').addClass('shake')
+        $('.questionbox').hide()
+        $('.homebtn').hide()
+        $('.items').hide()
+        $('#option-buttons').hide()
+        // hiding divs to have momo in full view
+        await wait(2000)
+        $('.startingphoto').removeClass('shake')
+        $('.startingphoto').attr('src','assets/Image/youdied.png')
+        await wait(3000)
+        $('.startingphoto').attr('src','')
+        $('.questionbox').show()
+        $('#option-buttons').show()
+        $('.homebtn').show()
+        // showing divs after hiding previously
+        homePageScreen.start()
+        }
+
+        momoJumpScare() 
+    
+    }
+
+    momogen(){
+    let randomGen = Math.ceil(Math.random()*10)
+    if(randomGen<=momogennum){
+       this.momogenJumpScare()
+    }
+    else{
+        this.surviveNode.start() 
+    }
+    }  
+}
+
+// class with 2 options, 1 of which leads to momogen
+class NodewithMoMoGen2 extends NodewithMoMoGen{
+    start(){
+        $('.startingphoto').attr('src',this.imageurl)
+        $('#option-buttons').empty()
+        this.displayQns()
+    }
+    setNode(btn2nn){
+        this.btn1nn = this.momogen
+        this.btn2nn = btn2nn
+    }
+    nextNode(){
+        $('#button1').click(this.btn1nn)
+        $('#button2').click(this.btn2nn.start)
+        }
+
+}
+
+class NodewithMoMoGen2WithItemsUpdates extends NodewithMoMoGen2 {
+    constructor(qns,b1option,b2option,imageurl,itemx,stat,itemUrl){
+        super(qns,b1option,b2option,imageurl)
+        this.itemx = itemx
+        this.stat = stat
+        this.itemUrl = itemUrl
+        this.updateItem = this.updateItem.bind(this)
+
+    }
+
+    start(){
+        $('.startingphoto').attr('src',this.imageurl)
+        $('#option-buttons').empty()
+        this.displayQns()
+        this.updateItem()
+    }
+
+    updateItem(){
+        if(this.stat === true){
+        let $item = $('<div>').addClass('inventory').append(`<img class="items" id="${this.itemx}" src="${this.itemUrl}"/>`)
+        $('.container').prepend($item)}
+        if(this.stat === false){
+        $(`#${this.itemx}`).closest('.inventory').remove()
+    }
+    }
+}
+
 class NodeWithItemsUpdates extends Node {
     constructor(qns,b1option,b2option,imageurl,itemx,stat,itemUrl){
         super(qns,b1option,b2option,imageurl);
@@ -83,11 +215,9 @@ class NodeWithItemsUpdates extends Node {
 
     updateItem(){
         if(this.stat === true){
-        console.log('add:',this.itemx)
         let $item = $('<div>').addClass('inventory').append(`<img class="items" id="${this.itemx}" src="${this.itemUrl}"/>`)
         $('.container').prepend($item)}
         if(this.stat === false){
-        console.log('remove:',this.itemx)
         $(`#${this.itemx}`).closest('.inventory').remove()
         // if you just use remove() on this.itemx, there will be the parents div of class inventory left thats why there will be empty space
         // .closest('.inventory').remove() starts with current element and climbs up and searches for the element with class of inventory and remove the whole div, making sure there will not be empty spaces between items when the middle item is removed
@@ -112,7 +242,6 @@ class NodeWithVideo {
         let $gameVideo = $('<video autoplay loop id=gamevideo>').append($video)
         $('.gamewindow').prepend($gameVideo)
         $('#option-buttons').empty()
-        // Empty option buttons in case user clicks on it before question finishes loading -> causes a bug
         this.displayQns()
     }
 
@@ -148,7 +277,6 @@ class NodeWithVideo {
     $('#button2').click(()=>{
         this.removeVideo()
         this.btn2nn.start()
-        //need parenthesis as the .start() is inside a callback function and not directly in .click()
     })
     
     }
@@ -181,7 +309,6 @@ class NodeWithVideoAndItemsUpdates {
         let $gameVideo = $('<video autoplay loop id=gamevideo>').append($video)
         $('.gamewindow').prepend($gameVideo)
         $('#option-buttons').empty()
-        // Empty option buttons in case user clicks on it before question finishes loading -> causes a bug
         this.displayQns()
         this.updateItem()
     }
@@ -211,13 +338,11 @@ class NodeWithVideoAndItemsUpdates {
     $('#button1').click(()=>{
         this.removeVideo()
         this.btn1nn.start()
-        //need parenthesis as the .start() is inside a callback function and not directly in .click()
     })
        
     $('#button2').click(()=>{
         this.removeVideo()
         this.btn2nn.start()
-        //need parenthesis as the .start() is inside a callback function and not directly in .click()
     })
     
     }
@@ -230,167 +355,13 @@ class NodeWithVideoAndItemsUpdates {
 
     updateItem(){
         if(this.stat === true){
-        console.log('add:',this.itemx)
         let $item = $('<div>').addClass('inventory').append(`<img class="items" id="${this.itemx}" src="${this.itemUrl}"/>`)
         $('.container').prepend($item)}
         if(this.stat === false){
-        console.log('remove:',this.itemx)
         $(`#${this.itemx}`).closest('.inventory').remove()
-        // if you just use remove() on this.itemx, there will be the parents div of class inventory left thats why there will be empty space
-        // .closest('.inventory').remove() starts with current element and climbs up and searches for the element with class of inventory and remove the whole div, making sure there will not be empty spaces between items when the middle item is removed
     }
     }
 
-}
-
-// 1 option button avail
-class NodewithMoMoGen extends Node {
-    constructor(qns,b1option,b2option,imageurl){
-    super(qns,b1option,b2option,imageurl)
-    this.momogen = this.momogen.bind(this)
-    this.setNode = this.setNode.bind(this)
-    this.setSurviveNode = this.setSurviveNode.bind(this)
-    this.momogenJumpScare = this.momogenJumpScare.bind(this)
-    this.start = this.start.bind(this)
-    // you need to bind because if you don't, when you invoke momogen and reference this.surviveNode, it only reference momogen itself and can't find this.surviveNode
-    // by binding it, you allow the momogen to search through the whole class instead 
-    // to bind method, you have to do this like this -> this.method = this.method.bind(this), you have to do 'this.method' after the = sign because that's how you reference functions in a class 
-    }
-
-    start(){
-        $('.startingphoto').attr('src',this.imageurl)
-        // Set new image
-        $('#option-buttons').empty()
-        // Empty option buttons in case user clicks on it before question finishes loading -> causes a bug
-        // redefining start function with added updateItem method
-        this.setNode()
-        this.displayQns()
-    }
-
-    setNode(){
-        this.btn1nn = this.momogen
-        this.btn2nn = this.momogen
-    }
-
-    nextNode(){
-        $('#button1').click(this.btn1nn)
-        $('#button2').click(this.btn2nn)
-        }
-
-
-    setSurviveNode(surviveNode){
-        this.surviveNode = surviveNode
-    }
-
-    momogenJumpScare(){
-
-        $('#option-buttons').empty()
-        let audio = new Audio('assets/sound/momojumpscare.mp3')
-        if($("audio").prop('muted')===false){
-            audio.play()}
-
-        function wait(ms){
-            return new Promise(resolve=>{
-                setTimeout(()=>{resolve('')},ms)
-            })
-        }
-        async function momoJumpScare(){
-        $('.startingphoto').attr('src','assets/Image/momojumpscare.png')
-        $('.startingphoto').addClass('shake')
-        $('.questionbox').hide()
-        $('.homebtn').hide()
-        $('.items').hide()
-        $('#option-buttons').hide()
-        await wait(2000)
-        $('.startingphoto').removeClass('shake')
-        $('.startingphoto').attr('src','assets/Image/youdied.png')
-        await wait(3000)
-        $('.startingphoto').attr('src','')
-        $('.questionbox').show()
-        $('#option-buttons').show()
-        $('.homebtn').show()
-        homePageScreen.start()
-        }
-
-        momoJumpScare() 
-    
-    }
-
-    momogen(){
-    let randomGen = Math.ceil(Math.random()*10)
-    console.log(randomGen)
-    if(randomGen<=momogennum){
-       this.momogenJumpScare()
-        // $('#option-buttons').empty()
-        // let $btn2 = $('<button>').attr('id','button2').addClass('button')
-        // $('#option-buttons').append($btn2)
-        // $btn2.typedText(this.b2option)
-        
-        
-        // cue game over screen
-        // go back to game screen
-    }
-    else{
-        this.surviveNode.start() 
-        //is undefined even tho it was declared previously in nodelist.js
-    }
-        //cannot read properties of undefined (reading 'start')
-    }  
-    }
-
-// 2 options button avail 
-class NodewithMoMoGen2 extends NodewithMoMoGen{
-    start(){
-        $('.startingphoto').attr('src',this.imageurl)
-        // Set new image
-        $('#option-buttons').empty()
-        // Empty option buttons in case user clicks on it before question finishes loading -> causes a bug
-        // redefining start function with added updateItem method
-        this.displayQns()
-    }
-    setNode(btn2nn){
-        this.btn1nn = this.momogen
-        this.btn2nn = btn2nn
-    }
-    nextNode(){
-        $('#button1').click(this.btn1nn)
-        $('#button2').click(this.btn2nn.start)
-        }
-
-}
-
-class NodewithMoMoGen2WithItemsUpdates extends NodewithMoMoGen2 {
-    constructor(qns,b1option,b2option,imageurl,itemx,stat,itemUrl){
-        super(qns,b1option,b2option,imageurl)
-        this.itemx = itemx
-        this.stat = stat
-        this.itemUrl = itemUrl
-        this.updateItem = this.updateItem.bind(this)
-
-    }
-
-    start(){
-        $('.startingphoto').attr('src',this.imageurl)
-        // Set new image
-        $('#option-buttons').empty()
-        // Empty option buttons in case user clicks on it before question finishes loading -> causes a bug
-        // redefining start function with added updateItem method
-        this.displayQns()
-        this.updateItem()
-    }
-
-    updateItem(){
-        if(this.stat === true){
-        console.log('add:',this.itemx)
-        let $item = $('<div>').addClass('inventory').append(`<img class="items" id="${this.itemx}" src="${this.itemUrl}"/>`)
-        $('.container').prepend($item)}
-        if(this.stat === false){
-        console.log('remove:',this.itemx)
-        $(`#${this.itemx}`).closest('.inventory').remove()
-        // if you just use remove() on this.itemx, there will be the parents div of class inventory left thats why there will be empty space
-        // .closest('.inventory').remove() starts with current element and climbs up and searches for the element with class of inventory and remove the whole div, making sure there will not be empty spaces between items when the middle item is removed
-    }
-    }
 }
 
 //also used to make GameDeathNode
@@ -404,9 +375,7 @@ class StoryNode {
 
     start(){
         $('.startingphoto').attr('src',this.imageurl)
-        // Set new image
         $('#option-buttons').empty()
-        // Empty option buttons in case user clicks on it before question finishes loading -> causes a bug
         this.displayStory()
     }
     displayStory(){
@@ -430,6 +399,37 @@ class StoryNode {
     }
 }
 
+class StoryNodeWithItemsUpdates extends StoryNode {
+    constructor(story,option,imageurl,itemx,stat,itemUrl){
+    super(story,option,imageurl);
+        this.story = story
+        this.option = option
+        this.imageurl = imageurl
+        this.itemx = itemx
+        this.stat = stat
+        this.itemUrl = itemUrl 
+        this.updateItem = this.updateItem.bind(this)
+        this.start = this.start.bind(this)
+    }
+
+    start(){
+        $('.startingphoto').attr('src',this.imageurl)
+        $('#option-buttons').empty()
+        this.displayStory()
+        this.updateItem()
+    }
+
+    updateItem(){
+        if(this.stat === true){
+        let $item = $('<div>').addClass('inventory').append(`<img class="items" id="${this.itemx}" src="${this.itemUrl}"/>`)
+        $('.container').prepend($item)}
+        if(this.stat === false){
+        $(`#${this.itemx}`).closest('.inventory').remove()
+    }
+    }
+
+}
+
 class StoryNodeWithVideo {
     constructor(story,option,videourl){
         this.story = story
@@ -444,7 +444,6 @@ class StoryNodeWithVideo {
         let $gameVideo = $('<video autoplay loop id=gamevideo>').append($video)
         $('.gamewindow').prepend($gameVideo)
         $('#option-buttons').empty()
-        // Empty option buttons in case user clicks on it before question finishes loading -> causes a bug
         this.displayStory()
     }
     displayStory(){
@@ -492,60 +491,18 @@ class StoryNodeWithVideoAndItemsUpdates extends StoryNodeWithVideo {
         let $gameVideo = $('<video autoplay loop id=gamevideo>').append($video)
         $('.gamewindow').prepend($gameVideo)
         $('#option-buttons').empty()
-        // Empty option buttons in case user clicks on it before question finishes loading -> causes a bug
         this.displayStory()
         this.updateItem()
     }
 
     updateItem(){
         if(this.stat === true){
-        console.log('add:',this.itemx)
         let $item = $('<div>').addClass('inventory').append(`<img class="items" id="${this.itemx}" src="${this.itemUrl}"/>`)
         $('.container').prepend($item)}
         if(this.stat === false){
-        console.log('remove:',this.itemx)
         $(`#${this.itemx}`).closest('.inventory').remove()
-        // if you just use remove() on this.itemx, there will be the parents div of class inventory left thats why there will be empty space
-        // .closest('.inventory').remove() starts with current element and climbs up and searches for the element with class of inventory and remove the whole div, making sure there will not be empty spaces between items when the middle item is removed
     }
     }
-}
-
-class StoryNodeWithItemsUpdates extends StoryNode {
-    constructor(story,option,imageurl,itemx,stat,itemUrl){
-    super(story,option,imageurl);
-        this.story = story
-        this.option = option
-        this.imageurl = imageurl
-        this.itemx = itemx
-        this.stat = stat
-        this.itemUrl = itemUrl 
-        this.updateItem = this.updateItem.bind(this)
-        this.start = this.start.bind(this)
-    }
-
-    start(){
-        $('.startingphoto').attr('src',this.imageurl)
-        // Set new image
-        $('#option-buttons').empty()
-        // Empty option buttons in case user clicks on it before question finishes loading -> causes a bug
-        this.displayStory()
-        this.updateItem()
-    }
-
-    updateItem(){
-        if(this.stat === true){
-        console.log('add:',this.itemx)
-        let $item = $('<div>').addClass('inventory').append(`<img class="items" id="${this.itemx}" src="${this.itemUrl}"/>`)
-        $('.container').prepend($item)}
-        if(this.stat === false){
-        console.log('remove:',this.itemx)
-        $(`#${this.itemx}`).closest('.inventory').remove()
-        // if you just use remove() on this.itemx, there will be the parents div of class inventory left thats why there will be empty space
-        // .closest('.inventory').remove() starts with current element and climbs up and searches for the element with class of inventory and remove the whole div, making sure there will not be empty spaces between items when the middle item is removed
-    }
-    }
-
 }
 
 class StoryNodeWithMoMoGen {
@@ -561,9 +518,7 @@ class StoryNodeWithMoMoGen {
 
     start(){
         $('.startingphoto').attr('src',this.imageurl)
-        // Set new image
         $('#option-buttons').empty()
-        // Empty option buttons in case user clicks on it before question finishes loading -> causes a bug
         this.displayStory()
     }
     displayStory(){
@@ -625,18 +580,12 @@ class StoryNodeWithMoMoGen {
 
     momogen(){
     let randomGen = Math.ceil(Math.random()*10)
-    console.log(randomGen)
     if(randomGen<=momogennum){
         this.momogenJumpScare()
     }
-        // cue game over screen
-        // go back to game screen
     else{
         this.surviveNode.start() 
-        //is undefined even tho it was declared previously in nodelist.js
     }
-
-        //cannot read properties of undefined (reading 'start')
     }  
 }
 
@@ -657,7 +606,6 @@ class GameNodeWithMoMo {
         let $gameVideo = $('<video autoplay id=gamevideo>').append($video)
         $('.gamewindow').prepend($gameVideo)
         $('#option-buttons').empty()
-        // Empty option buttons in case user clicks on it before question finishes loading -> causes a bug
         this.displayStory()
     }
 
@@ -731,18 +679,12 @@ class GameNodeWithMoMo {
 
     momogen(){
     let randomGen = Math.ceil(Math.random()*10)
-    console.log(randomGen)
     if(randomGen<=momogennum){
         this.momogenJumpScare()
     }
-        // cue game over screen
-        // go back to game screen
     else{
         this.surviveNode.start() 
-        //is undefined even tho it was declared previously in nodelist.js
     }
-
-        //cannot read properties of undefined (reading 'start')
     }  
 }
 
@@ -761,7 +703,6 @@ class GameNodeWithGameDeathNode {
         let $gameVideo = $('<video autoplay loop id=gamevideo>').append($video)
         $('.gamewindow').prepend($gameVideo)
         $('#option-buttons').empty()
-        // Empty option buttons in case user clicks on it before question finishes loading -> causes a bug
         this.displayStory()
     }
 
@@ -861,9 +802,7 @@ class EscapeNode {
 
     start(){
         $('.startingphoto').attr('src',this.imageurl)
-        // Set new image
         $('#option-buttons').empty()
-        // Empty option buttons in case user clicks on it before question finishes loading -> causes a bug
         this.displayStory()
     }
     displayStory(){
@@ -883,6 +822,7 @@ class EscapeNode {
     }
 }
 
+// MoMo jumpscare with customized text
 class MoMoDeathNode {
     constructor(story){
         this.story = story
@@ -920,7 +860,7 @@ class MoMoDeathNode {
         $('.startingphoto').attr('src','assets/Image/youdied.png')
         $('.questionbox').typedText(`${this.story}`,speed)
         // cannot read properties of undefined (reading 'story') at momoJumpScare if you use regular function notion. 
-        // have to use bracket notation for momoJumpScare & wait function
+        // have to use arrow notion for momoJumpScare & wait function
         await wait(8000)
         $('#option-buttons').show()
         $('.startingphoto').attr('src','')

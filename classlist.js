@@ -6,7 +6,7 @@
 
 // variables that classes will use
 // momogennum is used to set probability of momo appearing in momogen (10 is 100%, 0 is 0%)
-const momogennum = 10
+const momogennum = 4
 // speed determines the time in ms between each typed character for the .questionbox
 let speed = 40
 

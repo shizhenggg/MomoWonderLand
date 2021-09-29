@@ -2,11 +2,11 @@
 // 1 Homepage (fill up instr and credits content)
 // 2 change font 
 // 3 desc and button text affirmation for nodes (storyline)
-// 4 responsive text for homepage buttons text
 // 5 README file
 // 6 change momo picture
 // 7 change walkietalkie image
 // 8 tidy up styles.css
+// 9 audio not playing even tho unmute button is clicked
 
 
 // variables that classes will use

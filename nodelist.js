@@ -74,7 +74,7 @@ const gameNode3a= new StoryNodeWithItemsUpdates(
 )
 
 const gameNode3b= new StoryNodeWithItemsUpdates(
-    'The safe opened up and you see some medicine and a first aid kit… Evidences! You found stacks of photos of victims whose faces you recognized. You took the evidences and tucked it in your jacket…These will be helpful in your case…There seems to be a papyrus map of some sort as well… ',
+    'The safe opened up and you see some medicine and a first aid kit… Evidence! You found stacks of photos of victims whose faces you recognized. You took the evidences and tucked it in your jacket…These will be helpful in your case…There seems to be a papyrus map of some sort as well… ',
     'Unroll map',
     'assets/game/game3/gamenode3b.jpg',
     'girlphoto',

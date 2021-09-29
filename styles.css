@@ -1,6 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Griffy&display=swap');
-/* use nicer fonts */
-
+@import url('https://fonts.googleapis.com/css2?family=Gemunu+Libre&display=swap');
 
 body{
     padding:0;
@@ -98,13 +97,21 @@ body{
     height:6vw;
     width:89vw;
     /* top:80vh; */
-    background-color: rgba(165, 135, 60, 0.5);
+    /* background-color: rgba(165, 135, 60, 0.5); */
+    background-image: url('assets/Image/instructiontexture.png');
+    opacity: 0.8;
+    background-size: 200vw;
+    background-position: center;
+    background-repeat: no-repeat;
     font-family: 'Griffy', cursive;
-    font-size: 3vh;
+    font-size: 1.4vmax;
+    font-weight:bolder;
+    /* 1vman will return 1% of the largest viewport dimension, be it either the viewport width (vw) or its height (vh) */
     text-align: center;
+    letter-spacing: 0.05vw;;
     bottom: 10vh;
-    padding: 3vh 5vw;
-    color: white;
+    padding: 2vh 5vw;
+    color: black;
 }
 
 .option-buttons{
@@ -155,7 +162,7 @@ video{
     box-shadow: 0 0 10px 2px;
     background-color: rgba(248, 223, 190, 0.452);
     font-family: 'Griffy', cursive;
-    font-size:4.5vh;
+    font-size: 2vmax;
     color:white;
 }
 
@@ -172,21 +179,57 @@ video{
     height: 58vh;
     padding: 20px;
     border: 1px solid #ccc;
-    background-color: rgb(222, 184, 135);
+    background-image: url('assets/Image/instructiontexture.png');
+    background-size: fill;
+    background-position: center;
+    background-repeat: no-repeat;
     text-align: center;
+    overflow:auto;
     box-shadow: 0 0 10px 2px;
     display:none;
-    color:white;
-    z-index:100;
+    color:rgb(186, 81, 81);
+    z-index:1;
 }
 
 #instructionclosebtn{
     float:right;
+    background-color: white; 
+    font-family: 'Gemunu Libre', sans-serif;
+    border-radius: 12vw;
+    border: 0.1vw solid white;
+    width:6vw;
 }
 
-.closebtn{
-    border: 1px solid black;
+#instructionclosebtn:hover{
+    cursor: pointer;
+    background-color: black;
+    color:white;
 }
+
+.instructionlogo{
+    height:6vh;
+    margin-right:1vh;
+    float:left;
+    background-color:black;
+}
+
+/* Instruction modal */
+p{
+    color:black;
+    text-align:left;
+    line-height:120%;
+    font-family: 'Gemunu Libre', sans-serif;
+    font-size: 1.4vmax;
+}
+
+.instructionheadings{
+ color:rgb(186, 81, 81);
+ font-weight: bold;
+ font-family: 'Gemunu Libre', sans-serif;
+ font-size: 1.4vmax;
+ text-decoration: underline;
+}
+
 
 /* credit box */
 
@@ -260,6 +303,7 @@ video{
     height:100vh;
     object-fit: cover;
 }
+
 
 
 /* animation for momojumpscare */

@@ -1,15 +1,12 @@
 // Things to do 
-// 3 desc and button text affirmation for nodes (storyline)
-// 8 tidy up styles.css
-// 9 audio not playing even tho unmute button is clicked
-// prep presentatino talking points
-// async await, shake
+// 1 desc and button text affirmation for nodes (storyline)
+// 2 audio not playing even tho unmute button is clicked
+// 3 prep presentation talking points
 
 
 // variables that classes will use
-
 // momogennum is used to set probability of momo appearing in momogen (10 is 100%, 0 is 0%)
-const momogennum = 4
+const momogennum = 10
 // speed determines the time in ms between each typed character for the .questionbox
 let speed = 40
 

@@ -1,7 +1,4 @@
-// Things to do 
-// 1 desc and button text affirmation for nodes (storyline)
-// 2 audio not playing even tho unmute button is clicked
-// 3 prep presentation talking points
+// audio not playing on first load even though unmute button is clicked, a refresh is required. 
 
 
 // variables that classes will use

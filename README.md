@@ -11,6 +11,7 @@ For the best experience, please play the game in full screen and have the audio 
 * CSS 
 * Javascript
 * Jquery for DOM manipulation
+* Jquery UI for shake animation 
 
 
 

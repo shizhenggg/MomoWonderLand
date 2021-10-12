@@ -307,3 +307,182 @@ video{
   }
 
 /* --- MOMO JUMPSCARE ANIMATION END --*/
+
+
+
+/* --- MEDIA QUERIES --- */
+
+@media (max-width: 480px){
+    
+    .homepagebutton{
+    /* individual buttons */
+        width: 50vw;
+        height: 13vh;
+        border-radius:25vw;
+        border: 0.3vw solid burlywood;
+        box-shadow: 0 0 10px 2px;
+        background-color: rgba(248, 223, 190, 0.452);
+        font-family: 'Griffy', cursive;
+        font-size: 2vmax;
+        color:white;
+    }
+    
+
+    #instructioncontent{
+        position: absolute;
+        top: 22vh;
+        left: 15vw;
+        width: 60vw;
+        height: 58vh;
+        padding: 20px;
+        border: 1px solid #ccc;
+        background-image: url('assets/Image/instructiontexture.png');
+        background-size: fill;
+        background-position: center;
+        background-repeat: no-repeat;
+        text-align: center;
+        overflow:auto;
+        box-shadow: 0 0 10px 2px;
+        display:none;
+        color:rgb(186, 81, 81);
+        z-index:1;
+    }
+    
+    #instructionclosebtn{
+        float:right;
+        background-color: white; 
+        font-family: 'Gemunu Libre', sans-serif;
+        border-radius: 12vw;
+        border: 0.1vw solid white;
+        width:12vw;
+    }
+    
+    .instructionlogo{
+        height:6vh;
+        margin-right:2vh;
+        float:left;
+        background-color:black;
+    }
+
+    .volumebtn{
+        background-image: url("assets/icon/mute.png");
+        background-size: contain;
+        background-repeat: no-repeat;
+        /* determines background image size */
+        position: absolute;
+        height: 8vh;
+        width: 6vw;
+        margin: 1vw;
+    }
+    
+    .homebtn{
+        background-image: url("assets/icon/home.png");
+        background-size: contain;
+        background-repeat: no-repeat;
+        position: absolute;
+        height: 8vh;
+        width: 6vw;
+        margin: 1vw;
+        top: 8vh;
+        left: -0.11vw;
+        display:none;
+    }
+    
+    #speedupbtn{
+        background-image: url("assets/icon/rabbit.png");
+        background-size: contain;
+        background-repeat: no-repeat;
+        position: absolute;
+        height: 8vh;
+        width: 6vw;
+        margin: 1vw;
+        top: 4vh;
+        left: -0.11vw;
+    }
+    
+    #slowdownbtn{
+        background-image: url("assets/icon/tortoise.png");
+        background-size: contain;
+        background-repeat: no-repeat;
+        position: absolute;
+        height: 8vh;
+        width: 6vw;
+        margin: 1vw;
+        top: 4vh;
+        left: -0.11vw;
+        display:none;
+    }
+
+    .questionbox{
+        position:absolute;
+        height:29vw;
+        width:93vw;
+        background-image: url('assets/Image/instructiontexture.png');
+        opacity: 0.8;
+        background-size: 200vw;
+        background-position: center;
+        background-repeat: no-repeat;
+        font-family: 'Griffy', cursive;
+        font-size: 1.5vmax;
+        font-weight:bolder;
+        /* 1vman will return 1% of the largest viewport dimension, be it either the viewport width (vw) or its height (vh) */
+        text-align: center;
+        letter-spacing: 0.05vw;;
+        bottom: 11vh;
+        padding: 1vh 5vw;
+        color: black;
+    }
+
+    .story-button{
+        margin: 1.2vh;
+        border-radius: 3vh;
+        flex-grow:1;
+        color:white;
+        background-color:rgba(42, 39, 35, 0.4);
+        box-shadow: 0 0 10px 2px;
+        font-family: 'Griffy', cursive;
+        font-size:2.5vh;
+    }
+    
+    .button{    
+        margin: 1.2vh;
+        border-radius: 3vh;
+        flex-grow:1;
+        color:white;
+        background-color:rgba(74,68,59,0.4);
+        box-shadow: 0 0 10px 2px;
+        font-family: 'Griffy', cursive;
+        font-size:2.5vh;
+    
+    }
+
+    .game-input{
+        text-align: center;
+        margin: 1.2vh;
+        border-radius: 3vh;
+        flex-grow:1;
+        color:white;
+        background-color:rgba(209, 127, 20, 0.452);
+        box-shadow: 0 0 10px 2px;
+        font-family: 'Griffy', cursive;
+        font-size:2.5vh;
+    }
+
+    .inventory{
+        position:relative;
+        height:13vh;
+        width:0vw;
+        top: 2vh;
+        left:80vw;
+    }
+    
+    .items{
+        height: 6vh;
+        width: 15vw;
+        background-color: rgba(218, 190, 149, 0.466);
+        border: 0.3vw solid rgba(17, 10, 2, 0.7);
+        border-radius: 2vw;
+    }
+
+
+}

@@ -470,10 +470,10 @@ video{
 
     .inventory{
         position:relative;
-        height:13vh;
-        width:0vw;
+        height:7vh;
         top: 2vh;
         left:80vw;
+        background-color: red;
     }
     
     .items{

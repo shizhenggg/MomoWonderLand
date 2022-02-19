@@ -10,8 +10,8 @@ For the best experience, please play the game in full screen and have the audio 
 * At every stage of the game, choose an option to proceed in the game. 
 * Player will be able to collect items that they deem useful throughout the game
 * Player will be able to use the items collected at certain stages 
-* There will be jumpscare (randomly served out) at particular stages of the game 
-* Certain stages are game stage where you will need to input the correct answer to progress the game
+* There will be jumpscare at particular stages of the game 
+* Certain stages are game stage where the player will need to input the correct answer to progress the game
 
 ## Tech Stack
 * HTML
